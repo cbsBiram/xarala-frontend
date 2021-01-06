@@ -35,10 +35,19 @@ export default function privacy_policy() {
             <div className="items-center flex flex-wrap">
               <div className="w-full  ml-auto mr-auto px-4">
                 <div className="md:pr-12">
-                  <h2 className="text-3xl font-semibold uppercase text-center">
-                    Politique de confidentialité ?
-                  </h2>
-                  <div class="w-11 h-1 bg-blue-600 rounded mt-4"></div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <h2 className="text-3xl font-semibold uppercase text-center">
+                      Politique de confidentialité ?
+                    </h2>
+                    <div class="w-10 h-1 bg-blue-600 rounded mt-2"></div>
+                  </div>
                   <h5 className="text-xl font-semibold uppercase mt-10 mb-5">
                     Politique de confidentialité et données personnelles
                   </h5>
