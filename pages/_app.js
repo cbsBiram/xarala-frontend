@@ -30,6 +30,7 @@ import { useApollo } from '../lib/apolloClient'
 
 export default function App({ Component, pageProps, pageTitle }) {
   const apolloClient = useApollo(pageProps.initialApolloState)
+  const analyticsId = process.env.ANALYTICS_ID
   const Layout = Component.layout || (({ children }) => <>{children}</>)
 
   return (
@@ -37,7 +38,7 @@ export default function App({ Component, pageProps, pageTitle }) {
       <Head>
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=UA-143511541-1"
+          src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}
         ></script>
         <script
           async
@@ -46,7 +47,7 @@ export default function App({ Component, pageProps, pageTitle }) {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
 
-              gtag('config', UA-143511541-1);`,
+              gtag('config', ${analyticsId});`,
           }}
         />
         <meta charSet="UTF-8" />
