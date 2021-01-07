@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Head from 'next/head'
-import Router from 'next/router'
-import PageChange from 'components/PageChange/PageChange.js'
-
 import '@fortawesome/fontawesome-free/js/all.min.js'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import Head from 'next/head'
+import Router from 'next/router'
+
+import { AnimatePresence } from 'framer-motion'
+
+import PageChange from 'components/PageChange/PageChange.js'
 import 'assets/styles/tailwind.css'
 
 Router.events.on('routeChangeStart', (url) => {
@@ -28,7 +30,7 @@ Router.events.on('routeChangeError', () => {
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apolloClient'
 
-export default function App({ Component, pageProps, pageTitle }) {
+export default function App({ Component, pageProps, pageTitle, router }) {
   const apolloClient = useApollo(pageProps.initialApolloState)
   const Layout = Component.layout || (({ children }) => <>{children}</>)
 
@@ -42,9 +44,11 @@ export default function App({ Component, pageProps, pageTitle }) {
         <title>Xarala Academy | {pageTitle}</title>
       </Head>
       <Layout>
-        <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} />
-        </ApolloProvider>
+        <AnimatePresence exitBeforeEnter>
+          <ApolloProvider client={apolloClient}>
+            <Component {...pageProps} key={router.route} />
+          </ApolloProvider>
+        </AnimatePresence>
       </Layout>
     </>
   )

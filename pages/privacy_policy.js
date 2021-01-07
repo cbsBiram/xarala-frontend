@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-import Navbar from 'components/Navbars/AuthNavbar.js'
-import IndexNavbar from 'components/Navbars/IndexNavbar.js'
 import Footer from 'components/Footers/Footer.js'
+import IndexNavbar from 'components/Navbars/IndexNavbar.js'
+import Navbar from 'components/Navbars/AuthNavbar.js'
 
 export default function privacy_policy() {
   return (
@@ -85,7 +85,7 @@ export default function privacy_policy() {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 bg-gray-200 mr-3">
+                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 mr-8">
                             <i className="fas fa-angle-right text-base text-blue-600"></i>
                           </span>
                         </div>
@@ -99,7 +99,7 @@ export default function privacy_policy() {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 bg-gray-200 mr-3">
+                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 mr-8">
                             <i className="fas fa-angle-right text-base text-blue-600"></i>
                           </span>
                         </div>
@@ -114,7 +114,7 @@ export default function privacy_policy() {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 bg-gray-200 mr-3">
+                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 mr-8">
                             <i className="fas fa-angle-right text-base text-blue-600"></i>
                           </span>
                         </div>
@@ -132,7 +132,7 @@ export default function privacy_policy() {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 bg-gray-200 mr-3">
+                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 mr-8">
                             <i className="fas fa-angle-right text-base text-blue-600"></i>
                           </span>
                         </div>

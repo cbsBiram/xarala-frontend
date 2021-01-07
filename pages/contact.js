@@ -1,12 +1,31 @@
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
-import Navbar from 'components/Navbars/AuthNavbar.js'
-import IndexNavbar from 'components/Navbars/IndexNavbar.js'
 import Footer from 'components/Footers/Footer.js'
+import IndexNavbar from 'components/Navbars/IndexNavbar.js'
+import Navbar from 'components/Navbars/AuthNavbar.js'
+
+let easing = [0.175, 0.85, 0.42, 0.96]
+const formVariants = {
+  exit: { y: 150, opacity: 0, transition: { duration: 0.5, ease: easing } },
+  enter: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: easing,
+    },
+  },
+}
 
 export default function contact() {
   return (
-    <>
+    <motion.div
+      initial="initial"
+      animate="enter"
+      exit="exit"
+      variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
+    >
       <IndexNavbar fixed />
       <main>
         <section className="relative py-20 border-b">
@@ -31,7 +50,12 @@ export default function contact() {
             </svg>
           </div>
 
-          <div className="container mx-auto pt-20 mx-2">
+          <motion.div
+            initial="exit"
+            animate="enter"
+            exit="exit"
+            className="container mx-auto pt-20 mx-2"
+          >
             <div className="items-center flex flex-wrap">
               <div className="w-full  ml-auto mr-auto px-4">
                 <div
@@ -50,11 +74,12 @@ export default function contact() {
                   <div class="w-10 h-1 bg-blue-600 rounded mt-4 mb-5"></div>
                 </div>
 
-                <form
+                <motion.form
+                  variants={formVariants}
                   action=""
-                  className="form bg-gray p-6 my-10 relative"
+                  className="form bg-gray p-6 my-10 relative rounded-lg"
                   style={{
-                    backgroundColor: 'rgba(229, 231, 235, 1)',
+                    backgroundColor: 'rgba(243, 244, 246, 1)',
                     padding: '15px',
                   }}
                 >
@@ -68,10 +93,11 @@ export default function contact() {
                     className="text-2xl text-gray-900 font-semibold"
                     style={{ marginLeft: '50px' }}
                   >
-                    Laissez nous vous contacter!
+                    Laissez-nous vous contacter!
                   </h3>
                   <p className="text-gray-600" style={{ marginLeft: '50px' }}>
-                    Afin de faire fructifier la collaboration
+                    Compléter ce formulaire et nous vous reviendrons en moins de
+                    24h.
                   </p>
                   <div className="flex space-x-5 mt-8">
                     <input
@@ -119,18 +145,20 @@ export default function contact() {
                       mes sollicitations.
                     </p>
                   </div>
-                  <input
+                  <motion.input
+                    whileHover="hover"
+                    variants={{ hover: { scale: 1.1 } }}
                     type="submit"
                     value="Submit"
-                    className="w-full mt-6 bg-blue-600 hover:bg-blue-500 text-white font-semibold p-3 rounded"
+                    className=" mt-6 bg-blue-600 hover:bg-green-500 text-white font-semibold p-3 rounded"
                   />
-                </form>
+                </motion.form>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
       </main>
       <Footer />
-    </>
+    </motion.div>
   )
 }
