@@ -22,15 +22,15 @@ We’re using these technologies:
 - TailwindCSS
 - JSX syntax
 
-In order to run the application, you should have ```NodeJS 10.0 or higher``` installed in your system.
+In order to run the application, you should have `NodeJS 10.0 or higher` installed in your system.
 
-We use **yarn** as a dependency manager, you can install it [here](https://classic.yarnpkg.com/en/docs/install/#windows-stable).
+We use **npm** or **yarn** as a dependency manager, you can install yarn here [here](https://classic.yarnpkg.com/en/docs/install/#windows-stable).
 
 \*Note: All members of the team should use it.
 Once installed, you have to run these commands to setup the project:
 
 ```shell
-yarn install
+npm install
 cp .env.example .env.development
 ```
 
@@ -48,9 +48,27 @@ Build tailwindcss
 yarn build:tailwind
 ```
 
+OR **npm**
+
+```shell
+npm install
+```
+
+Build tailwindcss
+
+```shell
+npm build:tailwind
+```
+
 ## Run the application
 
 Make sur to change the api information on `.env.development` then run the backend at `http://localhost:8000/`
+
+```bash
+npm run dev
+```
+
+Or
 
 ```bash
 yarn run dev
