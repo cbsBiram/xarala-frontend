@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { NextSeo } from 'next-seo'
 
 import Footer from 'components/Footers/Footer.js'
 import IndexNavbar from 'components/Navbars/IndexNavbar.js'
@@ -43,6 +44,10 @@ export default function about() {
       exit="exit"
       variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
     >
+      <NextSeo
+        title="Xarala Academy | À propos"
+        description="Découvrez c'est quoi Xarala?"
+      />
       <IndexNavbar fixed />
       <main>
         <section className="relative py-20 border-b">
@@ -85,12 +90,12 @@ export default function about() {
               <div className="w-full  md:w-6/12 ml-auto mr-auto px-4">
                 <div className="md:pr-12">
                   <h2 className="text-3xl font-semibold">
-                    <span class="text-blue-600 font-bold">Qui</span> sommes-nous
-                    ?
+                    <span className="text-blue-600 font-bold">Qui</span>{' '}
+                    sommes-nous ?
                   </h2>
-                  <div class="w-10 h-1 bg-blue-600 rounded mt-4"></div>
+                  <div className="w-10 h-1 bg-blue-600 rounded mt-4"></div>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                    <span class="text-blue-600 fontw-full md:w-4/12 ml-auto mr-auto px-4-bold">
+                    <span className="text-blue-600 fontw-full md:w-4/12 ml-auto mr-auto px-4-bold">
                       Xarala{' '}
                     </span>
                     , qui signifie “La technologie”, en Wolof, est une
@@ -104,8 +109,8 @@ export default function about() {
                   </p>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
                     L’objectif de
-                    <span class="text-blue-600 font-bold"> Xarala </span>est de
-                    devenir la référence numéro une de e-learning en Afrique.
+                    <span className="text-blue-600 font-bold"> Xarala </span>est
+                    de devenir la référence numéro une de e-learning en Afrique.
                   </p>
                   <ul className="list-none mt-6">
                     <li className="py-2">
@@ -179,7 +184,7 @@ export default function about() {
                   <h2 className="text-3xl font-semibold">
                     Ce que nous offrons ?
                   </h2>
-                  <div class="w-12 h-1 bg-blue-600 rounded mt-4"></div>
+                  <div className="w-12 h-1 bg-blue-600 rounded mt-4"></div>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
                     Nous offrons des formations professionnelles enseignées par
                     des formateurs expérimentés et professionnels.
@@ -271,7 +276,7 @@ export default function about() {
               <div>
                 <h2 className="text-3xl font-semibold">
                   Fonctionnalités requises
-                  <div class="w-11 h-1 bg-blue-600 rounded mt-4 mb-10"></div>
+                  <div className="w-11 h-1 bg-blue-600 rounded mt-4 mb-10"></div>
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-gray-600">
                   Enseigner c'est apprendre deux fois. Sur Xarala nous
@@ -425,7 +430,7 @@ export default function about() {
                 >
                   <h2 className="text-3xl font-semibold">L'équipe</h2>
                   <div
-                    class="w-10 h-1 bg-blue-600 rounded mt-2"
+                    className="w-10 h-1 bg-blue-600 rounded mt-2"
                     style={{ marginBottom: '50px' }}
                   ></div>
                 </div>

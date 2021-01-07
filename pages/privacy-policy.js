@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { NextSeo } from 'next-seo'
 
 import Footer from 'components/Footers/Footer.js'
 import IndexNavbar from 'components/Navbars/IndexNavbar.js'
@@ -6,8 +8,17 @@ import Navbar from 'components/Navbars/AuthNavbar.js'
 
 export default function privacy_policy() {
   return (
-    <>
+    <motion.div
+      initial="initial"
+      animate="enter"
+      exit="exit"
+      variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
+    >
       <IndexNavbar fixed />
+      <NextSeo
+        title="Xarala Academy | Politique de confidentialité"
+        description="Découvrez notre politique de confidentialité"
+      />
       <main>
         <section className="relative py-20 border-b">
           <div
@@ -46,7 +57,7 @@ export default function privacy_policy() {
                     <h2 className="text-3xl font-semibold uppercase text-center">
                       Politique de confidentialité ?
                     </h2>
-                    <div class="w-10 h-1 bg-blue-600 rounded mt-2"></div>
+                    <div className="w-10 h-1 bg-blue-600 rounded mt-2"></div>
                   </div>
                   <h5 className="text-xl font-semibold uppercase mt-10 mb-5">
                     Politique de confidentialité et données personnelles
@@ -90,7 +101,7 @@ export default function privacy_policy() {
                           </span>
                         </div>
                         <div>
-                          <h6 className="text-gray-800">
+                          <h6 className="text-gray-700 text-md">
                             Noms, prénoms, civilité, date de naissance ;
                           </h6>
                         </div>
@@ -104,7 +115,7 @@ export default function privacy_policy() {
                           </span>
                         </div>
                         <div>
-                          <h6 className="text-gray-800">
+                          <h6 className="text-gray-700 text-md">
                             Adresse postale, adresse e-mail, numéro de téléphone
                             ;
                           </h6>
@@ -119,7 +130,7 @@ export default function privacy_policy() {
                           </span>
                         </div>
                         <div>
-                          <h6 className="text-gray-800">
+                          <h6 className="text-gray-700 text-md">
                             Identifiant et mot de passe crypté utilisés pour
                             vous identifier sur nos sites ou nos applications ;
                             Informations cryptées relatives à vos moyens de
@@ -137,7 +148,7 @@ export default function privacy_policy() {
                           </span>
                         </div>
                         <div>
-                          <h6 className="text-gray-800">
+                          <h6 className="text-gray-700 text-md">
                             Toute autre information que vous souhaitez porter à
                             notre connaissance.
                           </h6>
@@ -180,6 +191,6 @@ export default function privacy_policy() {
         </section>
       </main>
       <Footer />
-    </>
+    </motion.div>
   )
 }
