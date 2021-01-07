@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { NextSeo } from 'next-seo'
 
 import Footer from 'components/Footers/Footer.js'
 import IndexNavbar from 'components/Navbars/IndexNavbar.js'
@@ -26,6 +27,10 @@ export default function contact() {
       exit="exit"
       variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
     >
+      <NextSeo
+        title="Xarala Academy | Contact"
+        description="Contactez-nous n'importe quand."
+      />
       <IndexNavbar fixed />
       <main>
         <section className="relative py-20 border-b">
@@ -71,7 +76,7 @@ export default function contact() {
                     Nous écrire
                   </h2>
 
-                  <div class="w-10 h-1 bg-blue-600 rounded mt-4 mb-5"></div>
+                  <div className="w-10 h-1 bg-blue-600 rounded mt-4 mb-5"></div>
                 </div>
 
                 <motion.form
