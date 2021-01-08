@@ -59,7 +59,7 @@ export default function contact() {
             initial="exit"
             animate="enter"
             exit="exit"
-            className="container mx-auto pt-20 mx-2"
+            className="container mx-auto pt-20 px-4"
           >
             <div className="items-center flex flex-wrap">
               <div className="w-full  ml-auto mr-auto px-4">
@@ -78,86 +78,156 @@ export default function contact() {
 
                   <div className="w-10 h-1 bg-blue-600 rounded mt-4 mb-5"></div>
                 </div>
-
-                <motion.form
+                <motion.div
                   variants={formVariants}
-                  action=""
-                  className="form bg-gray p-6 my-10 relative rounded-lg"
-                  style={{
-                    backgroundColor: 'rgba(243, 244, 246, 1)',
-                    padding: '15px',
-                  }}
+                  className="relative flex items-top justify-center min-h-screen bg-white dark:bg-gray-900 sm:items-center sm:pt-0"
                 >
-                  <div
-                    className="icon-phone bg-blue-600 text-white w-6 h-6 absolute flex items-center justify-center p-5"
-                    style={{ left: '-40px', top: '2px' }}
-                  >
-                    <i className="fas fa-phone-volume fa-fw text-2xl transform -rotate-45"></i>
+                  <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                    <div className="mt-8 overflow-hidden">
+                      <div className="flex flex-wrap h-50 items-center justify-between">
+                        <div className="w-full sm:w-full md:w-6/12 px-4 py-2 bg-gray-100 dark:bg-gray-800 sm:rounded-lg">
+                          <h1 className="text-4xl sm:text-5xl text-gray-800 dark:text-white font-extrabold tracking-tight">
+                            Contactez-nous
+                          </h1>
+                          <p className="text-normal text-lg sm:text-2xl font-medium text-gray-600 dark:text-gray-400 mt-2">
+                            Remplissez le formulaire pour démarrer une
+                            conversation.
+                          </p>
+
+                          <div className="flex items-center mt-8 text-gray-600 dark:text-gray-400">
+                            <svg
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="1.5"
+                              viewBox="0 0 24 24"
+                              className="w-8 h-8 text-gray-500"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                              />
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                            </svg>
+                            <div className="ml-4 text-md tracking-wide font-semibold w-40">
+                              Acme Inc, Street, State, Postal Code
+                            </div>
+                          </div>
+
+                          <div className="flex items-center mt-4 text-gray-600 dark:text-gray-400">
+                            <svg
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="1.5"
+                              viewBox="0 0 24 24"
+                              className="w-8 h-8 text-gray-500"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                              />
+                            </svg>
+                            <div className="ml-4 text-md tracking-wide font-semibold w-40">
+                              +44 1234567890
+                            </div>
+                          </div>
+
+                          <div className="flex items-center mt-2 text-gray-600 dark:text-gray-400">
+                            <svg
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="1.5"
+                              viewBox="0 0 24 24"
+                              className="w-8 h-8 text-gray-500"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                              />
+                            </svg>
+                            <div className="ml-4 text-md tracking-wide font-semibold w-40">
+                              info@acme.org
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="w-full md:w-6/12 px-4">
+                          <form className="p-6 flex flex-col justify-center">
+                            <div className="flex flex-col">
+                              <label for="name" className="hidden">
+                                Full Name
+                              </label>
+                              <input
+                                type="name"
+                                name="name"
+                                id="name"
+                                placeholder="Nom Complet"
+                                className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"
+                              />
+                            </div>
+
+                            <div className="flex flex-col mt-2">
+                              <label for="email" className="hidden">
+                                Email
+                              </label>
+                              <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="Email"
+                                className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"
+                              />
+                            </div>
+
+                            <div className="flex flex-col mt-2">
+                              <label for="tel" className="hidden">
+                                Number
+                              </label>
+                              <input
+                                type="tel"
+                                name="tel"
+                                id="tel"
+                                placeholder="Numéro de Téléphone"
+                                className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"
+                              />
+                            </div>
+
+                            <motion.button
+                              whileHover="hover"
+                              variants={{
+                                hover: {
+                                  scale: 1.1,
+                                  backgroundColor: 'rgba(99, 102, 241)',
+                                },
+                              }}
+                              type="submit"
+                              className="md:w-32 bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-500 transition ease-in-out duration-300"
+                              style={{ backgroundColor: 'rgba(79, 70, 229)' }}
+                            >
+                              Submit
+                            </motion.button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <h3
-                    className="text-2xl text-gray-900 font-semibold"
-                    style={{ marginLeft: '50px' }}
-                  >
-                    Laissez-nous vous contacter!
-                  </h3>
-                  <p className="text-gray-600" style={{ marginLeft: '50px' }}>
-                    Compléter ce formulaire et nous vous reviendrons en moins de
-                    24h.
-                  </p>
-                  <div className="flex space-x-5 mt-8">
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      placeholder="Nom complet"
-                      className="border p-4  w-1/2"
-                      style={{ marginRight: '15px' }}
-                    />
-                    <input
-                      type="tel"
-                      name=""
-                      id=""
-                      placeholder="Numéro de téléphone"
-                      className="border p-4 w-1/2"
-                    />
-                  </div>
-                  <input
-                    type="email"
-                    name=""
-                    id=""
-                    placeholder="Email"
-                    className="border p-4 w-full mt-3"
-                  />
-                  <textarea
-                    name=""
-                    id=""
-                    cols="10"
-                    rows="3"
-                    placeholder="Tell us about desired property"
-                    className="border p-4 mt-3 w-full"
-                  ></textarea>
-                  <p className="font-bold text-sm mt-3">GDPR Agreement *</p>
-                  <div className="flex items-baseline space-x-2 mt-2">
-                    <input
-                      type="checkbox"
-                      name=""
-                      id=""
-                      className="inline-block mr-4"
-                    />
-                    <p className="text-gray-600 text-sm">
-                      Je consens à laisser ce site web enregistrer les données
-                      soumises via ce formulaire afin qu'ils puissent répondre à
-                      mes sollicitations.
-                    </p>
-                  </div>
-                  <motion.input
-                    whileHover="hover"
-                    variants={{ hover: { scale: 1.1 } }}
-                    type="submit"
-                    value="Submit"
-                    className=" mt-6 bg-blue-600 hover:bg-green-500 text-white font-semibold p-3 rounded"
-                  />
-                </motion.form>
+                </motion.div>
               </div>
             </div>
           </motion.div>
