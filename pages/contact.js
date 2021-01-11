@@ -5,6 +5,7 @@ import { NextSeo } from 'next-seo'
 import Footer from 'components/Footers/Footer.js'
 import IndexNavbar from 'components/Navbars/IndexNavbar.js'
 import Navbar from 'components/Navbars/AuthNavbar.js'
+import Page from '../layouts/Page'
 
 let easing = [0.175, 0.85, 0.42, 0.96]
 const formVariants = {
@@ -19,7 +20,7 @@ const formVariants = {
   },
 }
 
-export default function contact() {
+export default function Contact() {
   return (
     <motion.div
       initial="initial"
@@ -31,11 +32,10 @@ export default function contact() {
         title="Xarala Academy | Contact"
         description="Contactez-nous n'importe quand."
       />
-      <IndexNavbar fixed />
       <main>
-        <section className="relative py-20 border-b">
+        <section className="relative border-b">
           <div
-            className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
+            className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
             bg-gray-300
             style={{ transform: 'translateZ(0)' }}
           >
@@ -80,7 +80,7 @@ export default function contact() {
                 </div>
                 <motion.div
                   variants={formVariants}
-                  className="relative flex items-top justify-center min-h-screen bg-white dark:bg-gray-900 sm:items-center sm:pt-0"
+                  className="relative flex items-top justify-center  bg-white dark:bg-gray-900 sm:items-center sm:pt-0"
                 >
                   <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <div className="mt-8 overflow-hidden">
@@ -233,7 +233,8 @@ export default function contact() {
           </motion.div>
         </section>
       </main>
-      <Footer />
     </motion.div>
   )
 }
+
+Contact.layout = Page
