@@ -1,6 +1,8 @@
 import React from 'react'
+
 import IndexNavbar from 'components/Navbars/IndexNavbar.js'
 import FooterSmall from 'components/Footers/FooterSmall.js'
+import Newsletter from 'components/Footers/Newsletter.js'
 
 const Page = ({ children }) => {
   return (
@@ -11,6 +13,7 @@ const Page = ({ children }) => {
           {children}
         </div>
       </main>
+      <Newsletter />
       <FooterSmall />
     </>
   )
