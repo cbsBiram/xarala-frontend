@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { NextSeo } from 'next-seo'
 
-import Footer from 'components/Footers/Footer.js'
 import IndexNavbar from 'components/Navbars/IndexNavbar.js'
 import Navbar from 'components/Navbars/AuthNavbar.js'
+import Page from '../layouts/Page'
 
 let easing = [0.175, 0.85, 0.42, 0.96]
 
@@ -35,7 +36,7 @@ const cardVariants = {
   },
 }
 
-export default function about() {
+export default function About() {
   return (
     <motion.div
       initial="initial"
@@ -43,7 +44,10 @@ export default function about() {
       exit="exit"
       variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
     >
-      <IndexNavbar fixed />
+      <NextSeo
+        title="Xarala Academy | À propos"
+        description="Découvrez c'est quoi Xarala?"
+      />
       <main>
         <section className="relative py-20 border-b">
           <div
@@ -85,12 +89,12 @@ export default function about() {
               <div className="w-full  md:w-6/12 ml-auto mr-auto px-4">
                 <div className="md:pr-12">
                   <h2 className="text-3xl font-semibold">
-                    <span class="text-blue-600 font-bold">Qui</span> sommes-nous
-                    ?
+                    <span className="text-blue-600 font-bold">Qui</span>{' '}
+                    sommes-nous ?
                   </h2>
-                  <div class="w-10 h-1 bg-blue-600 rounded mt-4"></div>
+                  <div className="w-10 h-1 bg-blue-600 rounded mt-4"></div>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                    <span class="text-blue-600 fontw-full md:w-4/12 ml-auto mr-auto px-4-bold">
+                    <span className="text-blue-600 fontw-full md:w-4/12 ml-auto mr-auto px-4-bold">
                       Xarala{' '}
                     </span>
                     , qui signifie “La technologie”, en Wolof, est une
@@ -104,8 +108,8 @@ export default function about() {
                   </p>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
                     L’objectif de
-                    <span class="text-blue-600 font-bold"> Xarala </span>est de
-                    devenir la référence numéro une de e-learning en Afrique.
+                    <span className="text-blue-600 font-bold"> Xarala </span>est
+                    de devenir la référence numéro une de e-learning en Afrique.
                   </p>
                   <ul className="list-none mt-6">
                     <li className="py-2">
@@ -179,7 +183,7 @@ export default function about() {
                   <h2 className="text-3xl font-semibold">
                     Ce que nous offrons ?
                   </h2>
-                  <div class="w-12 h-1 bg-blue-600 rounded mt-4"></div>
+                  <div className="w-12 h-1 bg-blue-600 rounded mt-4"></div>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
                     Nous offrons des formations professionnelles enseignées par
                     des formateurs expérimentés et professionnels.
@@ -267,151 +271,170 @@ export default function about() {
           </div>
 
           <div className="container mx-auto px-4 lg:pt-24 lg:pb-24">
-            <div className="flex flex-wrap text-center justify-center pb-20">
-              <div>
-                <h2 className="text-3xl font-semibold">
-                  Fonctionnalités requises
-                  <div class="w-11 h-1 bg-blue-600 rounded mt-4 mb-10"></div>
-                </h2>
-                <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                  Enseigner c'est apprendre deux fois. Sur Xarala nous
-                  partageons nos connaissances et nos découvertes.
-                </p>
+            <div className="items-center flex flex-wrap">
+              <div className="w-full  ml-auto mr-auto px-4">
+                <div
+                  className="md:pr-12 pb-20"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <h2 className="text-3xl font-semibold uppercase text-center">
+                    Fonctionnalités requises
+                  </h2>
+                  <div className="w-10 h-1 bg-blue-600 rounded mt-4 mb-10"></div>
+                  <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                    Enseigner c'est apprendre deux fois. Sur Xarala nous
+                    partageons nos connaissances et nos découvertes.
+                  </p>
+                </div>
+
+                <motion.div variants={cardVariants} className="flex flex-wrap">
+                  <motion.div
+                    whileHover="hover"
+                    variants={{ hover: { scale: 1.1 } }}
+                    className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
+                  >
+                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                      <div className="px-4 py-5 flex-auto">
+                        <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
+                          <i className="fas fa-laptop"></i>
+                        </div>
+                        <h6 className="text-xl font-semibold">
+                          Formation professionnelle
+                        </h6>
+                        <p className="mt-2 mb-4 text-gray-600">
+                          Vivez une expérience unique avec des formations
+                          enseignées par des professionnels et experts.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover="hover"
+                    variants={{ hover: { scale: 1.1 } }}
+                    className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
+                  >
+                    <div
+                      whileHover="hover"
+                      variants={{ hover: { scale: 1.1 } }}
+                      className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+                    >
+                      <div className="px-4 py-5 flex-auto">
+                        <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
+                          <i className="fas fa-user-graduate"></i>
+                        </div>
+                        <h6 className="text-xl font-semibold">
+                          Mentorat personnalisé
+                        </h6>
+                        <p className="mt-2 mb-4 text-gray-600">
+                          Soyez entourés par des coaches très expérimentés et
+                          disponibles pour vous pousser à atteindre votre
+                          objectif.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover="hover"
+                    variants={{ hover: { scale: 1.1 } }}
+                    className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
+                  >
+                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                      <div className="px-4 py-5 flex-auto">
+                        <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-500">
+                          <i className="fas fa-dollar-sign"></i>
+                        </div>
+                        <h6 className="text-xl font-semibold">
+                          Tarif accessible
+                        </h6>
+                        <p className="mt-2 mb-4 text-gray-600">
+                          Nos tarifs sont très abordables et chaque personne
+                          peut se former quelques soit son budget.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover="hover"
+                    variants={{ hover: { scale: 1.1 } }}
+                    className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
+                  >
+                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                      <div className="px-4 py-5 flex-auto">
+                        <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-600">
+                          <i className="fas fa-crown"></i>
+                        </div>
+                        <h6 className="text-xl font-semibold">Projets réels</h6>
+                        <p className="mt-2 mb-4 text-gray-600">
+                          Nous vous donnons des projets qui représente des
+                          problèmes au quotidien et des cas d'utilisation réels.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover="hover"
+                    variants={{ hover: { scale: 1.1 } }}
+                    className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
+                  >
+                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                      <div className="px-4 py-5 flex-auto">
+                        <div
+                          className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full"
+                          style={{
+                            backgroundColor: 'rgba(251, 191, 36)',
+                          }}
+                        >
+                          <i className="fas fa-user-cog"></i>
+                        </div>
+                        <h6 className="text-xl font-semibold">
+                          Expérience unique
+                        </h6>
+                        <p className="mt-2 mb-4 text-gray-600">
+                          Personnalisez la plateforme selon votre cas
+                          d'utilisation.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                  <motion.div
+                    whileHover="hover"
+                    variants={{ hover: { scale: 1.1 } }}
+                    className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
+                  >
+                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                      <div className="px-4 py-5 flex-auto">
+                        <div
+                          className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full"
+                          style={{ backgroundColor: 'rgba(156, 163, 175)' }}
+                        >
+                          <i className="fas fa-check-square"></i>
+                        </div>
+                        <h6 className="text-xl font-semibold">
+                          Problem Solving mindset
+                        </h6>
+                        <p className="mt-2 mb-4 text-gray-600">
+                          Soyez créatif et apprenez à résoudre des problèmes
+                          complexes.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
               </div>
             </div>
-
-            <motion.div variants={cardVariants} className="flex flex-wrap">
-              <motion.div
-                whileHover="hover"
-                variants={{ hover: { scale: 1.1 } }}
-                className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
-              >
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                  <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
-                      <i className="fas fa-laptop"></i>
-                    </div>
-                    <h6 className="text-xl font-semibold">
-                      Formation professionnelle
-                    </h6>
-                    <p className="mt-2 mb-4 text-gray-600">
-                      Vivez une expérience unique avec des formations enseignées
-                      par des professionnels et experts.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                whileHover="hover"
-                variants={{ hover: { scale: 1.1 } }}
-                className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
-              >
-                <div
-                  whileHover="hover"
-                  variants={{ hover: { scale: 1.1 } }}
-                  className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
-                >
-                  <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
-                      <i className="fas fa-user-graduate"></i>
-                    </div>
-                    <h6 className="text-xl font-semibold">
-                      Mentorat personnalisé
-                    </h6>
-                    <p className="mt-2 mb-4 text-gray-600">
-                      Soyez entourés par des coaches très expérimentés et
-                      disponibles pour vous pousser à atteindre votre objectif.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                whileHover="hover"
-                variants={{ hover: { scale: 1.1 } }}
-                className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
-              >
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                  <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-500">
-                      <i className="fas fa-dollar-sign"></i>
-                    </div>
-                    <h6 className="text-xl font-semibold">Tarif accessible</h6>
-                    <p className="mt-2 mb-4 text-gray-600">
-                      Nos tarifs sont très abordables et chaque personne peut se
-                      former quelques soit son budget.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                whileHover="hover"
-                variants={{ hover: { scale: 1.1 } }}
-                className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
-              >
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                  <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-600">
-                      <i className="fas fa-crown"></i>
-                    </div>
-                    <h6 className="text-xl font-semibold">Projets réels</h6>
-                    <p className="mt-2 mb-4 text-gray-600">
-                      Nous vous donnons des projets qui représente des problèmes
-                      au quotidien et des cas d'utilisation réels.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                whileHover="hover"
-                variants={{ hover: { scale: 1.1 } }}
-                className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
-              >
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                  <div className="px-4 py-5 flex-auto">
-                    <div
-                      className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full"
-                      style={{
-                        backgroundColor: 'rgba(251, 191, 36)',
-                      }}
-                    >
-                      <i className="fas fa-user-cog"></i>
-                    </div>
-                    <h6 className="text-xl font-semibold">Expérience unique</h6>
-                    <p className="mt-2 mb-4 text-gray-600">
-                      Personnalisez la plateforme selon votre cas d'utilisation.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-              <motion.div
-                whileHover="hover"
-                variants={{ hover: { scale: 1.1 } }}
-                className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
-              >
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                  <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-gray-600">
-                      <i className="fas fa-check-square"></i>
-                    </div>
-                    <h6 className="text-xl font-semibold">
-                      Problem Solving mindset
-                    </h6>
-                    <p className="mt-2 mb-4 text-gray-600">
-                      Soyez créatif et apprenez à résoudre des problèmes
-                      complexes.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
           </div>
         </section>
 
-        <section className="pt-20 pb-48">
+        <section className="pt-20 pb-20">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center mb-10">
               <div className="w-full ml-auto mr-auto px-4 ">
@@ -425,7 +448,7 @@ export default function about() {
                 >
                   <h2 className="text-3xl font-semibold">L'équipe</h2>
                   <div
-                    class="w-10 h-1 bg-blue-600 rounded mt-2"
+                    className="w-10 h-1 bg-blue-600 rounded mt-2"
                     style={{ marginBottom: '50px' }}
                   ></div>
                 </div>
@@ -486,7 +509,8 @@ export default function about() {
           </div>
         </section>
       </main>
-      <Footer />
     </motion.div>
   )
 }
+
+About.layout = Page

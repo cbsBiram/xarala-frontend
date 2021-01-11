@@ -34,9 +34,7 @@ export const ME_QUERY = gql`
 `
 
 export const ALL_POSTS_QUERY = gql`
-  {
-    posts {
-      ${postFields}
-    }
+  query{
+    posts {${postFields}}
   }
 `
