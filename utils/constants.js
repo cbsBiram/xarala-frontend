@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { courseFields } from './fields'
+import { courseFields, postFields, userFields } from './fields'
 
 export function getFromMediaUrl(url) {
   return process.env.MEDIA_URL + url
@@ -19,28 +19,24 @@ export const LOGIN_MUTATION = gql`
   }
 `
 
-export const ME_QUERY = gql`
-  {
-    me {
-      id
-      email
-      firstName
-      lastName
+export const RESGISTER_MUTATION = gql`
+  mutation($email: String!, $password: String!) {
+    register(email: $email, password: $password) {
+      user{${userFields}}
     }
+  }
+`
+
+export const ME_QUERY = gql`
+  query {
+    me {${userFields}}
   }
 `
 
 export const ALL_POSTS_QUERY = gql`
   {
     posts {
-      id
-      title
-      description
-      author {
-        email
-        firstName
-        lastName
-      }
+      ${postFields}
     }
   }
 `

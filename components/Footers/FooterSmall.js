@@ -20,7 +20,7 @@ export default function FooterSmall({ absolute }) {
                   href="https://www.creative-tim.com?ref=nnjs-footer-small"
                   className="text-white hover:text-gray-400 text-sm font-semibold py-1"
                 >
-                  Creative Tim
+                  Xarala
                 </a>
               </div>
             </div>
@@ -28,34 +28,34 @@ export default function FooterSmall({ absolute }) {
               <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                 <li>
                   <a
-                    href="https://www.creative-tim.com?ref=nnjs-footer-small"
+                    href="https://xarala.co"
                     className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                   >
-                    Creative Tim
+                    Xarala
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://www.creative-tim.com/presentation?ref=nnjs-footer-small"
+                    href="/about"
                     className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                   >
-                    About Us
+                    Qui sommes-nous?
                   </a>
                 </li>
                 <li>
                   <a
-                    href="http://blog.creative-tim.com?ref=nnjs-footer-small"
+                    href="/blog"
                     className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                   >
-                    Blog
+                    Notre Blog
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://github.com/creativetimofficial/notus-nextjs/blob/master/LICENSE.md?ref=nnjs-footer-small"
+                    href="/contact"
                     className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                   >
-                    MIT License
+                    Nous contacter
                   </a>
                 </li>
               </ul>
