@@ -45,3 +45,27 @@ export const courseFields = `
             name
           }
 `
+
+export const userFields = `
+      id
+      email
+      firstName
+      lastName
+      isActive
+      isStudent
+      isTeacher
+      isWriter
+      phone
+      address
+      title
+`
+
+export const postFields = `
+      id
+      title
+      description
+      author {
+        email
+        firstName
+        lastName
+      }`

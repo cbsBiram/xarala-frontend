@@ -9,10 +9,10 @@ export const login = async ({ token }) => {
   Router.push('/profile')
 }
 
-export const signup = async ({ token }) => {
-  cookie.set('token', token, { expires: 1 })
+export const signup = async () => {
+  // cookie.set('token', token, { expires: 1 })
   // localStorage.setItem('token', token)
-  Router.push('/')
+  Router.push('/auth/login')
 }
 
 export const logout = () => {

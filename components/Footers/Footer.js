@@ -61,78 +61,70 @@ export default function Footer() {
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
                   <span className="block uppercase text-gray-600 text-sm font-semibold mb-2">
-                    Useful Links
+                    Liens utils
                   </span>
                   <ul className="list-unstyled">
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/presentation?ref=nnjs-footer"
+                        href="/about"
                       >
-                        About Us
+                        Qui sommes-nous
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://blog.creative-tim.com?ref=nnjs-footer"
+                        href="/blog"
                       >
-                        Blog
+                        Notre Blog
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.github.com/creativetimofficial?ref=nnjs-footer"
+                        href="/courses"
                       >
-                        Github
+                        Formation
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/bootstrap-themes/free?ref=nnjs-footer"
+                        href="/contact"
                       >
-                        Free Products
+                        Contacts
                       </a>
                     </li>
                   </ul>
                 </div>
                 <div className="w-full lg:w-4/12 px-4">
                   <span className="block uppercase text-gray-600 text-sm font-semibold mb-2">
-                    Other Resources
+                    La plateforme
                   </span>
                   <ul className="list-unstyled">
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://github.com/creativetimofficial/notus-nextjs/blob/master/LICENSE.md?ref=nnjs-footer"
+                        href="/about"
                       >
-                        MIT License
+                        Qui sommes-nous
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/terms?ref=nnjs-footer"
+                        href="/blog"
                       >
-                        Terms & Conditions
+                        Notre Blog
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/privacy?ref=nnjs-footer"
+                        href="/privacy-policy"
                       >
-                        Privacy Policy
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/contact-us?ref=nnjs-footer"
-                      >
-                        Contact Us
+                        Politique de confidentialité
                       </a>
                     </li>
                   </ul>
@@ -144,11 +136,8 @@ export default function Footer() {
           <div className="flex flex-wrap items-center md:justify-between justify-center">
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm text-gray-600 font-semibold py-1">
-                Copyright © {new Date().getFullYear()} Notus NextJS by{' '}
-                <a
-                  href="https://www.creative-tim.com?ref=nnjs-footer"
-                  className="text-gray-600 hover:text-gray-900"
-                >
+                Copyright © {new Date().getFullYear()} Xarala Academy{' '}
+                <a href="#" className="text-gray-600 hover:text-gray-900">
                   Xarala
                 </a>
                 .
