@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 
-export default function FooterSmall(props) {
+export default function FooterSmall({ absolute }) {
   return (
     <>
       <footer
         className={
-          (props.absolute
-            ? "absolute w-full bottom-0 bg-gray-900"
-            : "relative") + " pb-6"
+          (absolute
+            ? 'absolute w-full bottom-0 bg-gray-900'
+            : 'w-full bottom-0 bg-gray-900') + ' pb-6'
         }
       >
         <div className="container mx-auto px-4">
@@ -15,7 +15,7 @@ export default function FooterSmall(props) {
           <div className="flex flex-wrap items-center md:justify-between justify-center">
             <div className="w-full md:w-4/12 px-4">
               <div className="text-sm text-gray-600 font-semibold py-1 text-center md:text-left">
-                Copyright © {new Date().getFullYear()}{" "}
+                Copyright © {new Date().getFullYear()}{' '}
                 <a
                   href="https://www.creative-tim.com?ref=nnjs-footer-small"
                   className="text-white hover:text-gray-400 text-sm font-semibold py-1"
@@ -64,5 +64,5 @@ export default function FooterSmall(props) {
         </div>
       </footer>
     </>
-  );
+  )
 }
