@@ -2,6 +2,7 @@ import React from 'react'
 
 import Navbar from 'components/Navbars/AuthNavbar.js'
 import Footer from 'components/Footers/Footer.js'
+import Loading from 'components/Shared/Loading'
 import { withAuthSync } from '../utils/auth'
 import { useQuery } from '@apollo/client'
 import { ME_QUERY } from '../utils/constants'
@@ -9,7 +10,7 @@ import { ME_QUERY } from '../utils/constants'
 const Profile = () => {
   const { loading, error, data } = useQuery(ME_QUERY)
 
-  if (loading) return 'Loading'
+  if (loading) return <Loading />
   if (error) return 'error while loading users'
 
   return (

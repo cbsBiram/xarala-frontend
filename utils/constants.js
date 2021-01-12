@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client'
+import cookie from 'js-cookie'
 import { courseFields, postFields, userFields } from './fields'
 
 export function getFromMediaUrl(url) {
@@ -44,3 +45,5 @@ query{
   post(postId: $postId){${postFields}}
 }
 `
+
+export const AUTH_TOKEN = cookie.get('token')

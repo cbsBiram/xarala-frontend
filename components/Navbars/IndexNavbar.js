@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 // import IndexDropdown from 'components/Dropdowns/IndexDropdown.js'
 import UserDropdown from '../Dropdowns/UserDropdown'
+import { AUTH_TOKEN } from '../../utils/constants'
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false)
@@ -127,17 +128,22 @@ export default function Navbar(props) {
                   4
                 </p>
               </li>
+
               <UserDropdown /> */}
 
               <li className="flex items-center">
-                <Link href="/auth/register">
-                  <button
-                    className="bg-gray-800 text-white active:bg-gray-700 text-xs font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-                    type="button"
-                  >
-                    Commencez
-                  </button>
-                </Link>
+                {AUTH_TOKEN ? (
+                  <UserDropdown />
+                ) : (
+                  <Link href="/auth/register">
+                    <button
+                      className="bg-gray-800 text-white active:bg-gray-700 text-xs font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                      type="button"
+                    >
+                      Commencez
+                    </button>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
