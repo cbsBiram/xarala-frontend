@@ -1,5 +1,6 @@
 import React from 'react'
 import { createPopper } from '@popperjs/core'
+import { logout } from '../../utils/auth'
 
 const UserDropdown = () => {
   // dropdown props
@@ -15,6 +16,12 @@ const UserDropdown = () => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false)
   }
+
+  const handleLogout = async (event) => {
+    event.preventDefault()
+    await logout()
+  }
+
   return (
     <>
       <a
@@ -79,7 +86,7 @@ const UserDropdown = () => {
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
           }
-          onClick={(e) => e.preventDefault()}
+          onClick={(e) => handleLogout(e)}
         >
           <i className="text-gray-500 fas fa-sign-out-alt text-lg leading-lg " />
           <span className="inline-block ml-2">Déconnexion</span>
