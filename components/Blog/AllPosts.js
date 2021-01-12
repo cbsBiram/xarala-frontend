@@ -2,12 +2,13 @@ import { useQuery } from '@apollo/client'
 import Link from 'next/link'
 import React from 'react'
 import { ALL_POSTS_QUERY } from '../../utils/constants'
+import Loading from '../Shared/Loading'
 import PostSideBar from './PostSideBar'
 
 const AllPosts = () => {
   const { loading, error, data } = useQuery(ALL_POSTS_QUERY)
 
-  if (loading) return <h2>Loading</h2>
+  if (loading) return <Loading />
   if (error) return <h2>Error</h2>
   const posts = data.posts
   return (
