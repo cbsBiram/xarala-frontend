@@ -9,7 +9,6 @@ import { AnimatePresence } from 'framer-motion'
 
 import PageChange from 'components/PageChange/PageChange.js'
 import 'assets/styles/tailwind.css'
-
 Router.events.on('routeChangeStart', (url) => {
   console.log(`Loading: ${url}`)
   document.body.classList.add('body-page-transition')

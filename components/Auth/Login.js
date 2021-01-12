@@ -27,15 +27,15 @@ const Login = () => {
   return (
     <>
       <div className="container mx-auto px-4 h-full py-4">
-        <div className="md:text-3xl text-3xl font-bold center my-4 text-center">
-          Connectez-vous à votre compte{' '}
-          <span className="text-primary">Xarala!</span>
-        </div>
         {errorMessage ? <FormError message={errorMessage} /> : <span></span>}
 
-        <div className="flex content-center items-center justify-center h-full">
+        <div className="flex content-center items-center justify-center h-full mt-8">
           <div className="w-full lg:w-6/12 px-4">
             <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
+              <h2 className="md:text-2xl text-2xl font-bold">
+                Connectez-vous à votre compte{' '}
+                <span className="text-primary">Xarala!</span>
+              </h2>
               <div className="mt-10">
                 <form onSubmit={(event) => handleSubmit(event)}>
                   <div className="flex flex-col mb-6">

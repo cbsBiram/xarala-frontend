@@ -13,15 +13,9 @@ export default function Navbar(props) {
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex items-center justify-between lg:w-auto lg:static lg:block mx-4">
             <Link href="/">
-              {/* <a
-                className="text-gray-800 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase"
-                href="#pablo"
-              >
-                Notus NextJS
-              </a> */}
-              <a href="/" class="navbar-brand mr-16pt">
-                <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
-                  <span class="avatar-title rounded bg-primary">
+              <a href="/" className="navbar-brand mr-16pt">
+                <span className="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
+                  <span className="avatar-title rounded bg-primary">
                     <img
                       src={require('assets/img/logo/logo.png')}
                       style={{
@@ -121,14 +115,16 @@ export default function Navbar(props) {
                   <i className="fas fa-shopping-cart text-lg leading-lg " />
                 </a>
                 <p
-                  class="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
+                  className="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
                   style={{ width: '15px', top: '-15px', right: '10px' }}
                 >
-                  0
+                  {/* if card else null */}
+                  {/* 0 */}
                 </p>
               </li>
 
-              <li className="flex items-center">
+              {/* auth user */}
+              {/* <li className="flex items-center">
                 <a
                   className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="#"
@@ -136,22 +132,23 @@ export default function Navbar(props) {
                   <i className="fas fa-bell text-lg leading-lg " />
                 </a>
                 <p
-                  class="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
+                  className="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
                   style={{ width: '15px', top: '-15px', right: '10px' }}
                 >
                   4
                 </p>
               </li>
-
-              <UserDropdown />
+              <UserDropdown /> */}
 
               <li className="flex items-center">
-                <button
-                  className="bg-gray-800 text-white active:bg-gray-700 text-xs font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-                  type="button"
-                >
-                  Contribuez
-                </button>
+                <Link href="/auth/register">
+                  <button
+                    className="bg-gray-800 text-white active:bg-gray-700 text-xs font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                    type="button"
+                  >
+                    Commencez
+                  </button>
+                </Link>
               </li>
             </ul>
           </div>

@@ -103,6 +103,15 @@ export default function Footer() {
                     La plateforme
                   </span>
                   <ul className="list-unstyled">
+                    {' '}
+                    <li>
+                      <a
+                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                        href="/community"
+                      >
+                        Notre communauté
+                      </a>
+                    </li>
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
@@ -139,15 +148,15 @@ export default function Footer() {
                     spam!
                   </h5>
 
-                  {/* <form action="#" class="mt-2">
-                    <div class="flex items-center">
+                  {/* <form action="#" className="mt-2">
+                    <div className="flex items-center">
                       <input
                         type="email"
-                        class="w-full px-2 py-4 mr-2  bg-gray-100 shadow-inner rounded-md border border-gray-400 focus:outline-none"
+                        className="w-full px-2 py-4 mr-2  bg-gray-100 shadow-inner rounded-md border border-gray-400 focus:outline-none"
                         required
                       />
                       <button
-                        class="bg-blue-600 text-gray-200 px-5 py-2 rounded shadow "
+                        className="bg-blue-600 text-gray-200 px-5 py-2 rounded shadow "
                         style="margin-left: -7.8rem;"
                       >
                         S'inscrire

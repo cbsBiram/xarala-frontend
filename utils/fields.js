@@ -63,7 +63,8 @@ export const userFields = `
 export const postFields = `
       id
       title
-      description
+      content
+      slug
       author {
         email
         firstName

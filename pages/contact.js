@@ -87,11 +87,11 @@ export default function Contact() {
                       <div className="flex flex-wrap h-50 items-center justify-between">
                         <div className="w-full sm:w-full md:w-6/12 px-4 py-2 bg-gray-100 dark:bg-gray-800 sm:rounded-lg">
                           <h1 className="text-4xl sm:text-5xl text-gray-800 dark:text-white font-extrabold tracking-tight">
-                            Contactez-nous
+                            Contact
                           </h1>
                           <p className="text-normal text-lg sm:text-2xl font-medium text-gray-600 dark:text-gray-400 mt-2">
-                            Remplissez le formulaire pour démarrer une
-                            conversation.
+                            Vous pouvez contacter notre équipe d'experts au +221
+                            77 992 99 52 24/7 de 8h00 à 20h00
                           </p>
 
                           <div className="flex items-center mt-8 text-gray-600 dark:text-gray-400">
@@ -118,7 +118,7 @@ export default function Contact() {
                               />
                             </svg>
                             <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                              Acme Inc, Street, State, Postal Code
+                              Dakar, Sénégal, Sicap Mbao, Extension 596
                             </div>
                           </div>
 
@@ -140,7 +140,7 @@ export default function Contact() {
                               />
                             </svg>
                             <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                              +44 1234567890
+                              +221 76 377 22 60
                             </div>
                           </div>
 
@@ -162,7 +162,7 @@ export default function Contact() {
                               />
                             </svg>
                             <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                              info@acme.org
+                              contact[at]xarala[dot]co
                             </div>
                           </div>
                         </div>
