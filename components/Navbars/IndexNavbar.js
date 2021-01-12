@@ -43,17 +43,6 @@ export default function Navbar(props) {
             }
             id="example-navbar-warning"
           >
-            {/* <ul className="flex flex-col lg:flex-row list-none mr-auto">
-              <li className="flex items-center">
-                <a
-                  className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index-navbar"
-                >
-                  <i className="text-gray-500 far fa-file-alt text-lg leading-lg mr-2" />{' '}
-                  Docs
-                </a>
-              </li>
-            </ul> */}
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               {/* <li className="flex items-center">
                 <IndexDropdown />
@@ -86,12 +75,6 @@ export default function Navbar(props) {
                   {/* <i className="text-gray-500 fab fa-github text-lg leading-lg " /> */}
                   <span className=" inline-block ml-2">Blog</span>
                 </a>
-                <p
-                  className="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
-                  style={{ width: '15px', top: '-15px', right: '10px' }}
-                >
-                  0
-                </p>
               </li>
 
               <li className="flex items-center">
@@ -102,15 +85,7 @@ export default function Navbar(props) {
                   {/* <i className="text-gray-500 fab fa-github text-lg leading-lg " /> */}
                   <span className=" inline-block ml-2">À propos</span>
                 </a>
-                <p
-                  className="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
-                  style={{ width: '15px', top: '-15px', right: '10px' }}
-                >
-                  4
-                </p>
               </li>
-
-              <UserDropdown />
 
               <li className="flex items-center">
                 <a
