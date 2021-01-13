@@ -1,17 +1,20 @@
-import React from "react";
+import React from 'react'
 
 // components
 
-import CardLineChart from "components/Cards/CardLineChart.js";
-import CardBarChart from "components/Cards/CardBarChart.js";
-import CardPageVisits from "components/Cards/CardPageVisits.js";
-import CardSocialTraffic from "components/Cards/CardSocialTraffic.js";
+import CardLineChart from 'components/Cards/CardLineChart.js'
+import CardBarChart from 'components/Cards/CardBarChart.js'
+import CardPageVisits from 'components/Cards/CardPageVisits.js'
+import CardSocialTraffic from 'components/Cards/CardSocialTraffic.js'
 
 // layout for page
 
-import Admin from "layouts/Admin.js";
+import Admin from 'layouts/Admin.js'
+import { useQuery } from '@apollo/client'
+import { ME_QUERY } from '../../utils/constants'
+import Loading from '../../components/Shared/Loading'
 
-export default function Dashboard() {
+const Dashboard = () => {
   return (
     <>
       <div className="flex flex-wrap">
@@ -31,7 +34,8 @@ export default function Dashboard() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-Dashboard.layout = Admin;
+Dashboard.layout = Admin
+export default Dashboard

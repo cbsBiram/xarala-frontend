@@ -18,7 +18,6 @@ const Register = () => {
     const { errors, data } = await registerUser({
       variables: { email, password },
     })
-    console.log(errors, data, 'All')
     if (errors) {
       setErrorMessage(errors[0].message)
     } else {

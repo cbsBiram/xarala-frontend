@@ -17,7 +17,6 @@ const Login = () => {
     const { errors, data } = await loginUser({ variables: { email, password } })
 
     if (errors) {
-      console.log(errors)
       setErrorMessage(errors[0].message)
     } else {
       const token = data.tokenAuth.token

@@ -1,11 +1,9 @@
 import React from 'react'
 
-import Navbar from 'components/Navbars/AuthNavbar.js'
-import Footer from 'components/Footers/Footer.js'
 import Loading from 'components/Shared/Loading'
-import { withAuthSync } from '../utils/auth'
 import { useQuery } from '@apollo/client'
-import { ME_QUERY } from '../utils/constants'
+import { ME_QUERY } from '../../utils/constants'
+import Admin from 'layouts/Admin'
 
 const Profile = () => {
   const { loading, error, data } = useQuery(ME_QUERY)
@@ -15,7 +13,6 @@ const Profile = () => {
 
   return (
     <>
-      <Navbar transparent />
       <main className="profile-page">
         <section className="relative block h-500-px">
           <div
@@ -139,9 +136,9 @@ const Profile = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   )
 }
 
-export default withAuthSync(Profile)
+Profile.layout = Admin
+export default Profile

@@ -19,4 +19,5 @@ function Blog() {
 }
 
 Blog.layout = Page
+Blog.pageTitle = 'Le blog de Xarala'
 export default Blog

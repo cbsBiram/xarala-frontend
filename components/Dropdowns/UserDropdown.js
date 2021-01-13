@@ -1,6 +1,7 @@
 import React from 'react'
 import { createPopper } from '@popperjs/core'
 import { logout } from '../../utils/auth'
+import Link from 'next/link'
 
 const UserDropdown = () => {
   // dropdown props
@@ -50,39 +51,31 @@ const UserDropdown = () => {
           'bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48'
         }
       >
-        <a
-          href="#pablo"
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          <i className="text-gray-500 fas fa-school text-lg leading-lg " />
-          <span className="inline-block ml-2">Mes Cours</span>
-        </a>
-        <a
-          href="#pablo"
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          <i className="text-gray-500 fas fa-clipboard-list text-lg leading-lg " />
-          <span className="inline-block ml-2">Mes Commandes</span>
-        </a>
-        <a
-          href="#pablo"
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          <i className="text-gray-500 fas fa-cog text-lg leading-lg " />
-          <span className="inline-block ml-2">Paramètres</span>
-        </a>
+        <Link href="/admin/dashboard">
+          <a
+            type="button"
+            className={
+              'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
+            }
+          >
+            <i className="text-gray-500 fas fa-school fa-tachometer-alt text-lg leading-lg " />
+
+            <span className="inline-block ml-2">Tableau de board</span>
+          </a>
+        </Link>
+        <Link href="/admin/profile">
+          <button
+            type="button"
+            className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+          >
+            <i className="text-gray-500 far fa-user text-lg leading-lg " />
+            <span className="inline-block ml-2">Profile</span>
+          </button>
+        </Link>
         <div className="h-0 my-2 border border-solid border-gray-200" />
-        <a
-          href="#pablo"
+
+        <button
+          type="button"
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
           }
@@ -90,7 +83,7 @@ const UserDropdown = () => {
         >
           <i className="text-gray-500 fas fa-sign-out-alt text-lg leading-lg " />
           <span className="inline-block ml-2">Déconnexion</span>
-        </a>
+        </button>
       </div>
     </>
   )

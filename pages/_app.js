@@ -10,7 +10,6 @@ import { AnimatePresence } from 'framer-motion'
 import PageChange from 'components/PageChange/PageChange.js'
 import 'assets/styles/tailwind.css'
 Router.events.on('routeChangeStart', (url) => {
-  console.log(`Loading: ${url}`)
   document.body.classList.add('body-page-transition')
   ReactDOM.render(
     <PageChange path={url} />,
@@ -29,11 +28,13 @@ Router.events.on('routeChangeError', () => {
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apolloClient'
 
-export default function App({ Component, pageProps, pageTitle, router }) {
+export default function App({ Component, pageProps, router }) {
   const apolloClient = useApollo(pageProps.initialApolloState)
   const analyticsId = process.env.ANALYTICS_ID
   const Layout = Component.layout || (({ children }) => <>{children}</>)
-
+  const pageTitle =
+    Component.pageTitle ||
+    'Accueil, Cours en ligne - La technologie dans votre langue'
   return (
     <>
       <Head>
@@ -65,12 +66,7 @@ export default function App({ Component, pageProps, pageTitle, router }) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <title>
-          Xarala Academy |{' '}
-          {pageTitle
-            ? pageTitle
-            : 'Accueil, Cours en ligne - La technologie dans votre langue'}
-        </title>
+        <title>Xarala Academy | {pageTitle}</title>
       </Head>
       <Layout>
         <AnimatePresence exitBeforeEnter>

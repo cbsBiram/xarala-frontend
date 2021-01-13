@@ -294,7 +294,7 @@ export default function About() {
 
                 <motion.div variants={cardVariants} className="flex flex-wrap">
                   <motion.div
-                    whileHover="hover"
+                    whilehover="hover"
                     variants={{ hover: { scale: 1.1 } }}
                     className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                   >
@@ -315,12 +315,12 @@ export default function About() {
                   </motion.div>
 
                   <motion.div
-                    whileHover="hover"
+                    whilehover="hover"
                     variants={{ hover: { scale: 1.1 } }}
                     className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                   >
                     <div
-                      whileHover="hover"
+                      whilehover="hover"
                       variants={{ hover: { scale: 1.1 } }}
                       className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
                     >
@@ -341,7 +341,7 @@ export default function About() {
                   </motion.div>
 
                   <motion.div
-                    whileHover="hover"
+                    whilehover="hover"
                     variants={{ hover: { scale: 1.1 } }}
                     className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                   >
@@ -362,7 +362,7 @@ export default function About() {
                   </motion.div>
 
                   <motion.div
-                    whileHover="hover"
+                    whilehover="hover"
                     variants={{ hover: { scale: 1.1 } }}
                     className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                   >
@@ -381,7 +381,7 @@ export default function About() {
                   </motion.div>
 
                   <motion.div
-                    whileHover="hover"
+                    whilehover="hover"
                     variants={{ hover: { scale: 1.1 } }}
                     className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                   >
@@ -406,7 +406,7 @@ export default function About() {
                     </div>
                   </motion.div>
                   <motion.div
-                    whileHover="hover"
+                    whilehover="hover"
                     variants={{ hover: { scale: 1.1 } }}
                     className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                   >
