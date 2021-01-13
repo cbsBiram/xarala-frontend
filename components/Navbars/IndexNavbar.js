@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 // import IndexDropdown from 'components/Dropdowns/IndexDropdown.js'
 import { AUTH_TOKEN } from '../../utils/constants'
+import UserDropdown from '../Dropdowns/UserDropdown'
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false)
