@@ -19,7 +19,7 @@ module.exports = {
   apps: [
     {
       name: 'xarala',
-      script: 'index.js',
+      script: 'xarala',
       env: {
         NODE_ENV: 'development',
       },
@@ -43,9 +43,7 @@ module.exports = {
       ssh_options: 'StrictHostKeyChecking=no',
       path: TARGET_SERVER_APP_PATH,
       'post-deploy':
-        'npm install --production' +
-        ' && pm2 startOrRestart ecosystem.config.js --env=production' +
-        ' && pm2 save',
+        'npm install && npm run build && pm2 reload ecosystem.config.js --env production',
     },
   },
 }
