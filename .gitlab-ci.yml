@@ -24,7 +24,7 @@ deploy_stage:
   script:
     - sshpass -V
     - export SSHPASS=$USER_PASS
-    - sshpass -p stricthostkeychecking=no ssh xarala@5.189.161.184
+    - sshpass -e ssh xarala@5.189.161.184
     - cd /home/xarala/nodeapps/xarala-frontend
     - make deploy
 
