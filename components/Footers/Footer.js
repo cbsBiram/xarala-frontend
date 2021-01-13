@@ -61,7 +61,7 @@ export default function Footer() {
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
                   <span className="block uppercase text-gray-600 text-sm font-semibold mb-2">
-                    Liens utils
+                    Liens utiles
                   </span>
                   <ul className="list-unstyled">
                     <li>
@@ -137,32 +137,6 @@ export default function Footer() {
                       </a>
                     </li>
                   </ul>
-                </div>
-                <div className="w-full lg:w-4/12 px-4">
-                  <span className="block uppercase text-gray-600 text-sm font-semibold mb-2">
-                    Newsletter
-                  </span>
-                  <h5 className="text-sm mt-4 mb-2 text-gray-700 font-semibold">
-                    Abonnez-vous pour obtenir des mises à jour et des
-                    informations. Ne vous inquiétez pas, nous n'enverrons pas de
-                    spam!
-                  </h5>
-
-                  {/* <form action="#" className="mt-2">
-                    <div className="flex items-center">
-                      <input
-                        type="email"
-                        className="w-full px-2 py-4 mr-2  bg-gray-100 shadow-inner rounded-md border border-gray-400 focus:outline-none"
-                        required
-                      />
-                      <button
-                        className="bg-blue-600 text-gray-200 px-5 py-2 rounded shadow "
-                        style="margin-left: -7.8rem;"
-                      >
-                        S'inscrire
-                      </button>
-                    </div>
-                  </form> */}
                 </div>
               </div>
             </div>
