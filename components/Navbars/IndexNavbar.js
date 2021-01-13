@@ -3,7 +3,6 @@ import Link from 'next/link'
 // components
 
 // import IndexDropdown from 'components/Dropdowns/IndexDropdown.js'
-import UserDropdown from '../Dropdowns/UserDropdown'
 import { AUTH_TOKEN } from '../../utils/constants'
 
 export default function Navbar(props) {
@@ -76,6 +75,12 @@ export default function Navbar(props) {
                   {/* <i className="text-gray-500 fab fa-github text-lg leading-lg " /> */}
                   <span className=" inline-block ml-2">Blog</span>
                 </a>
+                {/* <p
+                  className="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
+                  style={{ width: '15px', top: '-15px', right: '10px' }}
+                >
+                  0
+                </p> */}
               </li>
 
               <li className="flex items-center">
@@ -86,6 +91,12 @@ export default function Navbar(props) {
                   {/* <i className="text-gray-500 fab fa-github text-lg leading-lg " /> */}
                   <span className=" inline-block ml-2">À propos</span>
                 </a>
+                {/* <p
+                  className="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
+                  style={{ width: '15px', top: '-15px', right: '10px' }}
+                >
+                  4
+                </p> */}
               </li>
 
               <li className="flex items-center">

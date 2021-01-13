@@ -1,13 +1,9 @@
 import React from 'react'
-import Link from 'next/link'
 
 import { motion } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-// components
+import { gql, useQuery } from '@apollo/client'
 
-import Navbar from 'components/Navbars/AuthNavbar.js'
-import IndexNavbar from 'components/Navbars/IndexNavbar.js'
-import Footer from 'components/Footers/Footer.js'
 import Page from '../layouts/Page'
 
 let easing = [0.175, 0.85, 0.42, 0.96]
@@ -24,7 +20,35 @@ const imageVariants = {
   },
 }
 
+export const ALL_COURSES_QUERY = gql`
+  query allCourses {
+    courses {
+      id
+      title
+      description
+      price
+      thumbnail
+      teacher {
+        firstName
+        lastName
+      }
+      categories {
+        name
+      }
+    }
+  }
+`
+
 export default function Index() {
+  const { loading, error, data } = useQuery(ALL_COURSES_QUERY)
+
+  if (error) return <div>Error loading players.</div>
+  if (loading) return <div>Loading</div>
+
+  const { courses: allCourses } = data
+
+  console.log('Courses', allCourses)
+
   return (
     <motion.div
       initial="initial"
@@ -259,6 +283,138 @@ export default function Index() {
                   Vous serez mentoré par les meilleurs formateurs.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative block  bg-gray-200 pt-10">
+          <div className="container mx-auto px-4 py-8">
+            <div className="flex flex-wrap justify-center text-center">
+              <div
+                className="w-full lg:w-7/12 px-4 mb-10"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <h2 className="text-3xl font-semibold uppercase">
+                  Nos meilleurs cours
+                </h2>
+                <div
+                  className="w-10 h-1 bg-blue-600 rounded mt-2"
+                  style={{ marginBottom: '30px' }}
+                ></div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap">
+              {allCourses.map((course) => (
+                <div
+                  className=" w-full md:w-4/12 px-4 text-center"
+                  key={course.id}
+                >
+                  <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                    <div className="px-4 py-5 flex-auto">
+                      <div className="flex items-center justify-center">
+                        <img src={require('assets/img/angular.jpg')} />
+                      </div>
+                      <div className="items-center py-2">
+                        <span className="text-xs font-semibold py-1 px-2 uppercase rounded  bg-green-500 uppercase last:mr-0 mr-1">
+                          {course.categories[0].name}
+                        </span>
+                      </div>
+                      <h6 className="text-xl font-semibold">{course.title}</h6>
+                      <div className="mt-2 mb-2">
+                        <i className="far fa-user mx-2"></i>
+                        <span className="text-gray-600">
+                          {course.teacher.firstName} {course.teacher.lastName}
+                        </span>
+                        <p className="mb-0">
+                          <i
+                            className="fas fa-star text-yellow-600"
+                            style={{ color: 'rgba(251, 191, 36)' }}
+                          ></i>
+                          <i
+                            className="fas fa-star text-warning"
+                            style={{ color: 'rgba(251, 191, 36)' }}
+                          ></i>
+                          <i
+                            className="fas fa-star text-warning"
+                            style={{ color: 'rgba(251, 191, 36)' }}
+                          ></i>
+                          <i
+                            className="fas fa-star text-warning"
+                            style={{ color: 'rgba(251, 191, 36)' }}
+                          ></i>
+                          <i
+                            className="fas fa-star text-warning"
+                            style={{ color: 'rgba(251, 191, 36)' }}
+                          ></i>
+                        </p>
+                      </div>
+                      <p className="mt-2 mb-4 text-gray-600">
+                        {course.description.length > 100
+                          ? course.description.substring(0, 100) + '...'
+                          : course.description}
+                      </p>
+                      <div className="flex border-t">
+                        <div className="w-5/12 my-4">
+                          <div className="w-full items-center justify-center">
+                            <i className="fas fa-headphones-alt text-xl mx-4"></i>
+                            <span className="text-gray-600 ">2 lectures</span>
+                          </div>
+                          <div className="w-full items-center justify-center mt-4">
+                            <i className="fas fa-clock text-xl mx-4"></i>
+                            <span className="text-gray-600 ">0 minutes</span>
+                          </div>
+                        </div>
+                        <div className="w-6/12 my-4 flex items-center justify-end">
+                          {course.price ? (
+                            <span className="text-2xl font-bold  py-1 px-2 uppercase rounded  bg-white uppercase ">
+                              {course.price}
+                            </span>
+                          ) : (
+                            <span className="text-xs font-semibold  py-1 px-2 uppercase rounded  bg-white uppercase last:mr-0 mr-1 text-green-500">
+                              Gratuit
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {/* 
+              <div className="w-full md:w-4/12 px-4 text-center">
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                  <div className="px-4 py-5 flex-auto">
+                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
+                      <i className="fas fa-retweet"></i>
+                    </div>
+                    <h6 className="text-xl font-semibold">Free Revisions</h6>
+                    <p className="mt-2 mb-4 text-gray-600">
+                      Keep you user engaged by providing meaningful information.
+                      Remember that by this time, the user is curious.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-full md:w-4/12 px-4 text-center">
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                  <div className="px-4 py-5 flex-auto">
+                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
+                      <i className="fas fa-fingerprint"></i>
+                    </div>
+                    <h6 className="text-xl font-semibold">Verified Company</h6>
+                    <p className="mt-2 mb-4 text-gray-600">
+                      Write a few lines about each one. A paragraph describing a
+                      feature will be enough. Keep you user engaged!
+                    </p>
+                  </div>
+                </div>
+              </div>*/}
             </div>
           </div>
         </section>
