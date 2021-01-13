@@ -20,8 +20,12 @@ module.exports = withFonts(
           config.resolve.modules.push(path.resolve('./'))
           return config
         },
+        images: {
+          domains: ['process.env.DOMAIN'],
+        },
         env: {
           API_URL: process.env.API_URL,
+          MEDIA_URL: process.env.MEDIA_URL,
           JWT_EXPIRY: process.env.JWT_EXPIRY,
           JWT_SECRET: process.env.JWT_SECRET,
           REFRESH_TOKEN_EXPIRY: process.env.REFRESH_TOKEN_EXPIRY,

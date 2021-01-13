@@ -41,8 +41,8 @@ export const ALL_POSTS_QUERY = gql`
 `
 
 export const SINGLE_POST_QUERY = gql`
-query{
-  post(postId: $postId){${postFields}}
+query($postSlug: String!){
+  post(postSlug: $postSlug){${postFields}}
 }
 `
 

@@ -65,8 +65,15 @@ export const postFields = `
       title
       content
       slug
+      publishDate
+      tags{
+        id
+        name
+        description
+      }
       author {
         email
         firstName
         lastName
+        avatar
       }`
