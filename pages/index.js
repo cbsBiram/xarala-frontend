@@ -43,6 +43,8 @@ export default function Index() {
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
               backgroundImage: `url(${require('assets/img/xarala-header.jpg')})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
             }}
           >
             <span
