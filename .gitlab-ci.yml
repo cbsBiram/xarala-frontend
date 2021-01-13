@@ -24,7 +24,7 @@ deploy_stage:
   script:
     - sshpass -V
     - export SSHPASS=$USER_PASS
-    - sshpass -e scp -o stricthostkeychecking=no -r . ssh xarala@5.189.161.184:/home/xarala/nodeapps/xarala-frontend
+    - sshpass -e scp -o stricthostkeychecking=no -r /builds/xarala-acadmey/xarala-frontend ssh xarala@5.189.161.184:/home/xarala/nodeapps/xarala-frontend
 
 deploy_production:
   stage: deploy
@@ -34,5 +34,5 @@ deploy_production:
   script:
     - sshpass -V
     - export SSHPASS=$USER_PASS
-    - sshpass -e scp -o stricthostkeychecking=no -r . ssh xarala@5.189.161.184:/home/xarala/nodeapps/xarala-frontend
+    - sshpass -e scp -o stricthostkeychecking=no -r /builds/xarala-acadmey/xarala-frontend ssh xarala@5.189.161.184:/home/xarala/nodeapps/xarala-frontend
     - make deploy
