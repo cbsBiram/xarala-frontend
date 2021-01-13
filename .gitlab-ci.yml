@@ -1,40 +1,26 @@
+image: keymetrics/pm2:6
+
 stages:
-  - test
   - deploy
 
-before_script:
-  - apt-get update -qq && apt-get install -y -qq sshpass
-
-all tests:
-  stage: test
+deploy_prod:
+  stage: deploy
   script:
-    - rm -rf ./src/
-    - rm -rf ./conf/
-    - rm -rf ./.vscode/
-    - rm -rf ./gulp_tasks/
-  when: on_success
+    - echo "====== Deploy to production server ======"
+    - apk update && apk upgrade
+    - apk add git openssh bash
+    # Add target server`s secret key
+    - mkdir ~/.ssh
+    - echo $TARGET_SERVER_SECRET_KEY_BASE64 | base64 -d > ~/.ssh/id_rsa
+    - chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
+    - echo "Test ssh connection"
+    - ssh -o StrictHostKeyChecking=no -T "$TARGET_SERVER_USER@$TARGET_SERVER_HOST"
+    # Delploy
+    - echo "Setup tagget server directories"
+    - pm2 deploy ecosystem.config.js production setup 2>&1 || true
+    - echo "make deploy"
+    - pm2 deploy ecosystem.config.js production
+  environment:
+    name: deploying
   only:
     - master
-
-deploy_stage:
-  stage: deploy
-  environment: Staging
-  only:
-    - master
-  script:
-    - sshpass -V
-    - export SSHPASS=$USER_PASS
-    - sshpass -e ssh xarala@5.189.161.184
-    - cd /home/xarala/nodeapps/xarala-frontend
-    - make deploy
-
-deploy_production:
-  stage: deploy
-  environment: Production
-  only:
-    - tags
-  script:
-    - sshpass -V
-    - export SSHPASS=$USER_PASS
-    - sshpass -e scp -o stricthostkeychecking=no -r /builds/xarala-acadmey/xarala-frontend ssh xarala@5.189.161.184:/home/xarala/nodeapps/xarala-frontend
-    - make deploy
