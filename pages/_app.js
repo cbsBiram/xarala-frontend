@@ -68,13 +68,13 @@ export default function App({ Component, pageProps, router }) {
         />
         <title>Xarala Academy | {pageTitle}</title>
       </Head>
-      <Layout>
-        <AnimatePresence exitBeforeEnter>
-          <ApolloProvider client={apolloClient}>
+      <AnimatePresence exitBeforeEnter>
+        <ApolloProvider client={apolloClient}>
+          <Layout>
             <Component {...pageProps} key={router.route} />
-          </ApolloProvider>
-        </AnimatePresence>
-      </Layout>
+          </Layout>
+        </ApolloProvider>
+      </AnimatePresence>
     </>
   )
 }

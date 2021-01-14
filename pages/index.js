@@ -106,7 +106,7 @@ export default function Index() {
                     <a href="#" target="_blank">
                       <img
                         alt="ios store"
-                        src={require('assets/img/badgeios.png')}
+                        src={require('assets/img/appstore1.png')}
                         className="mx-4 rounded"
                         style={{ height: '50px' }}
                       />

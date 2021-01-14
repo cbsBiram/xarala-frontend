@@ -110,7 +110,7 @@ const Register = () => {
                     <div className="flex ml-auto">
                       <Link href="/auth/password-reset">
                         <a
-                          href="#"
+                          href="/auth/password-reset"
                           className="inline-flex text-xs sm:text-sm text-blue-500 hover:text-blue-700"
                         >
                           Mot de passe oublié?
@@ -145,7 +145,7 @@ const Register = () => {
               <div className="flex justify-center items-center mt-6">
                 <Link href="/auth/login">
                   <a
-                    href="#"
+                    href="/auth/login"
                     className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center"
                   >
                     <span>

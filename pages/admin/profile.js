@@ -121,7 +121,7 @@ const Profile = () => {
                         artist of considerable range.
                       </p>
                       <a
-                        href="#pablo"
+                        href="#xarala"
                         className="font-normal text-blue-500"
                         onClick={(e) => e.preventDefault()}
                       >

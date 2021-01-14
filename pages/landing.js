@@ -131,7 +131,7 @@ export default function Landing() {
                   JavaScript.
                 </p>
                 <Link href="/">
-                  <a href="#pablo" className="font-bold text-gray-800 mt-8">
+                  <a href="#xarala" className="font-bold text-gray-800 mt-8">
                     Check Notus NextJS!
                   </a>
                 </Link>

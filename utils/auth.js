@@ -21,7 +21,7 @@ export const logout = () => {
   // to support logging out from all windows
   window.localStorage.setItem('logout', Date.now())
   // window.localStorage.removeItem('token')
-  Router.push('/')
+  Router.reload('/')
 }
 
 // Gets the display name of a JSX component for dev tools

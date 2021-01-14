@@ -18,16 +18,16 @@ const UserDropdown = () => {
     setDropdownPopoverShow(false)
   }
 
-  const handleLogout = async (event) => {
+  const handleLogout = (event) => {
     event.preventDefault()
-    await logout()
+    logout()
   }
 
   return (
     <>
       <a
         className="text-gray-600 block"
-        href="#pablo"
+        href="#xarala"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault()
@@ -64,18 +64,18 @@ const UserDropdown = () => {
           </a>
         </Link>
         <Link href="/admin/profile">
-          <button
-            type="button"
+          <a
+            href="/admin/profile"
             className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
           >
             <i className="text-gray-500 far fa-user text-lg leading-lg " />
-            <span className="inline-block ml-2">Profile</span>
-          </button>
+            <span className="inline-block ml-2">Mon Compte</span>
+          </a>
         </Link>
         <div className="h-0 my-2 border border-solid border-gray-200" />
 
-        <button
-          type="button"
+        <a
+          href="#xarala"
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
           }
@@ -83,7 +83,7 @@ const UserDropdown = () => {
         >
           <i className="text-gray-500 fas fa-sign-out-alt text-lg leading-lg " />
           <span className="inline-block ml-2">Déconnexion</span>
-        </button>
+        </a>
       </div>
     </>
   )

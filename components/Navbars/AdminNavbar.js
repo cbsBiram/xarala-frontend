@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
+import UserDropdown from 'components/Dropdowns/UserDropdown.js'
 
-export default function Navbar() {
+const Navbar = () => {
   return (
     <>
       {/* Navbar */}
@@ -11,10 +11,10 @@ export default function Navbar() {
           {/* Brand */}
           <a
             className="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-            href="#pablo"
+            href="#xarala"
             onClick={(e) => e.preventDefault()}
           >
-            Dashboard
+            Tableau de bord
           </a>
           {/* Form */}
           <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
@@ -37,5 +37,7 @@ export default function Navbar() {
       </nav>
       {/* End Navbar */}
     </>
-  );
+  )
 }
+
+export default Navbar

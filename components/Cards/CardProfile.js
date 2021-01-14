@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 // components
 
@@ -12,7 +12,7 @@ export default function CardProfile() {
               <div className="relative">
                 <img
                   alt="..."
-                  src={require("assets/img/team-2-800x800.jpg")}
+                  src={require('assets/img/team-2-800x800.jpg')}
                   className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                 />
               </div>
@@ -45,7 +45,7 @@ export default function CardProfile() {
               Jenna Stones
             </h3>
             <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
-              <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
+              <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{' '}
               Los Angeles, California
             </div>
             <div className="mb-2 text-gray-700 mt-10">
@@ -68,7 +68,7 @@ export default function CardProfile() {
                   range.
                 </p>
                 <a
-                  href="#pablo"
+                  href="#xarala"
                   className="font-normal text-blue-500"
                   onClick={(e) => e.preventDefault()}
                 >
@@ -80,5 +80,5 @@ export default function CardProfile() {
         </div>
       </div>
     </>
-  );
+  )
 }
