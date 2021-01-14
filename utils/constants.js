@@ -13,7 +13,7 @@ export const ALL_COURSES_QUERY = gql`
 `
 
 export const SINGLE_COURSE_QUERY = gql`
-query($courseSlug: String){
+query($courseSlug: String!){
   course(courseSlug: $courseSlug){${courseFields}}
 }
 `
