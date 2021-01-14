@@ -4,6 +4,7 @@ export const courseFields = `
           price
           description
           thumbnail
+          slug
           language{
             id
             name

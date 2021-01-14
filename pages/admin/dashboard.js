@@ -13,6 +13,7 @@ import Admin from 'layouts/Admin.js'
 import { useQuery } from '@apollo/client'
 import { ME_QUERY } from '../../utils/constants'
 import Loading from '../../components/Shared/Loading'
+import { withAuthSync } from '../../utils/auth'
 
 const Dashboard = () => {
   return (
@@ -37,5 +38,4 @@ const Dashboard = () => {
   )
 }
 
-Dashboard.layout = Admin
-export default Dashboard
+export default withAuthSync(Dashboard)

@@ -2,11 +2,12 @@ import { Component } from 'react'
 import Router from 'next/router'
 import nextCookie from 'next-cookies'
 import cookie from 'js-cookie'
+import Admin from '../layouts/Admin'
 
 export const login = async ({ token }) => {
   cookie.set('token', token, { expires: 1 })
   // localStorage.setItem('token', token)
-  Router.push('/profile')
+  Router.push('/admin/dashboard')
 }
 
 export const signup = async () => {
@@ -61,8 +62,11 @@ export const withAuthSync = (WrappedComponent) =>
     }
 
     render() {
-      console.log(this, 'Props')
-      return <WrappedComponent {...this.props} />
+      return (
+        <Admin>
+          <WrappedComponent {...this.props} />
+        </Admin>
+      )
     }
   }
 

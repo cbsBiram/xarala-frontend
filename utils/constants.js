@@ -6,10 +6,16 @@ export function getFromMediaUrl(url) {
   return process.env.MEDIA_URL + url
 }
 
-export const All_Courses_Query = gql`
+export const ALL_COURSES_QUERY = gql`
   query {
     courses {${courseFields}}
   }
+`
+
+export const SINGLE_COURSE_QUERY = gql`
+query($courseSlug: String){
+  course(courseSlug: $courseSlug){${courseFields}}
+}
 `
 
 export const LOGIN_MUTATION = gql`

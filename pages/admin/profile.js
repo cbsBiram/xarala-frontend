@@ -3,14 +3,13 @@ import React from 'react'
 import Loading from 'components/Shared/Loading'
 import { useQuery } from '@apollo/client'
 import { ME_QUERY } from '../../utils/constants'
-import Admin from 'layouts/Admin'
+import { withAuthSync } from '../../utils/auth'
 
 const Profile = () => {
   const { loading, error, data } = useQuery(ME_QUERY)
 
   if (loading) return <Loading />
   if (error) return 'error while loading users'
-
   return (
     <>
       <main className="profile-page">
@@ -140,5 +139,4 @@ const Profile = () => {
   )
 }
 
-Profile.layout = Admin
-export default Profile
+export default withAuthSync(Profile)

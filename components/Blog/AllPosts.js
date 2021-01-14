@@ -5,7 +5,7 @@ import dateformat from 'dateformat'
 
 const AllPosts = ({ posts }) => {
   return (
-    <h2>
+    <>
       <div className="px-6 py-10 my-4">
         <div className="flex justify-between container mx-auto">
           <div className="w-full lg:w-8/12">
@@ -83,7 +83,7 @@ const AllPosts = ({ posts }) => {
           <PostSideBar />
         </div>
       </div>
-    </h2>
+    </>
   )
 }
 

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { AUTH_TOKEN } from '../../utils/constants'
 import UserDropdown from '../Dropdowns/UserDropdown'
 
-export default function Navbar(props) {
+const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = React.useState(false)
   return (
     <>
@@ -45,9 +45,6 @@ export default function Navbar(props) {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              {/* <li className="flex items-center">
-                <IndexDropdown />
-              </li> */}
               <li className="flex items-center">
                 <a
                   className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
@@ -59,54 +56,47 @@ export default function Navbar(props) {
               </li>
 
               <li className="flex items-center">
-                <a
-                  className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="#"
-                >
-                  {/* <i className="text-gray-500 fab fa-twitter text-lg leading-lg " /> */}
-                  <span className=" inline-block ml-2">Nos Cours</span>
-                </a>
+                <Link href="/courses">
+                  <button
+                    className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    type="button"
+                  >
+                    <span className=" inline-block ml-2">Nos Cours</span>
+                  </button>
+                </Link>
               </li>
 
               <li className="flex items-center">
-                <a
-                  className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/blog"
-                >
-                  {/* <i className="text-gray-500 fab fa-github text-lg leading-lg " /> */}
-                  <span className=" inline-block ml-2">Blog</span>
-                </a>
-                {/* <p
-                  className="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
-                  style={{ width: '15px', top: '-15px', right: '10px' }}
-                >
-                  0
-                </p> */}
+                <Link href="/blog">
+                  <button
+                    type="button"
+                    className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  >
+                    <span className=" inline-block ml-2">Blog</span>
+                  </button>
+                </Link>
               </li>
 
               <li className="flex items-center">
-                <a
-                  className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/about"
-                >
-                  {/* <i className="text-gray-500 fab fa-github text-lg leading-lg " /> */}
-                  <span className=" inline-block ml-2">À propos</span>
-                </a>
-                {/* <p
-                  className="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
-                  style={{ width: '15px', top: '-15px', right: '10px' }}
-                >
-                  4
-                </p> */}
+                <Link href="/about">
+                  <button
+                    className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    type="button"
+                  >
+                    <span className=" inline-block ml-2">À propos</span>
+                  </button>
+                </Link>
               </li>
 
               <li className="flex items-center">
-                <a
-                  className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/contact"
-                >
-                  <span className=" inline-block ml-2">Contact</span>
-                </a>
+                <Link href="/contact">
+                  <button
+                    type="button"
+                    className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  >
+                    <span className=" inline-block ml-2">Contact</span>
+                  </button>
+                </Link>
               </li>
 
               <li className="flex items-center">
@@ -124,24 +114,6 @@ export default function Navbar(props) {
                   {/* 0 */}
                 </p>
               </li>
-
-              {/* auth user */}
-              {/* <li className="flex items-center">
-                <a
-                  className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="#"
-                >
-                  <i className="fas fa-bell text-lg leading-lg " />
-                </a>
-                <p
-                  className="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
-                  style={{ width: '15px', top: '-15px', right: '10px' }}
-                >
-                  4
-                </p>
-              </li>
-
-              <UserDropdown /> */}
 
               {AUTH_TOKEN ? (
                 <li className="flex items-center">
@@ -166,3 +138,4 @@ export default function Navbar(props) {
     </>
   )
 }
+export default Navbar
