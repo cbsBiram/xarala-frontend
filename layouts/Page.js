@@ -11,7 +11,7 @@ const Page = ({ children }) => {
   const { data, errors, loading } = useQuery(ME_QUERY)
   if (loading) return <Loading />
   if (errors) return <h2>Error</h2>
-  const user = data.me
+  const user = data ? data.me : null
   return (
     <>
       <IndexNavbar fixed currentUser={user} />
