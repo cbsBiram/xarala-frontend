@@ -42,7 +42,10 @@ export default function privacy_policy() {
             </svg>
           </div>
 
-          <div className="container mx-auto pt-20 mx-2">
+          <div
+            className="container mx-auto mx-2"
+            style={{ paddingTop: '35px' }}
+          >
             <div className="items-center flex flex-wrap">
               <div className="w-full  ml-auto mr-auto px-4">
                 <div className="md:pr-12">
@@ -57,7 +60,10 @@ export default function privacy_policy() {
                     <h2 className="text-3xl font-semibold uppercase text-center">
                       Politique de confidentialité ?
                     </h2>
-                    <div className="w-10 h-1 bg-blue-600 rounded mt-2"></div>
+                    <div
+                      className="w-10 h-1 rounded mt-1"
+                      style={{ backgroundColor: '#10a8e5ff' }}
+                    ></div>
                   </div>
                   <h5 className="text-xl font-semibold uppercase mt-10 mb-5">
                     Politique de confidentialité et données personnelles
@@ -97,7 +103,7 @@ export default function privacy_policy() {
                       <div className="flex items-center">
                         <div>
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 mr-8">
-                            <i className="fas fa-angle-right text-base text-blue-600"></i>
+                            <i className="fas fa-angle-right text-base text-blue-500"></i>
                           </span>
                         </div>
                         <div>
@@ -111,7 +117,7 @@ export default function privacy_policy() {
                       <div className="flex items-center">
                         <div>
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 mr-8">
-                            <i className="fas fa-angle-right text-base text-blue-600"></i>
+                            <i className="fas fa-angle-right text-base text-blue-500"></i>
                           </span>
                         </div>
                         <div>
@@ -126,7 +132,7 @@ export default function privacy_policy() {
                       <div className="flex items-center">
                         <div>
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 mr-8">
-                            <i className="fas fa-angle-right text-base text-blue-600"></i>
+                            <i className="fas fa-angle-right text-base text-blue-500"></i>
                           </span>
                         </div>
                         <div>

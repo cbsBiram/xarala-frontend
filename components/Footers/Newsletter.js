@@ -42,10 +42,10 @@ export default function Newsletter() {
             style={{
               borderTopRightRadius: '0.5rem ',
               borderBottomRightRadius: '0.5rem ',
-              backgroundColor: 'rgba(99, 102, 241)',
+              backgroundColor: '#10a8e5ff',
             }}
           >
-            <span className="font-semibold">S'inscrire</span>
+            <span className="font-semibold"> S'abonner</span>
           </motion.button>
         </div>
       </div>
