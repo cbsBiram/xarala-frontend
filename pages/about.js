@@ -71,7 +71,7 @@ export default function About() {
             </svg>
           </div>
 
-          <div className="container mx-auto pt-20 mx-2">
+          <div className="container mx-auto pt-10 mx-2">
             <div className="items-center flex flex-wrap">
               <motion.div
                 className="w-full md:w-4/12 ml-auto mr-auto px-4"
@@ -89,12 +89,17 @@ export default function About() {
               <div className="w-full  md:w-6/12 ml-auto mr-auto px-4">
                 <div className="md:pr-12">
                   <h2 className="text-3xl font-semibold">
-                    <span className="text-blue-600 font-bold">Qui</span>{' '}
+                    <span className="font-bold" style={{ color: '#10a8e5ff' }}>
+                      Qui {''}
+                    </span>
                     sommes-nous ?
                   </h2>
-                  <div className="w-10 h-1 bg-blue-600 rounded mt-4"></div>
+                  <div
+                    className="w-10 h-1 rounded mt-4"
+                    style={{ backgroundColor: '#10a8e5ff' }}
+                  ></div>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                    <span className="text-blue-600 fontw-full md:w-4/12 ml-auto mr-auto px-4-bold">
+                    <span className="text-blue-500 fontw-full md:w-4/12 ml-auto mr-auto px-4-bold">
                       Xarala{' '}
                     </span>
                     , qui signifie “La technologie”, en Wolof, est une
@@ -108,15 +113,18 @@ export default function About() {
                   </p>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
                     L’objectif de
-                    <span className="text-blue-600 font-bold"> Xarala </span>est
-                    de devenir la référence numéro une de e-learning en Afrique.
+                    <span className="text-blue-500"> Xarala </span>est de
+                    devenir la référence numéro une de e-learning en Afrique.
                   </p>
                   <ul className="list-none mt-6">
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600  mr-4">
-                            <i className="fas fa-check-circle text-base text-blue-600"></i>
+                            <i
+                              className="fas fa-check-circle text-base"
+                              style={{ color: '#10a8e5ff' }}
+                            ></i>
                           </span>
                         </div>
                         <div>
@@ -130,7 +138,10 @@ export default function About() {
                       <div className="flex items-center">
                         <div>
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600  mr-4">
-                            <i className="fas fa-check-circle text-base text-blue-600"></i>
+                            <i
+                              className="fas fa-check-circle text-base"
+                              style={{ color: '#10a8e5ff' }}
+                            ></i>
                           </span>
                         </div>
                         <div>
@@ -144,7 +155,10 @@ export default function About() {
                       <div className="flex items-center">
                         <div>
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600  mr-4">
-                            <i className="fas fa-check-circle text-base text-blue-600"></i>
+                            <i
+                              className="fas fa-check-circle text-base"
+                              style={{ color: '#10a8e5ff' }}
+                            ></i>
                           </span>
                         </div>
                         <div>
@@ -158,7 +172,10 @@ export default function About() {
                       <div className="flex items-center">
                         <div>
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600  mr-4">
-                            <i className="fas fa-check-circle text-base text-blue-600"></i>
+                            <i
+                              className="fas fa-check-circle text-base"
+                              style={{ color: '#10a8e5ff' }}
+                            ></i>
                           </span>
                         </div>
                         <div>
@@ -183,7 +200,10 @@ export default function About() {
                   <h2 className="text-3xl font-semibold">
                     Ce que nous offrons ?
                   </h2>
-                  <div className="w-12 h-1 bg-blue-600 rounded mt-4"></div>
+                  <div
+                    className="w-12 h-1 rounded mt-4"
+                    style={{ backgroundColor: '#10a8e5ff' }}
+                  ></div>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
                     Nous offrons des formations professionnelles enseignées par
                     des formateurs expérimentés et professionnels.
@@ -193,7 +213,7 @@ export default function About() {
                       <div className="flex">
                         <div>
                           <span className="text-3xl font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 mr-3">
-                            <i className="fas fa-laptop text-blue-600"></i>
+                            <i className="fas fa-laptop text-blue-500"></i>
                           </span>
                         </div>
                         <div>
@@ -211,7 +231,7 @@ export default function About() {
                       <div className="flex">
                         <div>
                           <span className="text-3xl font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 mr-3">
-                            <i className="fas fa-crown text-blue-600"></i>
+                            <i className="fas fa-crown text-blue-500"></i>
                           </span>
                         </div>
                         <div>
@@ -270,11 +290,11 @@ export default function About() {
             </svg>
           </div>
 
-          <div className="container mx-auto px-4 lg:pt-24 lg:pb-24">
+          <div className="container mx-auto px-4 lg:pt-24 lg:pb-10">
             <div className="items-center flex flex-wrap">
               <div className="w-full  ml-auto mr-auto px-4">
                 <div
-                  className="md:pr-12 pb-20"
+                  className="md:pr-12 pb-10"
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -285,7 +305,10 @@ export default function About() {
                   <h2 className="text-3xl font-semibold uppercase text-center">
                     Fonctionnalités requises
                   </h2>
-                  <div className="w-10 h-1 bg-blue-600 rounded mt-4 mb-10"></div>
+                  <div
+                    className="w-10 h-1 rounded mt-4"
+                    style={{ backgroundColor: '#10a8e5ff' }}
+                  ></div>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
                     Enseigner c'est apprendre deux fois. Sur Xarala nous
                     partageons nos connaissances et nos découvertes.
@@ -448,8 +471,11 @@ export default function About() {
                 >
                   <h2 className="text-3xl font-semibold">L'équipe</h2>
                   <div
-                    className="w-10 h-1 bg-blue-600 rounded mt-2"
-                    style={{ marginBottom: '50px' }}
+                    className="w-10 h-1 rounded mt-2"
+                    style={{
+                      marginBottom: '50px',
+                      backgroundColor: '#10a8e5ff',
+                    }}
                   ></div>
                 </div>
               </div>

@@ -59,7 +59,8 @@ export default function Contact() {
             initial="exit"
             animate="enter"
             exit="exit"
-            className="container mx-auto pt-20 px-4"
+            className="container mx-auto px-4"
+            style={{ paddingTop: '45px' }}
           >
             <div className="items-center flex flex-wrap">
               <div className="w-full  ml-auto mr-auto px-4">
@@ -76,7 +77,10 @@ export default function Contact() {
                     Nous écrire
                   </h2>
 
-                  <div className="w-10 h-1 bg-blue-600 rounded mt-4 mb-5"></div>
+                  <div
+                    className="w-10 h-1 rounded mt-2 mb-4"
+                    style={{ backgroundColor: '#10a8e5ff' }}
+                  ></div>
                 </div>
                 <motion.div
                   variants={formVariants}
@@ -218,7 +222,7 @@ export default function Contact() {
                               }}
                               type="submit"
                               className="md:w-32 bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-500 transition ease-in-out duration-300"
-                              style={{ backgroundColor: 'rgba(79, 70, 229)' }}
+                              style={{ backgroundColor: '#10a8e5ff' }}
                             >
                               Submit
                             </motion.button>

@@ -156,7 +156,7 @@ export default function Index() {
                 </h2>
                 <div
                   className="w-10 h-1 bg-blue-600 rounded mt-2"
-                  style={{ marginBottom: '30px' }}
+                  style={{ marginBottom: '30px', backgroundColor: '#10a8e5ff' }}
                 ></div>
                 <p className="text-md leading-relaxed m-4 text-gray-600">
                   Chez Xarala, notre mission est d'aider les ingénieurs
@@ -166,8 +166,9 @@ export default function Index() {
                 </p>
                 <a href="/auth/register">
                   <button
-                    className="bg-blue-600 text-white active:bg-gray-700 text-md font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg hover:bg-blue-500 outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                    className="text-white active:bg-gray-700 text-md font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                     type="button"
+                    style={{ backgroundColor: '#10a8e5ff' }}
                   >
                     S'inscrire
                   </button>
@@ -213,7 +214,7 @@ export default function Index() {
                 </h2>
                 <div
                   className="w-10 h-1 bg-blue-600 rounded mt-2"
-                  style={{ marginBottom: '30px' }}
+                  style={{ marginBottom: '30px', backgroundColor: '#10a8e5ff' }}
                 ></div>
                 <p className="text-lg leading-relaxed text-gray-600">
                   Maîtrisez les compétences qui vous permettront de vous
@@ -317,7 +318,7 @@ export default function Index() {
                 </h2>
                 <div
                   className="w-10 h-1 bg-blue-600 rounded mt-2"
-                  style={{ marginBottom: '30px' }}
+                  style={{ marginBottom: '30px', backgroundColor: '#10a8e5ff' }}
                 ></div>
                 <p className="text-lg leading-relaxed text-gray-600">
                   Choisissez parmi de nombreux cours vidéos en ligne, avec de
@@ -477,8 +478,9 @@ export default function Index() {
             >
               <a href="/blog">
                 <button
-                  className="bg-blue-600 text-white active:bg-gray-700 text-md font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg hover:bg-blue-500 outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                  className="text-white active:bg-gray-700 text-md font-bold uppercase px-4 py-2 rounded-full hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
+                  style={{ backgroundColor: '#10a8e5ff' }}
                 >
                   Découvrir nos articles
                 </button>
