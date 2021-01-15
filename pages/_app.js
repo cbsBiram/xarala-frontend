@@ -9,6 +9,7 @@ import { AnimatePresence } from 'framer-motion'
 
 import PageChange from 'components/PageChange/PageChange.js'
 import 'assets/styles/tailwind.css'
+import 'assets/styles/custom.css'
 Router.events.on('routeChangeStart', (url) => {
   document.body.classList.add('body-page-transition')
   ReactDOM.render(
