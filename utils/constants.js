@@ -12,6 +12,13 @@ export const ALL_COURSES_QUERY = gql`
   }
 `
 
+export const COURSES_AND_POSTS_QUERY = gql`
+  query coursesAndPosts {
+    latestCourses {${courseFields}}
+    latestPosts {${postFields}}
+  }
+`
+
 export const SINGLE_COURSE_QUERY = gql`
 query($courseSlug: String!){
   course(courseSlug: $courseSlug){${courseFields}}

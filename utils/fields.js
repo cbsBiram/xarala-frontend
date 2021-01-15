@@ -3,6 +3,7 @@ export const courseFields = `
           title
           price
           description
+          shortDescription
           thumbnail
           slug
           language{
@@ -10,7 +11,6 @@ export const courseFields = `
             name
             abr
           }
-          price
           teacher {
             firstName
             lastName
@@ -65,8 +65,11 @@ export const postFields = `
       id
       title
       content
+      description
       slug
       publishDate
+      imageUrl
+      image
       tags{
         id
         name

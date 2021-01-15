@@ -1,11 +1,13 @@
 import React from 'react'
-import dateformat from 'dateformat'
 
 import { motion } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 
 import Page from '../layouts/Page'
+import { CourseCard } from '../components/Partials/CourseCard'
+import { COURSES_AND_POSTS_QUERY } from '../utils/constants'
+import { PostCard } from '../components/Partials/PostCard'
 
 let easing = [0.175, 0.85, 0.42, 0.96]
 
@@ -20,30 +22,6 @@ const imageVariants = {
     },
   },
 }
-
-export const COURSES_AND_POSTS_QUERY = gql`
-  query coursesAndPosts {
-    latestCourses {
-      id
-      title
-      thumbnail
-      teacher {
-        firstName
-        lastName
-      }
-      categories {
-        name
-      }
-    }
-
-    latestPosts {
-      id
-      title
-      imageUrl
-      publishDate
-    }
-  }
-`
 
 export default function Index() {
   const { loading, error, data } = useQuery(COURSES_AND_POSTS_QUERY)
@@ -85,8 +63,7 @@ export default function Index() {
               <div className="w-full lg:w-10/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-4xl">
-                    Bienvenue sur votre plateforme de e-learning en langue
-                    locale
+                    Prenez Votre carrière en main.
                   </h1>
                   <p className="mt-4 text-xl text-gray-300">
                     Choisissez votre plateforme pour commencer!
@@ -120,6 +97,7 @@ export default function Index() {
               </div>
             </div>
           </div>
+
           <div
             className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-16"
             style={{ transform: 'translateZ(0)' }}
@@ -331,67 +309,7 @@ export default function Index() {
             <div className="flex flex-wrap">
               {allCourses &&
                 allCourses.map((course) => (
-                  <div
-                    className=" w-full md:w-4/12 px-4 text-center"
-                    key={course.id}
-                  >
-                    <a href="#">
-                      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                        <div className="px-4 py-5 flex-auto">
-                          <div className="flex items-center justify-center border-b">
-                            <img
-                              // src={course.thumbnail ? course.thumbnail : require('assets/img/angular.jpg')}
-                              src={`${process.env.MEDIA_URL}${course.thumbnail}`}
-                            />
-                          </div>
-                          <div
-                            className="items-end justify-end rounded-full"
-                            style={{
-                              position: 'absolute',
-                              top: -3,
-                              right: -3,
-                            }}
-                          >
-                            <span className="text-xs font-semibold py-1 px-2 uppercase rounded  bg-green-500 uppercase last:mr-0 mr-1 ">
-                              {course.categories[0].name}
-                            </span>
-                          </div>
-                          <h6 className="text-xl font-semibold my-4">
-                            {course.title}
-                          </h6>
-                          <div className="mb-4">
-                            <i className="far fa-user mx-2"></i>
-                            <span className="text-gray-600">
-                              {course.teacher.firstName}{' '}
-                              {course.teacher.lastName}
-                            </span>
-                            <p className="mb-0">
-                              <i
-                                className="fas fa-star text-yellow-600"
-                                style={{ color: 'rgba(251, 191, 36)' }}
-                              ></i>
-                              <i
-                                className="fas fa-star text-warning"
-                                style={{ color: 'rgba(251, 191, 36)' }}
-                              ></i>
-                              <i
-                                className="fas fa-star text-warning"
-                                style={{ color: 'rgba(251, 191, 36)' }}
-                              ></i>
-                              <i
-                                className="fas fa-star text-warning"
-                                style={{ color: 'rgba(251, 191, 36)' }}
-                              ></i>
-                              <i
-                                className="fas fa-star text-warning"
-                                style={{ color: 'rgba(251, 191, 36)' }}
-                              ></i>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
+                  <CourseCard key={course.id} course={course} />
                 ))}
             </div>
             <div className="flex items-center justify-center my-4">
@@ -434,43 +352,7 @@ export default function Index() {
 
             <div className="flex flex-wrap">
               {allPosts &&
-                allPosts.map((post) => (
-                  <div
-                    className="p-4 md:w-1/3 md:mb-0 mb-6 my-4 flex flex-col justify-center items-center max-w-sm mx-auto"
-                    key={post.id}
-                  >
-                    <div>
-                      <img
-                        src={
-                          post.imageUrl
-                            ? post.imageUrl
-                            : 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-                        }
-                      />
-                    </div>
-
-                    <div className=" w-70 bg-white  shadow-lg rounded-lg overflow-hidden p-5">
-                      <h6 className="text-xl font-semibold my-4 text-center">
-                        {post.title}
-                      </h6>
-
-                      <div className="inline-flex">
-                        <div className="flex-1 text-sm font-semibold mb-2">
-                          <i className="fas fa-pen-fancy mx-2"></i>
-                          <span className="text-gray-600">
-                            Par {post.author ? post.author : 'Xarala'}, le{' '}
-                            {dateformat(post.publishDate, 'dd/mm/yyyy')}.
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-base text-justify">
-                        <button className="bg-blue-100 text-blue-500 mt-4 block rounded p-2 text-sm ">
-                          <span className="">Lire plus</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                allPosts.map((post) => <PostCard key={post.id} post={post} />)}
             </div>
             <div
               className="flex items-center justify-center mt-8"
