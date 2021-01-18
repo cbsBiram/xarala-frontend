@@ -2,7 +2,6 @@ import { DiscussionEmbed } from 'disqus-react'
 
 const DisqusComments = ({ post }) => {
   const disqusShortname = 'xarala-academy'
-  console.log('d', process.env.DOMAIN)
   const disqusConfig = {
     url: `${process.env.DOMAIN}/${post.slug}`,
     identifier: post.id, // Single post id

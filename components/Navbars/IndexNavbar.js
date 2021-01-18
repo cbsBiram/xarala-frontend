@@ -2,7 +2,6 @@ import React from 'react'
 import Link from 'next/link'
 // components
 import UserDropdown from '../Dropdowns/UserDropdown'
-import { AUTH_TOKEN } from '../../utils/constants'
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = React.useState(false)
@@ -113,23 +112,9 @@ const Navbar = () => {
                 </p>
               </li>
 
-              {AUTH_TOKEN ? (
-                <li className="flex items-center">
-                  <UserDropdown />
-                </li>
-              ) : (
-                <li className="flex items-center">
-                  <Link href="/auth/register">
-                    <button
-                      className="text-white text-xs font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-                      type="button"
-                      style={{ backgroundColor: '#10a8e5ff' }}
-                    >
-                      Commencez
-                    </button>
-                  </Link>
-                </li>
-              )}
+              <li className="flex items-center">
+                <UserDropdown />
+              </li>
             </ul>
           </div>
         </div>
