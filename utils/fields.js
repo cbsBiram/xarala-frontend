@@ -59,6 +59,7 @@ export const userFields = `
       phone
       address
       title
+      avatar
 `
 
 export const postFields = `

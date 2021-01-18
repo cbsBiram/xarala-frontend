@@ -9,27 +9,35 @@ import { Router } from 'next/router'
 
 const Register = () => {
   const [email, setEmail] = useState('')
+  const [passwordTwo, setPasswordTwo] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [password, setPassword] = useState('')
   const [registerUser] = useMutation(RESGISTER_MUTATION)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const { errors, data } = await registerUser({
-      variables: { email, password },
-    })
-    if (errors) {
-      setErrorMessage(errors[0].message)
+    if (password !== passwordTwo) {
+      setErrorMessage('Les deux mot de passes ne sont pas identiques!')
     } else {
-      signup()
+      const { errors, data } = await registerUser({
+        variables: { email, password },
+      })
+      if (errors) {
+        console.log('Err', errors)
+        setErrorMessage(errors[0].message)
+      } else {
+        signup()
+        alert('Compte crée avec succès')
+      }
     }
   }
+
   return (
     <>
       <div className="container mx-auto px-4 h-full py-4">
         {errorMessage ? <FormError message={errorMessage} /> : <span></span>}
 
-        <div className="flex content-center items-center justify-center h-full mt-8">
+        <div className="container px-4 mx-auto flex flex-wrap items-center justify-around h-full mt-8">
           <div className="w-full lg:w-6/12 px-4">
             <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
               <h2 className="md:text-2xl text-2xl font-bold">
@@ -102,6 +110,42 @@ const Register = () => {
                         placeholder="******"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col mb-6">
+                    <label
+                      htmlFor="password"
+                      className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
+                    >
+                      Confirmation Mot de passe:
+                    </label>
+                    <div className="relative">
+                      <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                        <span>
+                          <svg
+                            className="h-6 w-6"
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                          </svg>
+                        </span>
+                      </div>
+
+                      <input
+                        id="password2"
+                        type="password"
+                        name="password2"
+                        className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                        placeholder="******"
+                        value={passwordTwo}
+                        onChange={(event) => setPasswordTwo(event.target.value)}
                       />
                     </div>
                   </div>
