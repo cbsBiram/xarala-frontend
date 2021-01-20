@@ -21,9 +21,6 @@ export const userFields = `
         id
       }
       bio
-      useranswerSet{
-        id
-      }
 `
 export const courseFields = `
           id
