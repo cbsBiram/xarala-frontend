@@ -16,6 +16,11 @@ export const signup = async () => {
   Router.push('/auth/login')
 }
 
+export const removeInvalidSignature = () => {
+  cookie.remove('token')
+  Router.push('/')
+}
+
 export const logout = () => {
   cookie.remove('token')
   // to support logging out from all windows

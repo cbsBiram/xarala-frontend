@@ -1,5 +1,6 @@
 import React from 'react'
 import { CourseTabs } from '../Partials/CourseTab'
+import VideoLecture from '../Partials/VideoLecture'
 
 const CourseOverview = ({ course }) => {
   return (
@@ -10,15 +11,7 @@ const CourseOverview = ({ course }) => {
             <h2 className="text-3xl font-semibold uppercase ">
               {course.title}
             </h2>
-            <div className="iframe-container">
-              <iframe
-                src="https://www.youtube.com/embed/ZYaPKYQy2Sw"
-                class="inset-0 w-full h-full"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+            <VideoLecture lesson={course.courseChapters[0].courseLessons[0]} />
           </div>
         </div>
 
