@@ -1,6 +1,13 @@
 import { gql } from '@apollo/client'
 import cookie from 'js-cookie'
-import { courseFields, postFields, userFields } from './fields'
+import {
+  courseFields,
+  postFields,
+  quizFields,
+  userFields,
+  userAnswerFields,
+  categoryFields,
+} from './fields'
 
 export function getFromMediaUrl(url) {
   return process.env.MEDIA_URL + url
@@ -16,6 +23,15 @@ export const COURSES_AND_POSTS_QUERY = gql`
   query coursesAndPosts {
     latestCourses {${courseFields}}
     latestPosts {${postFields}}
+  }
+`
+
+export const DASHBOARD_INFO_QUERY = gql`
+  query coursesAndPosts {
+    latestCourses {${courseFields}}
+    latestPosts {${postFields}}
+    me {${userFields}}
+    categories{${categoryFields}}
   }
 `
 
@@ -54,9 +70,16 @@ export const ALL_POSTS_QUERY = gql`
 `
 
 export const SINGLE_POST_QUERY = gql`
-query($postSlug: String!){
-  post(postSlug: $postSlug){${postFields}}
-}
+  query($postSlug: String!){
+    post(postSlug: $postSlug){${postFields}}
+  }
+`
+
+export const ALL_USER_QUIZZES = gql`
+  query dashboardStats {
+    me {${userFields}}
+    allQuizzesUser {${userAnswerFields}}
+  }
 `
 
 export const AUTH_TOKEN = cookie.get('token')
