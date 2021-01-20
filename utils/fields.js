@@ -1,16 +1,29 @@
 export const userFields = `
-id
-email
-firstName
-lastName
-isActive
-isStudent
-isTeacher
-isWriter
-phone
-address
-title
-avatar
+      id
+      email
+      firstName
+      lastName
+      isActive
+      isStudent
+      isTeacher
+      isWriter
+      phone
+      address
+      title
+      avatar
+      coursesCreated{
+        id
+      }
+      coursesEnrolled{
+        id
+      }
+      postSet{
+        id
+      }
+      bio
+      useranswerSet{
+        id
+      }
 `
 export const courseFields = `
           id

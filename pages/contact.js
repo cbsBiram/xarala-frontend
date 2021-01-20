@@ -93,7 +93,7 @@ export default function Contact() {
                           <h1 className="text-4xl sm:text-5xl text-gray-800 dark:text-white font-extrabold tracking-tight">
                             Contact
                           </h1>
-                          <p className="text-normal text-lg sm:text-2xl font-medium text-gray-600 dark:text-gray-400 mt-2">
+                          <p className="text-lg sm:text-2xl font-medium text-gray-600 dark:text-gray-400 mt-2">
                             Vous pouvez contacter notre équipe d'experts au +221
                             77 992 99 52 24/7 de 8h00 à 20h00
                           </p>

@@ -1,12 +1,12 @@
 import React from 'react'
 import { createPopper } from '@popperjs/core'
-import { logout } from '../../utils/auth'
+import { logout, removeInvalidSignature } from '../../utils/auth'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
 import { AUTH_TOKEN, ME_QUERY } from '../../utils/constants'
 
 const UserDropdown = () => {
-  const { errors, loading, data } = useQuery(ME_QUERY)
+  const { error, loading, data } = useQuery(ME_QUERY)
 
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false)
