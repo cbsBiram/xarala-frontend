@@ -93,9 +93,9 @@ export default function Contact() {
                           <h1 className="text-4xl sm:text-5xl text-gray-800 dark:text-white font-extrabold tracking-tight">
                             Contact
                           </h1>
-                          <p className="text-normal text-lg sm:text-2xl font-medium text-gray-600 dark:text-gray-400 mt-2">
+                          <p className="text-md sm:text-md font-semibold text-gray-600 dark:text-gray-400 mt-2">
                             Vous pouvez contacter notre équipe d'experts au +221
-                            77 992 99 52 24/7 de 8h00 à 20h00
+                            77 992 99 52, 24/7 de 8h00 à 20h00.
                           </p>
 
                           <div className="flex items-center mt-8 text-gray-600 dark:text-gray-400">
@@ -166,7 +166,7 @@ export default function Contact() {
                               />
                             </svg>
                             <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                              contact[at]xarala[dot]co
+                              contact@xarala.co
                             </div>
                           </div>
                         </div>
@@ -224,7 +224,7 @@ export default function Contact() {
                               className="md:w-32 bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-500 transition ease-in-out duration-300"
                               style={{ backgroundColor: '#10a8e5ff' }}
                             >
-                              Submit
+                              Enregistrer
                             </motion.button>
                           </form>
                         </div>
