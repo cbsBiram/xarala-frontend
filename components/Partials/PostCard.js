@@ -7,7 +7,7 @@ export const PostCard = ({ post }) => {
     <div className=" w-full md:w-4/12 px-4 text-center my-2">
       <Link as={`/blog/${post.slug}`} passHref href="/blog/[slug]">
         <a href="#">
-          <div class="bg-white shadow-lg overflow-hidden border-b-4 border-blue-500 w-1/3 rounded-lg">
+          <div class="bg-white shadow-lg overflow-hidden border-b-4 border-blue-500 rounded-lg">
             <img
               src={
                 post.imageUrl

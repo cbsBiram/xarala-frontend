@@ -1,3 +1,17 @@
+export const userFields = `
+id
+email
+firstName
+lastName
+isActive
+isStudent
+isTeacher
+isWriter
+phone
+address
+title
+avatar
+`
 export const courseFields = `
           id
           title
@@ -11,14 +25,9 @@ export const courseFields = `
             name
             abr
           }
-          teacher {
-            firstName
-            lastName
-            avatar
-          }
-          students {
-            id
-          }
+          promoteVideo
+          teacher {${userFields}}
+          students {${userFields}}
           courseChapters {
             id
             name
@@ -45,21 +54,6 @@ export const courseFields = `
             thumbnail
             name
           }
-`
-
-export const userFields = `
-      id
-      email
-      firstName
-      lastName
-      isActive
-      isStudent
-      isTeacher
-      isWriter
-      phone
-      address
-      title
-      avatar
 `
 
 export const postFields = `

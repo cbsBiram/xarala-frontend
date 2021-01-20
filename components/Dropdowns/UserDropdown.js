@@ -3,7 +3,7 @@ import { createPopper } from '@popperjs/core'
 import { logout } from '../../utils/auth'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
-import { ME_QUERY } from '../../utils/constants'
+import { AUTH_TOKEN, ME_QUERY } from '../../utils/constants'
 
 const UserDropdown = () => {
   const { errors, loading, data } = useQuery(ME_QUERY)
@@ -27,10 +27,9 @@ const UserDropdown = () => {
     logout()
   }
   const { me } = data ? data : {}
-  console.log('de', me)
   return (
     <>
-      {me ? (
+      {AUTH_TOKEN && me ? (
         <>
           <a
             className="text-gray-600 block"

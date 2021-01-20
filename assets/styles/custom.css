@@ -3,3 +3,18 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
+.iframe-container {
+  height: 700px;
+}
+
+@media (max-width: 576px) {
+  .iframe-container {
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .iframe-container {
+    height: auto;
+  }
+}
