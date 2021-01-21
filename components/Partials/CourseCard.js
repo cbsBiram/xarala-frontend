@@ -44,7 +44,7 @@ export const CourseCard = ({ course }) => {
               <div class="text-sm flex items-center">
                 <i className="far fa-user mx-2"></i>
 
-                <p class="leading-none">
+                <p class="leading-none my-4">
                   {course.teacher.firstName} {course.teacher.lastName}
                 </p>
               </div>

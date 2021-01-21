@@ -89,12 +89,12 @@ const UserDropdown = () => {
                 <span className="inline-block ml-2">Tableau de board</span>
               </a>
             </Link>
-            <Link href="/admin/profile">
+            <Link href="/admin/settings">
               <a
-                href="/admin/profile"
+                href="/admin/settings"
                 className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
               >
-                <i className="text-gray-500 far fa-user text-lg leading-lg " />
+                <i className="text-gray-500 far fa-user text-lg leading-lg" />
                 <span className="inline-block ml-2">Mon Compte</span>
               </a>
             </Link>
