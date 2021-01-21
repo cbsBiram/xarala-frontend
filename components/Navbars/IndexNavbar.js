@@ -5,6 +5,9 @@ import UserDropdown from '../Dropdowns/UserDropdown'
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = React.useState(false)
+  const handleNavbarOpen = () => {
+    setNavbarOpen(!navbarOpen)
+  }
   return (
     <>
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -43,18 +46,21 @@ const Navbar = () => {
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
-                <a
-                  className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/"
-                >
-                  {/* <i className="text-gray-500 fas fa-home text-lg leading-lg " /> */}
-                  <span className=" inline-block ml-2">Accueil</span>
-                </a>
+                <Link href="/">
+                  <button
+                    onClick={handleNavbarOpen}
+                    className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    type="button"
+                  >
+                    <span className=" inline-block ml-2">Accueil</span>
+                  </button>
+                </Link>
               </li>
 
               <li className="flex items-center">
                 <Link href="/courses">
                   <button
+                    onClick={handleNavbarOpen}
                     className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     type="button"
                   >
@@ -66,6 +72,7 @@ const Navbar = () => {
               <li className="flex items-center">
                 <Link href="/blog">
                   <button
+                    onClick={handleNavbarOpen}
                     type="button"
                     className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   >
@@ -77,6 +84,7 @@ const Navbar = () => {
               <li className="flex items-center">
                 <Link href="/about">
                   <button
+                    onClick={handleNavbarOpen}
                     className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     type="button"
                   >
@@ -88,6 +96,7 @@ const Navbar = () => {
               <li className="flex items-center">
                 <Link href="/contact">
                   <button
+                    onClick={handleNavbarOpen}
                     type="button"
                     className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   >

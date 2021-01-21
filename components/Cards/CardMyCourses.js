@@ -44,7 +44,9 @@ export default function CardMyCourses({ courses, buttonTitle, title }) {
                       {course.title}
                     </th>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                      {course.teacher.firstName} {course.teacher.lastName}
+                      {course.teacher
+                        ? `${course.teacher.firstName} ${course.teacher.lastName}`
+                        : 'Xarala'}
                     </td>
                     <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                       {course.price}
