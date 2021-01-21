@@ -3,7 +3,6 @@ import cookie from 'js-cookie'
 import {
   courseFields,
   postFields,
-  quizFields,
   userFields,
   userAnswerFields,
   categoryFields,
@@ -45,6 +44,14 @@ export const LOGIN_MUTATION = gql`
   mutation($email: String!, $password: String!) {
     tokenAuth(email: $email, password: $password) {
       token
+    }
+  }
+`
+
+export const UPDATE_PROFILE_MUTATION = gql`
+  mutation($userId: Int!, $firstName: String, $lastName: String, $phone: String, $address: String, $bio: String) {
+    updateUser(userId: $userId, firstName: $firstName, lastName: $lastName, phone: $phone, address :$address, bio: $bio) {
+      user {${userFields}}
     }
   }
 `
