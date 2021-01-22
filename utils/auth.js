@@ -7,7 +7,8 @@ import Admin from '../layouts/Admin'
 export const login = async ({ token }) => {
   cookie.set('token', token, { expires: 1 })
   // localStorage.setItem('token', token)
-  Router.push('/admin/dashboard')
+  const { next } = Router.query
+  next ? Router.push(next) : Router.push('/admin/dashboard')
 }
 
 export const signup = async () => {
@@ -26,7 +27,7 @@ export const logout = () => {
   // to support logging out from all windows
   window.localStorage.setItem('logout', Date.now())
   // window.localStorage.removeItem('token')
-  Router.reload('/')
+  Router.router.push('/')
 }
 
 // Gets the display name of a JSX component for dev tools

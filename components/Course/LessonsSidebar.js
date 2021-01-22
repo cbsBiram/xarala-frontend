@@ -9,7 +9,7 @@ const LessonsSidebar = ({ course, lessonId, setOpen }) => {
       {/* Side Nav  */}
       <div
         id="sideNav"
-        className="w-64 -ml-64 lg:ml-0 bg-white lg:bg-gray-100 h-full min-h-screen fixed overflow-y-scroll block left-0 z-50"
+        className="w-64  lg:w-auto -ml-64 lg:ml-0 bg-white lg:bg-gray-100 h-full min-h-screen fixed overflow-y-scroll block left-0 z-50"
       >
         <div className="h-24 flex flex-col justify-center relative">
           <Link href="/">

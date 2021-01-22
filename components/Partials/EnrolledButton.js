@@ -13,7 +13,7 @@ export const EnrolledButton = ({ course }) => {
 
   const handleSubscrireUserToCourse = async () => {
     if (!AUTH_TOKEN) {
-      router.push('/auth/login')
+      router.push(`/auth/login?next=/courses/${course.slug}`)
     } else {
       const {
         data: subscribeData,
