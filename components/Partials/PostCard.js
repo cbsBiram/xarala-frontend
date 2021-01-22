@@ -7,7 +7,7 @@ export const PostCard = ({ post }) => {
     <div className=" w-full md:w-4/12 px-4 text-center my-2">
       <Link as={`/blog/${post.slug}`} passHref href="/blog/[slug]">
         <a href="#">
-          <div class="bg-white shadow-lg overflow-hidden border-b-4 border-blue-500 rounded-lg">
+          <div className="bg-white shadow-lg overflow-hidden border-b-4 border-blue-500 rounded-lg">
             <img
               src={
                 post.imageUrl
@@ -15,20 +15,20 @@ export const PostCard = ({ post }) => {
                   : `${process.env.MEDIA_URL}${post.image}`
               }
               alt={post.title}
-              class="h-full w-full object-cover object-center"
+              className="h-full w-full object-cover object-center"
             />
-            <div class="p-4 md:p-6">
-              <p class="text-blue-500 font-semibold text-xs mb-1 leading-none">
+            <div className="p-4 md:p-6">
+              <p className="text-blue-500 font-semibold text-xs mb-1 leading-none">
                 {post.tags[0].name}
               </p>
-              <h3 class="font-semibold mb-2 text-xl leading-tight sm:leading-normal">
+              <h3 className="font-semibold mb-2 text-xl leading-tight sm:leading-normal">
                 {post.title}
               </h3>
 
-              <div class="text-sm flex items-center">
+              <div className="text-sm flex items-center">
                 <i className="far fa-user mx-2"></i>
 
-                <p class="leading-none">
+                <p className="leading-none">
                   Par{' '}
                   {post.author
                     ? `${post.author.firstName} ${post.author.lastName}`

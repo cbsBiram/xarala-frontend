@@ -24,6 +24,21 @@ export const userFields = `
       }
       bio
 `
+export const lessonFields = `
+      id
+      title
+      isVideo
+      text
+      slug
+      file
+      videoUrl
+      videoId
+      duration
+      platform
+      drafted
+      dateCreated
+`
+
 export const courseFields = `
   id
   title
@@ -46,19 +61,22 @@ export const courseFields = `
     dateCreated
     slug
     drafted
-    courseLessons {
-      id
-      title
-      isVideo
-      text
-      slug
-      file
-      videoUrl
-      videoId
-      duration
-      platform
-      drafted
-      dateCreated
+    courseLessons {${lessonFields}
+      chapter{
+        id
+        name
+        dateCreated
+        slug
+        drafted
+        course{
+          id
+          title
+          courseChapters {
+            id
+            name
+          }
+        }
+      }
     }
   }
   categories {

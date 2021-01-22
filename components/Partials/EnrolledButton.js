@@ -19,7 +19,7 @@ export const EnrolledButton = ({ course }) => {
     <>
       {checkEnrollement ? (
         <Link
-          as={`/courses/lesson/${course.slug}`}
+          as={`/courses/lesson/${course.courseChapters[0].courseLessons[0].slug}`}
           passHref
           href="/courses/lesson/[slug]"
         >

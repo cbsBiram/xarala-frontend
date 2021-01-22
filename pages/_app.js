@@ -10,6 +10,7 @@ import { AnimatePresence } from 'framer-motion'
 import PageChange from 'components/PageChange/PageChange.js'
 import 'assets/styles/tailwind.css'
 import 'assets/styles/custom.css'
+
 Router.events.on('routeChangeStart', (url) => {
   document.body.classList.add('body-page-transition')
   ReactDOM.render(
@@ -33,6 +34,7 @@ export default function App({ Component, pageProps, router }) {
   const apolloClient = useApollo(pageProps.initialApolloState)
   const analyticsId = process.env.ANALYTICS_ID
   const Layout = Component.layout || (({ children }) => <>{children}</>)
+
   const pageTitle =
     Component.pageTitle ||
     'Accueil, Cours en ligne - La technologie dans votre langue'

@@ -1,18 +1,18 @@
 import React from 'react'
 
-export const LessonSection = ({ lessons }) => {
+export const ChapterSection = ({ chapters }) => {
   return (
     <>
       <div className="flex justify-center">
         <div className="bg-white shadow-xl rounded-lg w-full">
           <ul className="divide-y divide-gray-300">
-            {lessons &&
-              lessons.map((lesson) => (
+            {chapters &&
+              chapters.map((chapter) => (
                 <li
-                  key={lesson.id}
+                  key={chapter.id}
                   className="p-1 m-2 hover:bg-gray-500 cursor-pointer"
                 >
-                  {lesson.title}
+                  {chapter.name}
                 </li>
               ))}
           </ul>

@@ -5,24 +5,25 @@ import Loading from '../../../components/Shared/Loading'
 import { SINGLE_COURSE_QUERY } from '../../../utils/constants'
 import CourseLessons from '../../../components/Course/CourseLessons'
 import Page from '../../../layouts/Page'
+import { SINGLE_LESSON_QUERY } from '../../../utils/queries'
 
 const Lesson = () => {
   const router = useRouter()
+
   const { slug } = router.query
 
-  const { loading, error, data } = useQuery(SINGLE_COURSE_QUERY, {
+  const { loading, error, data } = useQuery(SINGLE_LESSON_QUERY, {
     variables: {
-      courseSlug: slug,
+      lessonSlug: slug,
     },
   })
   if (loading) return <Loading />
 
   return (
     <>
-      <CourseLessons course={data.course} />
+      <CourseLessons lesson={data.lesson} />
     </>
   )
 }
 
-Lesson.layout = Page
 export default Lesson

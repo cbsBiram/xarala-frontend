@@ -19,7 +19,7 @@ const Navbar = () => {
           {/* Form */}
           <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
             <div className="relative flex w-full flex-wrap items-stretch">
-              <i class="far fa-bell mr-2 text-lg text-white"></i>
+              <i className="far fa-bell mr-2 text-lg text-white"></i>
             </div>
           </form>
           {/* User */}
