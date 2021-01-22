@@ -44,6 +44,7 @@ const CourseLessons = ({ course, lesson }) => {
 
             <div className="flex">
               <p className="mt-2">{lesson.text}</p>
+              {/* ressources */}
             </div>
           </div>
           {/* Main Content  */}

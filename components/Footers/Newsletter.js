@@ -1,7 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useMutation } from '@apollo/client'
+import { SUBSCRIBE_USER_TO_NEWSLETTER } from '../../utils/mutations'
 
-export default function Newsletter() {
+const Newsletter = () => {
+  const [subscribeUser] = useMutation(SUBSCRIBE_USER_TO_NEWSLETTER)
+  const [email, setEmail] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const {
+      data: data,
+      errors: errors,
+      loading: loading,
+    } = await subscribeUser({
+      variables: { email },
+    })
+    alert("Merci beaucoup pour l'inscription -:)")
+    setEmail('')
+  }
+
   return (
     <div
       className="w-full  bg-gray-500  bg-no-repeat"
@@ -21,34 +39,42 @@ export default function Newsletter() {
           actualité
         </div>
         <div className=" mt-3  flex  flex-row  flex-wrap">
-          <input
-            type="text"
-            className=" text-gray-600   p-2 rounded-l-lg"
-            style={{
-              borderTopLeftRadius: '0.5rem',
-              borderBottomLeftRadius: '0.5rem ',
-            }}
-            placeholder="john@mail.com"
-          />
-          <motion.button
-            className=" p-2  bg-indigo-400  rounded-r-lg  text-white hover: bg-indigo-300"
-            type="button"
-            whileHover="hover"
-            variants={{
-              hover: {
-                backgroundColor: 'rgba(129, 140, 248)',
-              },
-            }}
-            style={{
-              borderTopRightRadius: '0.5rem ',
-              borderBottomRightRadius: '0.5rem ',
-              backgroundColor: '#10a8e5ff',
-            }}
-          >
-            <span className="font-semibold"> S'abonner</span>
-          </motion.button>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <input
+              type="text"
+              className=" text-gray-600   p-2 rounded-l-lg"
+              style={{
+                borderTopLeftRadius: '0.5rem',
+                borderBottomLeftRadius: '0.5rem ',
+              }}
+              placeholder="john@mail.com"
+              name="email"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <motion.button
+              className=" p-2  bg-indigo-400  rounded-r-lg  text-white hover:bg-blue-300"
+              type="submit"
+              whileHover="hover"
+              variants={{
+                hover: {
+                  backgroundColor: 'rgba(129, 140, 248)',
+                },
+              }}
+              style={{
+                borderTopRightRadius: '0.5rem ',
+                borderBottomRightRadius: '0.5rem ',
+                backgroundColor: '#10a8e5ff',
+              }}
+            >
+              <span className="font-semibold"> S'abonner</span>
+            </motion.button>
+          </form>
         </div>
       </div>
     </div>
   )
 }
+
+export default Newsletter

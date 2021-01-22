@@ -8,3 +8,11 @@ mutation($courseId: Int!) {
     }
   }
 `
+
+export const SUBSCRIBE_USER_TO_NEWSLETTER = gql`
+  mutation($email: String) {
+    subscribeToNewsletter(email: $email) {
+      subscribed
+    }
+  }
+`

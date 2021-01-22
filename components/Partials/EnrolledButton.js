@@ -1,10 +1,10 @@
 import { useMutation, useQuery } from '@apollo/client'
-import Link from 'next/link'
 import React from 'react'
 import { useRouter } from 'next/router'
 import { SUBSCRIBE_USER_TO_COURSE } from '../../utils/mutations'
 import { CHECK_ENROLLEMENT_QUERY } from '../../utils/queries'
 import Loading from '../Shared/Loading'
+import { AUTH_TOKEN } from '../../utils/constants'
 
 export const EnrolledButton = ({ course }) => {
   const courseId = course.id
@@ -12,19 +12,23 @@ export const EnrolledButton = ({ course }) => {
   const [subscribeUser] = useMutation(SUBSCRIBE_USER_TO_COURSE)
 
   const handleSubscrireUserToCourse = async () => {
-    const {
-      data: subscribeData,
-      errors: subsCribeErrors,
-      loading: subscribeLoading,
-    } = await subscribeUser({
-      variables: { courseId },
-    })
-    const { course } = subscribeData
-    if (course) {
-      alert('Cours enrollé avec succès')
-      router.push(
-        `/courses/lesson/${course.slug}?lecture=${course.courseChapters[0].courseLessons[0].slug}`
-      )
+    if (!AUTH_TOKEN) {
+      router.push('/auth/login')
+    } else {
+      const {
+        data: subscribeData,
+        errors: subsCribeErrors,
+        loading: subscribeLoading,
+      } = await subscribeUser({
+        variables: { courseId },
+      })
+      const { course } = subscribeData
+      if (course) {
+        alert('Cours enrollé avec succès')
+        router.push(
+          `/courses/lesson/${course.slug}?lecture=${course.courseChapters[0].courseLessons[0].slug}`
+        )
+      }
     }
   }
 
