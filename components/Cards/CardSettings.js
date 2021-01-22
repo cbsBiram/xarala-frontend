@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client'
 
 import { UPDATE_PROFILE_MUTATION } from '../../utils/constants'
 import FormError from '../Shared/FormError'
+import ChangePasswordForm from '../Forms/ChangePasswordForm'
 
 export default function CardSettings({ me }) {
   const [firstName, setFirstName] = useState('')
@@ -23,7 +24,7 @@ export default function CardSettings({ me }) {
     })
 
     if (errors) setErrorMessage(errors[0].message)
-    else Router.reload()
+    else alert('Profil modifié avec succès!')
   }
 
   return (
@@ -150,6 +151,10 @@ export default function CardSettings({ me }) {
           </form>
         </div>
       </div>
+
+      <hr className="mt-6 border-b-2 border-gray-800" />
+
+      <ChangePasswordForm />
     </>
   )
 }
