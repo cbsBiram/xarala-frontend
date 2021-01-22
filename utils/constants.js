@@ -6,6 +6,7 @@ import {
   userFields,
   userAnswerFields,
   categoryFields,
+  errorFields,
 } from './fields'
 
 export function getFromMediaUrl(url) {
@@ -62,6 +63,24 @@ export const RESGISTER_MUTATION = gql`
       user{${userFields}}
     }
   }
+`
+
+export const CHANGE_PASSWORD_MUTATION = gql`
+  mutation changePasswordQuery(
+      $oldPassword: String!
+      $newPassword1: String!
+      $newPassword2: String!
+    ) {
+      changePassword(
+        input: {
+          oldPassword: $oldPassword
+          newPassword1: $newPassword1
+          newPassword2: $newPassword2
+        }
+      ) {
+        errors{${errorFields}}
+      }
+    }
 `
 
 export const ME_QUERY = gql`

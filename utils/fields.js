@@ -107,3 +107,7 @@ export const categoryFields = `
   id
   name
 `
+
+export const errorFields = `
+  messages
+`

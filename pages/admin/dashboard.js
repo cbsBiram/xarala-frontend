@@ -25,7 +25,7 @@ const Dashboard = () => {
       exit="exit"
       variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
     >
-      <div className="relative flex block min-w-0 break-words w-full mb-6 shadow-lg rounded bg-gray-800">
+      <div className="relative min-w-0 break-words w-full mb-6 shadow-lg rounded bg-gray-800">
         <div className="mb-12 md:mb-0 px-4">
           <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
             <div className="flex flex-wrap items-center">
