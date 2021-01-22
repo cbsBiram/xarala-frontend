@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useQuery } from '@apollo/client'
 import { AUTH_TOKEN, ME_QUERY } from '../../utils/constants'
 
-const UserDropdown = () => {
+const UserDropdown = ({ setOpen }) => {
   const { error, loading, data } = useQuery(ME_QUERY)
 
   // dropdown props
@@ -116,6 +116,7 @@ const UserDropdown = () => {
         <li className="flex items-center">
           <Link href="/auth/register">
             <button
+              onClick={() => setOpen(false)}
               className="text-white text-xs font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
               type="button"
               style={{ backgroundColor: '#10a8e5ff' }}

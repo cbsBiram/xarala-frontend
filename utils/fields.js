@@ -62,21 +62,6 @@ export const courseFields = `
     slug
     drafted
     courseLessons {${lessonFields}
-      chapter{
-        id
-        name
-        dateCreated
-        slug
-        drafted
-        course{
-          id
-          title
-          courseChapters {
-            id
-            name
-          }
-        }
-      }
     }
   }
   categories {

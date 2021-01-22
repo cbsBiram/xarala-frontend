@@ -6,7 +6,7 @@ const VideoLecture = ({ lesson }) => {
 
   return (
     <>
-      <div className="iframe-container">
+      <div className="iframe-container ">
         <iframe
           src={
             lesson.platform === 'Youtube'

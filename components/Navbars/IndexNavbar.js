@@ -122,7 +122,7 @@ const Navbar = () => {
               </li>
 
               <li className="flex items-center">
-                <UserDropdown />
+                <UserDropdown setOpen={setNavbarOpen} />
               </li>
             </ul>
           </div>
