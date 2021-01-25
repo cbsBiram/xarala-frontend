@@ -20,7 +20,6 @@ export const ALL_POSTS_QUERY = gql`
     hasNext
     hasPrev
     pages
-    page
     objects{${postFields}}
   }
 }
@@ -33,7 +32,6 @@ export const ALL_COURSES_QUERY = gql`
       hasNext
       hasPrev
       pages
-      page
       objects {${courseFields}}
     }
   }
