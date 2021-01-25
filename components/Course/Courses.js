@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
 import { CourseCard } from '../Partials/CourseCard'
+import Pagination from '../Shared/Pagination'
 
-const AllCourses = ({ courses }) => {
+const AllCourses = ({ courses, pages, currentPage }) => {
   return (
     <>
       <div className="relative block  bg-gray-200 pt-10">
@@ -32,6 +33,7 @@ const AllCourses = ({ courses }) => {
                 <CourseCard key={course.id} course={course} />
               ))}
           </div>
+          <Pagination pages={pages} currentPage={currentPage} />
         </div>
       </div>
     </>

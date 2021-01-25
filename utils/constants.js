@@ -13,12 +13,6 @@ export function getFromMediaUrl(url) {
   return process.env.MEDIA_URL + url
 }
 
-export const ALL_COURSES_QUERY = gql`
-  query {
-    courses {${courseFields}}
-  }
-`
-
 export const COURSES_AND_POSTS_QUERY = gql`
   query coursesAndPosts {
     latestCourses {${courseFields}}
@@ -86,12 +80,6 @@ export const CHANGE_PASSWORD_MUTATION = gql`
 export const ME_QUERY = gql`
   query {
     me {${userFields}}
-  }
-`
-
-export const ALL_POSTS_QUERY = gql`
-  query {
-    posts {${postFields}}
   }
 `
 

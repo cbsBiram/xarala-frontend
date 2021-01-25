@@ -1,10 +1,8 @@
-import Link from 'next/link'
 import React from 'react'
-import PostSideBar from './PostSideBar'
-import dateformat from 'dateformat'
 import { PostCard } from '../Partials/PostCard'
+import Pagination from '../Shared/Pagination'
 
-const AllPosts = ({ posts }) => {
+const AllPosts = ({ posts, pages, currentPage }) => {
   return (
     <>
       <div className="px-6 py-10 my-4">
@@ -19,6 +17,7 @@ const AllPosts = ({ posts }) => {
               posts.map((post) => <PostCard key={post.id} post={post} />)}
           </div>
         </div>
+        <Pagination pages={pages} currentPage={currentPage} />
       </div>
     </>
   )
