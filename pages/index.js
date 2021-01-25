@@ -8,6 +8,7 @@ import Page from '../layouts/Page'
 import { CourseCard } from '../components/Partials/CourseCard'
 import { COURSES_AND_POSTS_QUERY } from '../utils/constants'
 import { PostCard } from '../components/Partials/PostCard'
+import Link from 'next/link'
 
 let easing = [0.175, 0.85, 0.42, 0.96]
 
@@ -142,7 +143,7 @@ export default function Index() {
                   compétences, à gagner plus d'argent et, en fin de compte, à
                   changer leur vie pour le mieux.
                 </p>
-                <a href="/auth/register">
+                <Link href="/auth/register">
                   <button
                     className="text-white active:bg-gray-700 text-md font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                     type="button"
@@ -150,7 +151,7 @@ export default function Index() {
                   >
                     S'inscrire
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -313,14 +314,14 @@ export default function Index() {
                 ))}
             </div>
             <div className="flex items-center justify-center my-4">
-              <a href="#">
+              <Link href="/courses">
                 <button
                   className="bg-blue-600 text-white active:bg-gray-700 text-md font-bold uppercase px-4 py-2 rounded-full shadow hover:shadow-lg hover:bg-blue-500 outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
                   Voir les cours
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </section>

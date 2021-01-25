@@ -11,8 +11,8 @@ run:
 	docker-compose up
 
 
-test:
-	$(COMMAND) "pip install tox && tox -e test"
+tailwind:
+	npm run build:tailwind
 
 checksafety:
 	$(COMMAND) "pip install tox && tox -e checksafety"
