@@ -7,6 +7,7 @@ import {
   userAnswerFields,
   categoryFields,
   errorFields,
+  quizFields,
 } from './fields'
 
 export function getFromMediaUrl(url) {

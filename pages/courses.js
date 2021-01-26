@@ -14,6 +14,7 @@ const Courses = () => {
   const { data, errors, loading } = useQuery(ALL_COURSES_QUERY, {
     variables: { page: currentPage },
   })
+
   if (loading) return <Loading />
   if (errors) return <h2>Error</h2>
   const { objects: courses, pages } = data.courses

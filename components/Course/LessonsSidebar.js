@@ -32,7 +32,7 @@ const LessonsSidebar = ({ course, lessonId, setOpen }) => {
         </div>
 
         {course.courseChapters.map((chapter) => (
-          <>
+          <div key={chapter.id}>
             <div className="bg-gray-300 p-3 mr-3 rounded-r-full text-sm uppercase font-medium text-gray-600 pl-8 hover:bg-gray-800 hover:text-white cursor-pointer transition hover-invert-img">
               <img
                 src={require('assets/img/arrow-down.png')}
@@ -66,7 +66,22 @@ const LessonsSidebar = ({ course, lessonId, setOpen }) => {
                 </li>
               </ul>
             ))}
-          </>
+            <ul>
+              <li
+                onClick={() => router.push(`/courses/quiz/${chapter.slug}`)}
+                className="text-xs p-3 pr-0 pl-8 mt-2 mr-10 block rounded-r-full cursor-pointer"
+              >
+                <button type="button">
+                  <img
+                    src={require('assets/img/dot.png')}
+                    alt="dot"
+                    className="float-left mt-1 mr-2"
+                  />
+                  {chapter.quiz.title} {'(Exercice)'}
+                </button>
+              </li>
+            </ul>
+          </div>
         ))}
       </div>
       {/* Side Nav  */}

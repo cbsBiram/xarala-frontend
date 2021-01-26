@@ -1,29 +1,19 @@
-export const userFields = `
-      id
-      email
-      firstName
-      lastName
-      isActive
-      isStudent
-      isTeacher
-      isWriter
-      phone
-      address
-      title
-      avatar
-      coursesCreated{
-        id
-        title
-      }
-      coursesEnrolled{
-        id
-        title
-      }
-      postSet{
-        id
-      }
-      bio
+export const answerFields = `
+    id
+    label
+    isCorrect
 `
+
+export const categoryFields = `
+  id
+  name
+  thumbnail
+`
+
+export const errorFields = `
+  messages
+`
+
 export const lessonFields = `
       id
       title
@@ -37,38 +27,6 @@ export const lessonFields = `
       platform
       drafted
       dateCreated
-`
-
-export const courseFields = `
-  id
-  title
-  price
-  description
-  shortDescription
-  thumbnail
-  slug
-  language{
-    id
-    name
-    abr
-  }
-  promoteVideo
-  teacher {${userFields}}
-  students {${userFields}}
-  courseChapters {
-    id
-    name
-    dateCreated
-    slug
-    drafted
-    courseLessons {${lessonFields}
-    }
-  }
-  categories {
-    id
-    thumbnail
-    name
-  }
 `
 
 export const postFields = `
@@ -93,24 +51,100 @@ export const postFields = `
   }
 `
 
+export const userFields = `
+  id
+  email
+  firstName
+  lastName
+  isActive
+  isStudent
+  isTeacher
+  isWriter
+  phone
+  address
+  title
+  avatar
+  coursesCreated{
+    id
+    title
+    slug
+    price
+  }
+  coursesEnrolled{
+    id
+    title
+    slug
+    price
+  }
+  postSet{
+    id
+  }
+  bio
+`
+
+export const questionFields = `
+    id
+    label
+    answers {${answerFields}}
+`
+
 export const quizFields = `
   id
   title
+  questions {${questionFields}}
+  chapter {
+    slug
+  }
+`
+
+export const chapterFields = `
+  id
+  name
+  dateCreated
+  slug
+  drafted
+  courseLessons {${lessonFields}}
+  quiz {${quizFields}}
+`
+
+export const courseFields = `
+  id
+  title
+  price
   description
+  shortDescription
+  thumbnail
+  slug
+  language{
+    id
+    name
+    abr
+  }
+  promoteVideo
+  teacher {${userFields}}
+  students {${userFields}}
+  courseChapters {
+    id
+    name
+    dateCreated
+    slug
+    drafted
+    courseLessons {${lessonFields}}
+    quiz {${quizFields}}
+  }
+  categories {${categoryFields}}
 `
 
 export const userAnswerFields = `
   id
+  question {${questionFields}}
   quiz {
-    id
+    title
+    questions {${questionFields}
+    }
   }
-`
-
-export const categoryFields = `
-  id
-  name
-`
-
-export const errorFields = `
-  messages
+  answer{
+    label
+    isCorrect
+  }
 `

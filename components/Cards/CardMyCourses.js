@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 export default function CardMyCourses({ courses, buttonTitle, title }) {
   return (
@@ -34,6 +35,7 @@ export default function CardMyCourses({ courses, buttonTitle, title }) {
                 <th className="px-6 bg-gray-100 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                   Prix (F CFA)
                 </th>
+                <th className="px-6 bg-gray-100 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"></th>
               </tr>
             </thead>
             <tbody>
@@ -52,12 +54,20 @@ export default function CardMyCourses({ courses, buttonTitle, title }) {
                       {course.price}
                     </td>
                     <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                      <button
-                        className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="button"
+                      <Link
+                        as={`/courses/${course.slug}`}
+                        passHref
+                        href="/courses/[slug]"
                       >
-                        {buttonTitle}
-                      </button>
+                        <a href="#">
+                          <button
+                            className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            type="button"
+                          >
+                            {buttonTitle}
+                          </button>
+                        </a>
+                      </Link>
                     </td>
                   </tr>
                 ))
