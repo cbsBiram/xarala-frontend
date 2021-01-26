@@ -35,8 +35,8 @@ function Result() {
           <div className="rounded-t bg-gray-200 mb-0 px-6 py-6">
             <div className="text-center flex justify-between">
               <h6 className="text-gray-800  text-xl font-bold">
-                Résultat du quiz sur :{' '}
-                <span className="uppercase">
+                Résultat de l'exercice sur :{' '}
+                <span className="text-blue-400 uppercase">
                   {userAnswer ? userAnswer[0].quiz.title : ''}
                 </span>
               </h6>

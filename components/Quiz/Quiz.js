@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import QuizAnswer from './QuizAnswer'
 import { CREATE_USER_ANSWER } from '../../utils/mutations'
 
-const QuizComponent = ({ quiz }) => {
+const Quiz = ({ quiz }) => {
   const router = useRouter()
   const [createUserAnswer] = useMutation(CREATE_USER_ANSWER)
   const [userAnswers, setUserAnswers] = useState([])
@@ -43,27 +43,28 @@ const QuizComponent = ({ quiz }) => {
     })
     router.push(`/courses/quiz/results/${quiz.chapter.slug}`)
   }
-  console.log('hey', userAnswers)
 
   return (
-    <motion.div
-      initial="initial"
-      animate="enter"
-      exit="exit"
-      variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
-    >
-      <NextSeo
-        title="Xarala Academy | Examen en ligne"
-        description="Testez votre niveau sur Xarala"
-      />
-      <main>
-        <section className="py-10">
-          <div className="container mx-auto pt-10 mx-2">
-            <div className="shadow rounded-md w-full max-w-lg h-48">
+    <div className="relative block   pt-10 w-full">
+      <div className="container mx-auto px-4 py-8">
+        <motion.div
+          initial="initial"
+          animate="enter"
+          exit="exit"
+          variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
+        >
+          <NextSeo
+            title="Xarala Academy | Examen en ligne"
+            description="Testez votre niveau sur Xarala"
+          />
+
+          <div className="flex flex-wrap">
+            <div className="shadow rounded-md w-full  h-full">
               <div className="rounded-t bg-gray-200 mb-0 px-6 py-6">
                 <div className="text-center flex justify-between">
                   <h6 className="text-gray-800 text-xl font-bold break-words">
-                    Quiz pour le chapitre sur : {quiz.title}
+                    Exercice sur :{' '}
+                    <span className="text-blue-400">{quiz.title}</span>
                   </h6>
                 </div>
               </div>
@@ -106,10 +107,10 @@ const QuizComponent = ({ quiz }) => {
               </div>
             </div>
           </div>
-        </section>
-      </main>
-    </motion.div>
+        </motion.div>
+      </div>
+    </div>
   )
 }
 
-export default QuizComponent
+export default Quiz

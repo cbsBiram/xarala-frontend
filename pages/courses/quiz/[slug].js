@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import Loading from '../../../components/Shared/Loading'
 import Page from '../../../layouts/Page'
-import QuizComponent from '../../../components/Quiz/QuizComponent'
+import QuizComponent from '../../../components/Quiz/Quiz'
 import { SINGLE_QUIZ_QUERY } from '../../../utils/queries'
 
 const Quiz = () => {

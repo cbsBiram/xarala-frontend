@@ -6,12 +6,9 @@ export default function QuizAnswer({
   index,
   handleChange,
 }) {
-  //   const handleChange = (e) => {
-  //     console.log('Event', e.target.value)
-  //   }
   return (
     <>
-      <div className="w-full lg:w-6/12 mb-2">
+      <div className="w-full  mb-2">
         <label className="inline-flex items-center">
           <input
             type="radio"

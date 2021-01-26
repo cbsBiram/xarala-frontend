@@ -66,21 +66,23 @@ const LessonsSidebar = ({ course, lessonId, setOpen }) => {
                 </li>
               </ul>
             ))}
-            <ul>
-              <li
-                onClick={() => router.push(`/courses/quiz/${chapter.slug}`)}
-                className="text-xs p-3 pr-0 pl-8 mt-2 mr-10 block rounded-r-full cursor-pointer"
-              >
-                <button type="button">
-                  <img
-                    src={require('assets/img/dot.png')}
-                    alt="dot"
-                    className="float-left mt-1 mr-2"
-                  />
-                  {chapter.quiz.title} {'(Exercice)'}
-                </button>
-              </li>
-            </ul>
+            {chapter.quiz && (
+              <ul>
+                <li
+                  onClick={() => router.push(`/courses/quiz/${chapter.slug}`)}
+                  className="text-xs p-3 pr-0 pl-8 mt-2 mr-10 block rounded-r-full cursor-pointer"
+                >
+                  <button type="button">
+                    <img
+                      src={require('assets/img/dot.png')}
+                      alt="dot"
+                      className="float-left mt-1 mr-2"
+                    />
+                    {chapter.quiz.title} {'(Exercice)'}
+                  </button>
+                </li>
+              </ul>
+            )}
           </div>
         ))}
       </div>
