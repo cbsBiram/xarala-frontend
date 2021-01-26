@@ -7,7 +7,6 @@ import {
   userAnswerFields,
   categoryFields,
   errorFields,
-  quizFields,
 } from './fields'
 
 export function getFromMediaUrl(url) {
@@ -87,13 +86,6 @@ export const ME_QUERY = gql`
 export const SINGLE_POST_QUERY = gql`
   query($postSlug: String!){
     post(postSlug: $postSlug){${postFields}}
-  }
-`
-
-export const ALL_USER_QUIZZES = gql`
-  query dashboardStats {
-    me {${userFields}}
-    allQuizzesUser {${userAnswerFields}}
   }
 `
 

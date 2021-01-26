@@ -14,19 +14,25 @@ export const errorFields = `
   messages
 `
 
+export const languageFields = `
+  id
+  name
+  abr
+`
+
 export const lessonFields = `
-      id
-      title
-      isVideo
-      text
-      slug
-      file
-      videoUrl
-      videoId
-      duration
-      platform
-      drafted
-      dateCreated
+  id
+  title
+  isVideo
+  text
+  slug
+  file
+  videoUrl
+  videoId
+  duration
+  platform
+  drafted
+  dateCreated
 `
 
 export const postFields = `
@@ -69,6 +75,7 @@ export const userFields = `
     title
     slug
     price
+    level
   }
   coursesEnrolled{
     id
@@ -115,11 +122,7 @@ export const courseFields = `
   shortDescription
   thumbnail
   slug
-  language{
-    id
-    name
-    abr
-  }
+  language{${languageFields}}
   promoteVideo
   teacher {${userFields}}
   students {${userFields}}
