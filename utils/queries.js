@@ -1,10 +1,12 @@
 import { gql } from '@apollo/client'
 import {
   courseFields,
+  languageFields,
   lessonFields,
   postFields,
   quizFields,
   userAnswerFields,
+  userFields,
 } from './fields'
 
 export const CHECK_ENROLLEMENT_QUERY = gql`
@@ -52,5 +54,18 @@ export const SINGLE_QUIZ_QUERY = gql`
 export const USER_ANSWERS_QUERY = gql`
   query ($chapterSlug: String!){
     userAnswer (chapterSlug: $chapterSlug) {${userAnswerFields}}
+  }
+`
+
+export const ALL_USER_QUIZZES = gql`
+  query dashboardStats {
+    me {${userFields}}
+    allQuizzesUser {${userAnswerFields}}
+  }
+`
+
+export const ALL_LANGUAGES_QUERY = gql`
+  query {
+    languages {${languageFields}}
   }
 `

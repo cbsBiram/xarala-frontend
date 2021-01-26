@@ -1,26 +1,17 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { NextSeo } from 'next-seo'
-import { useQuery } from '@apollo/client'
 
 import CardStats from 'components/Cards/CardStats.js'
-import { ALL_USER_QUIZZES } from '../../utils/constants'
 
-export default function HeaderStats() {
-  const { loading, error, data } = useQuery(ALL_USER_QUIZZES)
-  let { me, allQuizzesUser: quizzes } = data ? data : {}
-  let { coursesEnrolled } = me ? me : []
-
-  let sumOfPrice = coursesEnrolled
-    ? coursesEnrolled.reduce(
+export default function StudentHeaderStats({ courses, userQuizzes }) {
+  let sumOfPrice = courses
+    ? courses.reduce(
         (totalPrice, course) => totalPrice + parseInt(course.price, 10),
         0
       )
     : 0
   let averagePrice =
-    coursesEnrolled && coursesEnrolled.length
-      ? (sumOfPrice / coursesEnrolled.length).toString()
-      : '0'
+    courses && courses.length ? (sumOfPrice / courses.length).toString() : '0'
 
   // let sumOfScore = quizzes
   //   ? quizzes.reduce(
@@ -38,10 +29,6 @@ export default function HeaderStats() {
       exit="exit"
       variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
     >
-      <NextSeo
-        title="Xarala Academy | Tableau de bord"
-        description="Consultez votre tableau de bord"
-      />
       {/* Header */}
       <div className="relative bg-gray-900 md:pt-32 pb-32 pt-12">
         <div className="px-4 md:px-10 mx-auto w-full">
@@ -51,9 +38,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="COURS"
-                  statTitle={
-                    coursesEnrolled ? coursesEnrolled.length.toString() : '0'
-                  }
+                  statTitle={courses ? courses.length.toString() : '0'}
                   statArrow="up"
                   statPercent="3.48"
                   statPercentColor="text-green-500"
@@ -64,8 +49,8 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="QUIZS"
-                  statTitle={quizzes ? quizzes.length.toString() : '0'}
+                  statSubtitle="QUIZ(S)"
+                  statTitle={userQuizzes ? userQuizzes.length.toString() : '0'}
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"

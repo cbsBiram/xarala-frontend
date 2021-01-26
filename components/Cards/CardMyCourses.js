@@ -1,7 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 
-export default function CardMyCourses({ courses, buttonTitle, title }) {
+export default function CardMyCourses({
+  courses,
+  buttonTitle,
+  title,
+  teacher = false,
+}) {
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
@@ -11,12 +16,12 @@ export default function CardMyCourses({ courses, buttonTitle, title }) {
               <h3 className="font-semibold text-base">{title}</h3>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-              <a href="/courses">
+              <a href={`${teacher ? '/admin/courses/create' : '/courses/'}`}>
                 <button
                   className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
                 >
-                  Voir plus
+                  {teacher ? 'Ajouter' : 'Voir Plus'}
                 </button>
               </a>
             </div>
@@ -30,7 +35,7 @@ export default function CardMyCourses({ courses, buttonTitle, title }) {
                   Titre
                 </th>
                 <th className="px-6 bg-gray-100 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                  Auteur
+                  {teacher ? 'Niveau' : 'Auteur'}
                 </th>
                 <th className="px-6 bg-gray-100 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                   Prix (F CFA)
@@ -46,35 +51,54 @@ export default function CardMyCourses({ courses, buttonTitle, title }) {
                       {course.title}
                     </th>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                      {course.teacher
+                      {!teacher && course.teacher
                         ? `${course.teacher.firstName} ${course.teacher.lastName}`
-                        : 'Xarala'}
+                        : course.level}
                     </td>
                     <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                       {course.price}
                     </td>
                     <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                      <Link
-                        as={`/courses/${course.slug}`}
-                        passHref
-                        href="/courses/[slug]"
-                      >
-                        <a href="#">
-                          <button
-                            className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                            type="button"
-                          >
-                            {buttonTitle}
-                          </button>
-                        </a>
-                      </Link>
+                      {teacher ? (
+                        <Link
+                          as={`/admin/courses/edit/${course.slug}`}
+                          passHref
+                          href="/admin/courses/edit/[slug]"
+                        >
+                          <a href="#">
+                            <button
+                              className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                              type="button"
+                            >
+                              Edit
+                            </button>
+                          </a>
+                        </Link>
+                      ) : (
+                        <Link
+                          as={`/courses/${course.slug}`}
+                          passHref
+                          href="/courses/[slug]"
+                        >
+                          <a href="#">
+                            <button
+                              className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                              type="button"
+                            >
+                              {buttonTitle}
+                            </button>
+                          </a>
+                        </Link>
+                      )}
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
                   <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                    Aucun cours acheté pour le moment
+                    {teacher
+                      ? 'Aucun cours créé pour le moment'
+                      : 'Aucun cours acheté pour le moment'}
                   </th>
                 </tr>
               )}
