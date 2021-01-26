@@ -25,6 +25,22 @@ export const CREATE_USER_ANSWER = gql`
   }
 `
 
+export const CREATE_COURSE = gql`
+  mutation($title: String!, $description: String, $price: Decimal, $level: String!, $thumbnail: String, $language: String!) {
+    createCourse(title: $title, description: $description, price: $price, level: $level, thumbnail: $thumbnail, language: $language) {
+      course{${courseFields}}
+    }
+  }
+`
+
+export const UPDATE_COURSE = gql`
+  mutation($courseId: Int!, $title: String, $description: String, $price: Decimal, $level: String!, $thumbnail: String, $language: String!) {
+    updateCourse(courseId: $courseId, title: $title, description: $description, price: $price, level: $level, thumbnail: $thumbnail, language: $language) {
+      course{${courseFields}}
+    }
+  }
+`
+
 export const ADD_COURSE_TO_CART = gql`
   mutation($courseId: Int, $orderId: Int, $quantity: Int) {
     createOrderItem(
