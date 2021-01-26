@@ -22,16 +22,14 @@ export default function HeaderStats() {
       ? (sumOfPrice / coursesEnrolled.length).toString()
       : '0'
 
-  let sumOfScore = coursesEnrolled
-    ? coursesEnrolled.reduce(
-        (totalScore, course) => totalScore + parseInt(course.score, 10),
-        0
-      )
-    : 0
-  let averageScore =
-    coursesEnrolled && coursesEnrolled.length
-      ? (sumOfScore / coursesEnrolled.length).toString()
-      : '0'
+  // let sumOfScore = quizzes
+  //   ? quizzes.reduce(
+  //       (totalScore, quiz) => totalScore + parseInt(quiz.score, 10),
+  //       0
+  //     )
+  //   : 0
+  // let averageScore =
+  //   quizzes && quizzes.length ? (sumOfScore / quizzes.length).toString() : '0'
 
   return (
     <motion.div
@@ -88,7 +86,7 @@ export default function HeaderStats() {
                   statIconColor="bg-pink-500"
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+              {/* <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="SCORE MOYEN"
                   statTitle={averageScore + '%'}
@@ -99,7 +97,7 @@ export default function HeaderStats() {
                   statIconName="fas fa-percent"
                   statIconColor="bg-blue-500"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

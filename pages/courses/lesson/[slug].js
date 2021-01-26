@@ -32,7 +32,9 @@ const Lesson = () => {
   if (lessonLoading || courseLoading) return <Loading />
   return (
     <>
-      <CourseLessons course={courseData.course} lesson={lessonData.lesson} />
+      {courseData && lessonData && (
+        <CourseLessons course={courseData.course} lesson={lessonData.lesson} />
+      )}
     </>
   )
 }
