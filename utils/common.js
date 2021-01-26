@@ -1,3 +1,5 @@
+import { AUTH_TOKEN } from './constants'
+
 export const textTruncate = (str, length, ending) => {
   if (length == null) {
     length = 100
@@ -10,4 +12,12 @@ export const textTruncate = (str, length, ending) => {
   } else {
     return str
   }
+}
+
+export const totalSum = (items) => {
+  return items.map(({ price }) => price).reduce((sum, i) => sum + i)
+}
+
+export const reloadToken = () => {
+  return AUTH_TOKEN
 }

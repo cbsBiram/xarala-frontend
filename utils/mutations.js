@@ -24,3 +24,52 @@ export const CREATE_USER_ANSWER = gql`
     }
   }
 `
+
+export const ADD_COURSE_TO_CART = gql`
+  mutation($courseId: Int, $orderId: Int, $quantity: Int) {
+    createOrderItem(
+      courseId: $courseId
+      orderId: $orderId
+      quantity: $quantity
+    ) {
+      orderItem {
+        id
+        price
+        quantity
+        order {
+          id
+          items {
+            id
+            quantity
+          }
+        }
+      }
+    }
+  }
+`
+
+export const CREATE_ORDER = gql`
+  mutation {
+    createOrder {
+      order {
+        id
+        items {
+          id
+        }
+      }
+    }
+  }
+`
+
+export const REMOVE_COURSE_FROM_CART = gql`
+  mutation($courseId: Int) {
+    removeFromCart(courseId: $courseId) {
+      cart {
+        quantity
+        course {
+          id
+        }
+      }
+    }
+  }
+`

@@ -148,3 +148,12 @@ export const userAnswerFields = `
     isCorrect
   }
 `
+
+export const orderFields = `
+  id
+  items{
+    course{${courseFields}}
+    price
+    quantity
+  }
+`

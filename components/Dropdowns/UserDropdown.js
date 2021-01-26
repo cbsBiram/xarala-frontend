@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { createPopper } from '@popperjs/core'
-import { logout, removeInvalidSignature } from '../../utils/auth'
+import { logout } from '../../utils/auth'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
 import { AUTH_TOKEN, ME_QUERY } from '../../utils/constants'
+import { reloadToken } from '../../utils/common'
+import { initializeApollo } from '../../lib/apolloClient'
 
 const UserDropdown = ({ setOpen }) => {
+  const [token, setToken] = useState(AUTH_TOKEN)
   const { error, loading, data } = useQuery(ME_QUERY)
 
   // dropdown props
@@ -25,11 +28,12 @@ const UserDropdown = ({ setOpen }) => {
   const handleLogout = (event) => {
     event.preventDefault()
     logout()
+    closeDropdownPopover()
   }
   const { me } = data ? data : {}
   return (
     <>
-      {AUTH_TOKEN && me ? (
+      {token && me ? (
         <>
           <a
             className="text-gray-600 block"

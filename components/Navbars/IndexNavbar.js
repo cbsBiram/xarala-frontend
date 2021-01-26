@@ -2,12 +2,14 @@ import React from 'react'
 import Link from 'next/link'
 // components
 import UserDropdown from '../Dropdowns/UserDropdown'
+import UserCart from '../Dropdowns/UserCart'
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = React.useState(false)
   const handleNavbarOpen = () => {
     setNavbarOpen(!navbarOpen)
   }
+
   return (
     <>
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -106,19 +108,7 @@ const Navbar = () => {
               </li>
 
               <li className="flex items-center">
-                <a
-                  className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="#"
-                >
-                  <i className="fas fa-shopping-cart text-lg leading-lg " />
-                </a>
-                <p
-                  className="relative bg-red-600 justify-center rounded-full font-semibold text-white text-xs text-center"
-                  style={{ width: '15px', top: '-15px', right: '10px' }}
-                >
-                  {/* if card else null */}
-                  {/* 0 */}
-                </p>
+                <UserCart />
               </li>
 
               <li className="flex items-center">

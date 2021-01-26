@@ -2,6 +2,7 @@ import { gql } from '@apollo/client'
 import {
   courseFields,
   lessonFields,
+  orderFields,
   postFields,
   quizFields,
   userAnswerFields,
@@ -53,4 +54,10 @@ export const USER_ANSWERS_QUERY = gql`
   query ($chapterSlug: String!){
     userAnswer (chapterSlug: $chapterSlug) {${userAnswerFields}}
   }
+`
+
+export const ORDER_QUERY = gql`
+  query($orderId: Int){
+    order(orderId: $orderId){${orderFields}}
+}
 `
