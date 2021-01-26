@@ -1,20 +1,41 @@
 import React from 'react'
+import { NextSeo } from 'next-seo'
+import { useQuery } from '@apollo/client'
 
 // components
-
 import AdminNavbar from 'components/Navbars/AdminNavbar.js'
-import Sidebar from 'components/Sidebar/Sidebar.js'
-import HeaderStats from 'components/Headers/HeaderStats.js'
 import FooterAdmin from 'components/Footers/FooterAdmin.js'
+import Sidebar from 'components/Sidebar/Sidebar.js'
+import StudentHeaderStats from 'components/Headers/StudentHeaderStats.js'
+import TeacherHeaderStats from '../components/Headers/TeacherHeaderStats'
+import Loading from '../components/Shared/Loading'
+import { ALL_USER_QUIZZES } from '../utils/queries'
 
 const Admin = ({ children }) => {
+  const { loading, error, data } = useQuery(ALL_USER_QUIZZES)
+  let { me, allQuizzesUser: userQuizzes } = data ? data : {}
+  const user = me ? me : {}
+
+  if (loading) return <Loading />
+
   return (
     <>
+      <NextSeo
+        title="Xarala Academy | Tableau de bord"
+        description="Consultez votre tableau de bord"
+      />
       <Sidebar />
       <div className="relative md:ml-64 bg-gray-200">
         <AdminNavbar />
         {/* Header */}
-        <HeaderStats />
+        {user.isTeacher ? (
+          <TeacherHeaderStats courses={user.coursesCreated} />
+        ) : (
+          <StudentHeaderStats
+            courses={user.coursesEnrolled}
+            userQuizzes={userQuizzes}
+          />
+        )}
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           {children}
           <FooterAdmin />

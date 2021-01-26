@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Router from 'next/router'
 import { useMutation } from '@apollo/client'
 
 import { UPDATE_PROFILE_MUTATION } from '../../utils/constants'

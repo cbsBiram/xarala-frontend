@@ -1,22 +1,26 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useQuery } from '@apollo/client'
 
 // components
-import CardMyCourses from 'components/Cards/CardMyCourses.js'
-
-// layout for page
-import Loading from '../../components/Shared/Loading'
-import { withAuthSync } from '../../utils/auth'
-import { useQuery } from '@apollo/client'
-import { DASHBOARD_INFO_QUERY } from '../../utils/constants'
 import CardCategories from '../../components/Cards/CardCategories'
+import CardMyCourses from 'components/Cards/CardMyCourses.js'
+import Loading from '../../components/Shared/Loading'
 import { CourseCard } from '../../components/Partials/CourseCard'
+import { DASHBOARD_INFO_QUERY } from '../../utils/constants'
+import { withAuthSync } from '../../utils/auth'
+import StudentDashboard from '../../components/Partials/StudentDashboard'
+import TeacherDashboard from '../../components/Partials/TeacherDashboard'
 
 const Dashboard = () => {
   const { loading, error, data } = useQuery(DASHBOARD_INFO_QUERY)
   const allData = data ? data : {}
   const { latestCourses: allCourses, me, categories } = allData
-  const { coursesEnrolled } = me ? me : []
+  const user = me ? me : {}
+  let { coursesEnrolled } = me ? me : []
+  let { coursesCreated } = me ? me : []
+
+  if (loading) return <Loading />
 
   return (
     <motion.div
@@ -25,47 +29,18 @@ const Dashboard = () => {
       exit="exit"
       variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
     >
-      <div className="relative min-w-0 break-words w-full mb-6 shadow-lg rounded bg-gray-800">
-        <div className="mb-12 md:mb-0 px-4">
-          <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
-            <div className="flex flex-wrap items-center">
-              <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-                <h3 className="font-semibold text-base text-white">
-                  Cours les plus récents
-                </h3>
-              </div>
-              <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                <a href="/courses">
-                  <button
-                    className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                  >
-                    Voir plus
-                  </button>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center text-center ">
-            {allCourses &&
-              allCourses.length &&
-              allCourses.map((course) => <CourseCard course={course} />)}
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-wrap mt-4">
-        <div className="w-full md:w-8/12 mb-12 xl:mb-0 px-4">
-          <CardMyCourses
-            courses={coursesEnrolled}
-            displayDate={true}
-            title="Cours achetés"
-            buttonTitle="Continuer"
-          />
-        </div>
-        <div className="w-full md:w-4/12 px-4">
-          <CardCategories categories={categories} />
-        </div>
-      </div>
+      {user.isTeacher ? (
+        <TeacherDashboard
+          categories={categories}
+          coursesCreated={coursesCreated}
+        />
+      ) : (
+        <StudentDashboard
+          allCourses={allCourses}
+          categories={categories}
+          coursesEnrolled={coursesEnrolled}
+        />
+      )}
     </motion.div>
   )
 }
