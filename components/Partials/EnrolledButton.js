@@ -27,7 +27,7 @@ export const EnrolledButton = ({ course }) => {
 
   const addNewOrder = async () => {
     const { data, errors, loading } = await createOrder()
-    console.log('dat ', data, errors)
+
     if (errors) return null
     const { order } = data.createOrder
     return order

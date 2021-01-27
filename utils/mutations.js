@@ -78,13 +78,10 @@ export const CREATE_ORDER = gql`
 `
 
 export const REMOVE_COURSE_FROM_CART = gql`
-  mutation($courseId: Int) {
-    removeFromCart(courseId: $courseId) {
-      cart {
-        quantity
-        course {
-          id
-        }
+  mutation($orderItemId: Int) {
+    removeOrderItem(orderItemId: $orderItemId) {
+      orderItem {
+        id
       }
     }
   }

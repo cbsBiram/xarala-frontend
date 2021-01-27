@@ -1,11 +1,23 @@
+import { useMutation } from '@apollo/client'
 import React, { useState } from 'react'
 import { totalSum } from '../../utils/common'
+import { REMOVE_COURSE_FROM_CART } from '../../utils/mutations'
 
 const OrderList = ({ order }) => {
   const subTotal = totalSum(order.items)
   const [discount, setDiscount] = useState(0)
+  const [couponCode, setCouponCode] = useState('')
+  const [removeCourse] = useMutation(REMOVE_COURSE_FROM_CART)
   const totalPrice = subTotal - discount
   const tax = 0
+
+  const removeCourseFromCart = async (itemId) => {
+    console.log('item ', itemId)
+    const { data, errors, loading } = await removeCourse({
+      variables: { orderItemId: itemId },
+    })
+    alert('Element enleve')
+  }
 
   return (
     <>
@@ -46,6 +58,7 @@ const OrderList = ({ order }) => {
                             <button
                               type="submit"
                               className="text-gray-700 md:ml-4"
+                              onClick={() => removeCourseFromCart(item.id)}
                             >
                               <small>(Supprimer)</small>
                             </button>
@@ -63,23 +76,26 @@ const OrderList = ({ order }) => {
                 <div className="my-4 mt-6 -mx-2 lg:flex">
                   <div className="lg:px-2 lg:w-1/2">
                     <div className="p-4 bg-gray-100 rounded-full">
-                      <h1 className="ml-2 font-bold uppercase">Coupon Code</h1>
+                      <h1 className="ml-2 font-bold uppercase">
+                        Bon de réduction
+                      </h1>
                     </div>
                     <div className="p-4">
                       <p className="mb-4 italic">
-                        If you have a coupon code, please enter it in the box
-                        below
+                        Si vous avez un code promo, veuillez le saisir dans la
+                        case ci-dessous
                       </p>
                       <div className="justify-center md:flex">
-                        <form action="" method="POST">
+                        <form onSubmit={() => console.log('submited')}>
                           <div className="flex items-center w-full h-13 pl-3  bg-gray-100 border rounded-full">
                             <input
-                              type="coupon"
+                              type="text"
                               name="code"
                               id="coupon"
-                              placeholder="Apply coupon"
-                              value="90off"
+                              placeholder="Votre bon de reduction"
+                              value={couponCode}
                               className="w-full bg-gray-100 outline-none appearance-none focus:outline-none active:outline-none"
+                              onChange={(e) => setCouponCode(e.target.value)}
                             />
                             <button
                               type="submit"
@@ -108,13 +124,13 @@ const OrderList = ({ order }) => {
                   <div className="lg:px-2 lg:w-1/2">
                     <div className="p-4 bg-gray-100 rounded-full">
                       <h1 className="ml-2 font-bold uppercase">
-                        Order Details
+                        Détails de la facturation
                       </h1>
                     </div>
                     <div className="p-4">
                       <p className="mb-6 italic">
-                        Shipping and additionnal costs are calculated based on
-                        values you have entered
+                        Les frais sont calculés en fonction des valeurs que vous
+                        avez choisies
                       </p>
                       <div className="flex justify-between border-b">
                         <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
@@ -143,7 +159,7 @@ const OrderList = ({ order }) => {
                               </svg>
                             </button>
                           </form>
-                          Coupon "90off"
+                          Coupon {couponCode}
                         </div>
                         <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-green-700">
                           {discount}

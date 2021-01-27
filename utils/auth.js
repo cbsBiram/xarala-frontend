@@ -1,16 +1,19 @@
 import { Component } from 'react'
 import Router from 'next/router'
-import nextCookie from 'next-cookies'
-import cookie from 'js-cookie'
 import Admin from '../layouts/Admin'
 
+const redirection = () => {
+  window.location = '/'
+}
+
+const redirectAfterLogin = (next) => {
+  next !== undefined ? (window.location = next) : (window.location = '/')
+}
+
 export const login = async ({ token }) => {
-  // cookie.set('token', token, { expires: 1 })
   window.localStorage.setItem('token', token)
   const { next } = Router.query
-  console.log('D', next)
-  next !== undefined ? Router.push(next) : Router.push('/admin/dashboard')
-  // Router.reload()
+  redirectAfterLogin(next)
 }
 
 export const signup = async () => {
@@ -24,7 +27,7 @@ export const logout = () => {
   // to support logging out from all windows
   window.localStorage.setItem('logout', Date.now())
   window.localStorage.removeItem('token')
-  Router.push('/')
+  redirection()
 }
 
 export const getToken = () => {

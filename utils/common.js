@@ -16,7 +16,9 @@ export const textTruncate = (str, length, ending) => {
 }
 
 export const totalSum = (items) => {
-  return items.map(({ price }) => price).reduce((sum, i) => sum + i)
+  return items
+    .map(({ price }) => price)
+    .reduce((sum, i) => parseInt(sum) + parseInt(i), 0)
 }
 
 export const reloadToken = () => {

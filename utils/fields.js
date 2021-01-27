@@ -158,5 +158,6 @@ export const orderFields = `
     course{${courseFields}}
     price
     quantity
+    id
   }
 `
