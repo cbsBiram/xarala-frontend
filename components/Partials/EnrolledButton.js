@@ -8,7 +8,7 @@ import {
 } from '../../utils/mutations'
 import { CHECK_ENROLLEMENT_QUERY } from '../../utils/queries'
 import Loading from '../Shared/Loading'
-import { AUTH_TOKEN } from '../../utils/constants'
+import { getToken } from '../../utils/auth'
 
 export const EnrolledButton = ({ course }) => {
   const courseId = course.id
@@ -18,7 +18,7 @@ export const EnrolledButton = ({ course }) => {
   const [createOrder] = useMutation(CREATE_ORDER)
 
   const checkLogin = () => {
-    if (!AUTH_TOKEN) {
+    if (!getToken()) {
       router.push(`/auth/login?next=/courses/${course.slug}`)
       return false
     }
@@ -45,15 +45,16 @@ export const EnrolledButton = ({ course }) => {
   }
 
   const handleSubscrireUserToCourse = async () => {
-    checkLogin()
-    const { data, errors, loading } = await subscribeUser({
-      variables: { courseId },
-    })
-    // const { course } = subscribeData
-    alert('Cours enrollé avec succès')
-    router.push(
-      `/courses/lesson/${course.slug}?lecture=${course.courseChapters[0].courseLessons[0].slug}`
-    )
+    if (checkLogin()) {
+      const { data, errors, loading } = await subscribeUser({
+        variables: { courseId },
+      })
+      // const { course } = subscribeData
+      alert('Cours enrollé avec succès')
+      router.push(
+        `/courses/lesson/${course.slug}?lecture=${course.courseChapters[0].courseLessons[0].slug}`
+      )
+    }
   }
 
   const { data, errors, loading } = useQuery(CHECK_ENROLLEMENT_QUERY, {

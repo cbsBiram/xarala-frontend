@@ -5,10 +5,12 @@ import cookie from 'js-cookie'
 import Admin from '../layouts/Admin'
 
 export const login = async ({ token }) => {
-  cookie.set('token', token, { expires: 1 })
-  // localStorage.setItem('token', token)
+  // cookie.set('token', token, { expires: 1 })
+  window.localStorage.setItem('token', token)
   const { next } = Router.query
-  next ? Router.push(next) : Router.push('/admin/dashboard')
+  console.log('D', next)
+  next !== undefined ? Router.push(next) : Router.push('/admin/dashboard')
+  // Router.reload()
 }
 
 export const signup = async () => {
@@ -17,17 +19,16 @@ export const signup = async () => {
   Router.push('/auth/login')
 }
 
-export const removeInvalidSignature = () => {
-  cookie.remove('token')
+export const logout = () => {
+  // cookie.remove('token')
+  // to support logging out from all windows
+  window.localStorage.setItem('logout', Date.now())
+  window.localStorage.removeItem('token')
   Router.push('/')
 }
 
-export const logout = () => {
-  cookie.remove('token')
-  // to support logging out from all windows
-  window.localStorage.setItem('logout', Date.now())
-  // window.localStorage.removeItem('token')
-  Router.push('/')
+export const getToken = () => {
+  return process.browser ? window.localStorage.getItem('token') : ''
 }
 
 // Gets the display name of a JSX component for dev tools
@@ -77,7 +78,7 @@ export const withAuthSync = (WrappedComponent) =>
   }
 
 export const auth = (ctx) => {
-  const { token } = nextCookie(ctx)
+  const token = getToken()
 
   /*
    * This happens on server only, ctx.req is available means it's being

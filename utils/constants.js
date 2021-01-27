@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import cookie from 'js-cookie'
+
 import {
   courseFields,
   postFields,
@@ -88,5 +88,3 @@ export const SINGLE_POST_QUERY = gql`
     post(postSlug: $postSlug){${postFields}}
   }
 `
-
-export const AUTH_TOKEN = cookie.get('token')

@@ -1,3 +1,4 @@
+import { getToken } from './auth'
 import { AUTH_TOKEN } from './constants'
 
 export const textTruncate = (str, length, ending) => {
@@ -19,5 +20,5 @@ export const totalSum = (items) => {
 }
 
 export const reloadToken = () => {
-  return AUTH_TOKEN
+  return getToken()
 }
