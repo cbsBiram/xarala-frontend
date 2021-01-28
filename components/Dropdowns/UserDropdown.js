@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { createPopper } from '@popperjs/core'
-import { getToken, logout } from '../../utils/auth'
+import { logout } from '../../utils/auth'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
-import { AUTH_TOKEN, ME_QUERY } from '../../utils/constants'
-import { reloadToken } from '../../utils/common'
-import { initializeApollo } from '../../lib/apolloClient'
+import { ME_QUERY } from '../../utils/constants'
 
 const UserDropdown = ({ setOpen }) => {
-  const [token, setToken] = useState('')
-  // const [user, setUser] = useState({})
   const { error, loading, data } = useQuery(ME_QUERY)
-
-  useEffect(() => {
-    const localToken = getToken()
-    if (data && localToken) {
-      // setUser(data)
-      setToken(localToken)
-    }
-  }, [data])
-  console.log(data)
 
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false)
@@ -43,7 +30,7 @@ const UserDropdown = ({ setOpen }) => {
   const { me } = data ? data : {}
   return (
     <>
-      {token && me ? (
+      {me ? (
         <>
           <a
             className="text-gray-600 block"
