@@ -2,9 +2,9 @@ import React from 'react'
 import { useRouter } from 'next/router'
 
 import Admin from 'layouts/Admin.js'
-import EditCourse from '../../../../components/Forms/EditCourse'
+import EditCourseForm from '../../../../components/Forms/EditCourseForm'
 
-export default function Edit() {
+export default function EditCourse() {
   const router = useRouter()
   const { slug } = router.query
 
@@ -12,11 +12,11 @@ export default function Edit() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full px-4">
-          <EditCourse courseSlug={slug} />
+          <EditCourseForm courseSlug={slug} />
         </div>
       </div>
     </>
   )
 }
 
-Edit.layout = Admin
+EditCourse.layout = Admin

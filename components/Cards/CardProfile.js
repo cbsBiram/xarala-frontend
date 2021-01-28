@@ -1,47 +1,146 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { createPopper } from '@popperjs/core'
+import { useMutation } from '@apollo/client'
+import { useRouter } from 'next/router'
+
+import { UPDATE_AVATAR } from '../../utils/mutations'
 
 // components
-
 export default function CardProfile({ me }) {
+  const [avatar, setAvatar] = useState()
+  const router = useRouter()
+  const [updateAvatar] = useMutation(UPDATE_AVATAR)
+
+  const [popoverShow, setPopoverShow] = useState(false)
+  const btnRef = React.createRef()
+  const popoverRef = React.createRef()
+  const openPopover = () => {
+    if (!avatar) {
+      setPopoverShow(true)
+      createPopper(btnRef.current, popoverRef.current, {
+        placement: 'left',
+      })
+    }
+  }
+  const closePopover = () => {
+    setPopoverShow(false)
+  }
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = (error) => reject(error)
+    })
+
+  const handleAvatarChange = (e) => {
+    const imageFile = e.target.files[0]
+    if (!imageFile.name.match(/\.(jpg|jpeg|png|gif|svg|tif)$/)) {
+      setAvatar(null)
+      return alert(
+        'Oops!',
+        "Le type de l'image n'est pas supporté, choisir (PNG,JPG,JPEG,SVG,GIF ou TIF)",
+        'error'
+      )
+    } else {
+      setAvatar(imageFile)
+    }
+  }
+
+  const handleUpdateAvatar = async () => {
+    if (!avatar) return
+
+    const imgTobasse64 = await toBase64(avatar)
+    const { data: avatarData, error: avatarErrors } = await updateAvatar({
+      variables: {
+        file: imgTobasse64,
+      },
+    })
+    return { avatarData, avatarErrors }
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const avatarInfos = await handleUpdateAvatar()
+    const { avatarData, avatarErrors } = avatarInfos ? avatarInfos : {}
+
+    const { error, data } = await updateAvatar({
+      variables: { avatarData },
+    })
+
+    if (error || avatarErrors) setErrorMessage(errors[0].message)
+    if (!avatar) return
+    else {
+      alert('Profil modifié avec succès!')
+      router.reload()
+    }
+  }
+
   return (
     <>
       {me && (
         <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
           <div className="px-6">
             <div className="flex flex-wrap justify-center">
-              <div className="w-full px-4 flex justify-center">
-                <div className="relative">
-                  <img
-                    alt="..."
-                    src={require('assets/img/team-2-800x800.jpg')}
-                    className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
-                  />
+              <form
+                onSubmit={(event) => handleSubmit(event)}
+                encType="multipart/form-data"
+              >
+                <div className="w-full px-4 flex justify-center">
+                  <div className="relative">
+                    <label htmlFor="file-input">
+                      <img
+                        alt="..."
+                        src={
+                          me.avatar
+                            ? `${process.env.MEDIA_URL}${me.avatar}`
+                            : require('assets/img/team-2-800x800.jpg')
+                        }
+                        style={{ height: '150px' }}
+                        className="shadow-xl cursor-pointer rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                      />
+                    </label>
+                    <input
+                      id="file-input"
+                      type="file"
+                      name="files"
+                      className="px-3 py-3 placeholder-gray-400 text-gray-700 rounded text-sm focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150 hidden"
+                      onChange={handleAvatarChange}
+                    />
+                  </div>
                 </div>
-              </div>
-              {/* <div className="w-full px-4 text-center mt-20">
-              <div className="flex justify-center py-4 lg:pt-4 pt-8">
-                <div className="mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
-                    22
-                  </span>
-                  <span className="text-sm text-gray-500">Friends</span>
+                <div className="flex justify-center items-center">
+                  <button
+                    className="bg-blue-400 active:bg-gray-700 text-white font-bold uppercase text-xs mx-4 px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    style={{ marginTop: '100px' }}
+                    onClick={() => {
+                      popoverShow ? closePopover() : openPopover()
+                    }}
+                    ref={btnRef}
+                    type="submit"
+                  >
+                    Changer
+                  </button>
+
+                  <div
+                    className={
+                      (popoverShow ? '' : 'hidden ') +
+                      'bg-gray-600 border-0 mr-10 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg'
+                    }
+                    ref={popoverRef}
+                  >
+                    <div>
+                      <div className="text-white p-3 text-sm">
+                        Cliquez sur la photo de profil actuelle pour la
+                        remplacer, puis sur le bouton 'Changer'
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
-                    10
-                  </span>
-                  <span className="text-sm text-gray-500">Photos</span>
-                </div>
-                <div className="lg:mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
-                    89
-                  </span>
-                  <span className="text-sm text-gray-500">Comments</span>
-                </div>
-              </div>
-            </div> */}
+              </form>
             </div>
-            <div className="text-center mt-20">
+            <div className="text-center">
               <h3 className="text-xl py-4 font-semibold leading-normal mb-2 text-gray-800 lg:pt-4  pt-8 mb-2">
                 {me.firstName} {me.lastName}
               </h3>

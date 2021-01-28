@@ -13,6 +13,7 @@ const TeacherDashboard = ({ categories, coursesCreated }) => {
             title="Cours Créés"
             buttonTitle="Continuer"
             teacher={true}
+            icons={true}
           />
         </div>
         <div className="w-full md:w-4/12 px-4">

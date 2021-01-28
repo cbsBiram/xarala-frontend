@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 
-import { UPDATE_PROFILE_MUTATION } from '../../utils/constants'
-import FormError from '../Shared/FormError'
 import ChangePasswordForm from '../Forms/ChangePasswordForm'
+import FormError from '../Shared/FormError'
+import { UPDATE_PROFILE } from '../../utils/mutations'
 
 export default function CardSettings({ me }) {
   const [firstName, setFirstName] = useState('')
@@ -12,17 +12,17 @@ export default function CardSettings({ me }) {
   const [phone, setPhone] = useState('')
   const [bio, setBio] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-  const [updateUser] = useMutation(UPDATE_PROFILE_MUTATION)
+
+  const [updateUser] = useMutation(UPDATE_PROFILE)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    const { id: userId } = me ? me : null
-    const { errors, data } = await updateUser({
-      variables: { userId, firstName, lastName, address, phone, bio },
+    const { error: userErrors, data: userData } = await updateUser({
+      variables: { firstName, lastName, address, phone, bio },
     })
 
-    if (errors) setErrorMessage(errors[0].message)
+    if (userErrors) setErrorMessage(errors[0].message)
     else alert('Profil modifié avec succès!')
   }
 
@@ -36,7 +36,10 @@ export default function CardSettings({ me }) {
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           {errorMessage ? <FormError message={errorMessage} /> : <span></span>}
-          <form onSubmit={(event) => handleSubmit(event)}>
+          <form
+            onSubmit={(event) => handleSubmit(event)}
+            encType="multipart/form-data"
+          >
             <h6 className="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
               Infos utilisateur
             </h6>

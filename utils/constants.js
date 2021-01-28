@@ -43,38 +43,12 @@ export const LOGIN_MUTATION = gql`
   }
 `
 
-export const UPDATE_PROFILE_MUTATION = gql`
-  mutation($userId: Int!, $firstName: String, $lastName: String, $phone: String, $address: String, $bio: String) {
-    updateUser(userId: $userId, firstName: $firstName, lastName: $lastName, phone: $phone, address :$address, bio: $bio) {
-      user {${userFields}}
-    }
-  }
-`
-
 export const RESGISTER_MUTATION = gql`
   mutation($email: String!, $password: String!) {
     register(email: $email, password: $password) {
       user{${userFields}}
     }
   }
-`
-
-export const CHANGE_PASSWORD_MUTATION = gql`
-  mutation changePasswordQuery(
-      $oldPassword: String!
-      $newPassword1: String!
-      $newPassword2: String!
-    ) {
-      changePassword(
-        input: {
-          oldPassword: $oldPassword
-          newPassword1: $newPassword1
-          newPassword2: $newPassword2
-        }
-      ) {
-        errors{${errorFields}}
-      }
-    }
 `
 
 export const ME_QUERY = gql`

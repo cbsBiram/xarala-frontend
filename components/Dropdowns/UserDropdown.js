@@ -53,6 +53,7 @@ const UserDropdown = ({ setOpen }) => {
                       ? `${process.env.MEDIA_URL}${me.avatar}`
                       : require('assets/img/team-1-800x800.jpg')
                   }
+                  style={{ height: '50px' }}
                 />
               </span>
             </div>

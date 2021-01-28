@@ -1,18 +1,18 @@
 import React from 'react'
 
 import Admin from 'layouts/Admin.js'
-import CreateCourse from '../../../components/Forms/CreateCourse'
+import CreateCourseForm from '../../../components/Forms/CreateCourseForm'
 
-export default function Create() {
+export default function CreateCourse() {
   return (
     <>
       <div className="flex flex-wrap">
         <div className="w-full px-4">
-          <CreateCourse />
+          <CreateCourseForm />
         </div>
       </div>
     </>
   )
 }
 
-Create.layout = Admin
+CreateCourse.layout = Admin
