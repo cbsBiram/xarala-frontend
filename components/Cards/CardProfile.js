@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 
 import { UPDATE_AVATAR } from '../../utils/mutations'
+import { fileToBase64 } from '../../utils/common'
 
 // components
 export default function CardProfile({ me }) {
@@ -26,14 +27,6 @@ export default function CardProfile({ me }) {
     setPopoverShow(false)
   }
 
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = () => resolve(reader.result)
-      reader.onerror = (error) => reject(error)
-    })
-
   const handleAvatarChange = (e) => {
     const imageFile = e.target.files[0]
     if (!imageFile.name.match(/\.(jpg|jpeg|png|gif|svg|tif)$/)) {
@@ -50,8 +43,7 @@ export default function CardProfile({ me }) {
 
   const handleUpdateAvatar = async () => {
     if (!avatar) return
-
-    const imgTobasse64 = await toBase64(avatar)
+    const imgTobasse64 = await fileToBase64(avatar)
     const { data: avatarData, error: avatarErrors } = await updateAvatar({
       variables: {
         file: imgTobasse64,
