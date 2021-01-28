@@ -1,11 +1,16 @@
 import { useQuery } from '@apollo/client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ORDER_QUERY } from '../../utils/queries'
 
 const UserCart = () => {
   const { data, errors, loading } = useQuery(ORDER_QUERY)
+  // const [order, setOrderData] = useState(null)
   if (loading) return <h2>Loading...</h2>
+  // useEffect(() => {
+  //   const { order } = data
+  //   setOrderData(order)
+  // }, [data])
   const { order } = data
   return (
     <>
@@ -23,7 +28,7 @@ const UserCart = () => {
         style={{ width: '15px', top: '-15px', right: '10px' }}
       >
         {/* if card else null */}
-        {order && order.items ? order.items.length : ''}
+        {order && order.items ? order.items.length : '0'}
       </p>
     </>
   )

@@ -12,7 +12,6 @@ const OrderList = ({ order }) => {
   const tax = 0
 
   const removeCourseFromCart = async (itemId) => {
-    console.log('item ', itemId)
     const { data, errors, loading } = await removeCourse({
       variables: { orderItemId: itemId },
     })

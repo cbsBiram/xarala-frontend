@@ -5,6 +5,7 @@ import { ORDER_QUERY } from '../utils/queries'
 import Loading from '../components/Shared/Loading'
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
+import EmptyOrder from '../components/Order/EmptyOrder'
 
 const Order = () => {
   const router = useRouter()
@@ -14,11 +15,7 @@ const Order = () => {
   })
   if (loading) return <Loading />
   const { order } = data
-  return (
-    <>
-      <OrderList order={order} />
-    </>
-  )
+  return <>{order ? <OrderList order={order} /> : <EmptyOrder />}</>
 }
 
 Order.layout = Page
