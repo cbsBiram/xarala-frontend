@@ -1,5 +1,4 @@
 import { getToken } from './auth'
-import { AUTH_TOKEN } from './constants'
 
 export const textTruncate = (str, length, ending) => {
   if (length == null) {
@@ -23,4 +22,14 @@ export const totalSum = (items) => {
 
 export const reloadToken = () => {
   return getToken()
+}
+
+export const removeTags = (str) => {
+  if (str === null || str === '') return false
+  else str = str.toString()
+
+  // Regular expression to identify HTML tags in
+  // the input string. Replacing the identified
+  // HTML tag with a null string.
+  return str.replace(/(<([^>]+)>)/gi, '')
 }

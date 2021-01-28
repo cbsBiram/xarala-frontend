@@ -18,7 +18,7 @@ export default function CardMyCourses({
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
               <a href={`${teacher ? '/admin/courses/create' : '/courses/'}`}>
                 <button
-                  className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  className="bg-blue-400 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
                 >
                   {teacher ? 'Ajouter' : 'Voir Plus'}
@@ -60,20 +60,26 @@ export default function CardMyCourses({
                     </td>
                     <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                       {teacher ? (
-                        <Link
-                          as={`/admin/courses/edit/${course.slug}`}
-                          passHref
-                          href="/admin/courses/edit/[slug]"
-                        >
-                          <a href="#">
-                            <button
-                              className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                              type="button"
-                            >
-                              Edit
-                            </button>
-                          </a>
-                        </Link>
+                        <>
+                          <Link
+                            as={`/admin/courses/details/${course.slug}`}
+                            passHref
+                            href="/admin/courses/details/[slug]"
+                          >
+                            <a href="#">
+                              <i className="fas fa-eye text-green-500 text-lg"></i>
+                            </a>
+                          </Link>
+                          <Link
+                            as={`/admin/courses/edit/${course.slug}`}
+                            passHref
+                            href="/admin/courses/edit/[slug]"
+                          >
+                            <a href="#">
+                              <i className="fas fa-edit text-red-500 ml-2 mr-2 text-lg"></i>
+                            </a>
+                          </Link>
+                        </>
                       ) : (
                         <Link
                           as={`/courses/${course.slug}`}

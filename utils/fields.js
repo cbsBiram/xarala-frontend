@@ -126,6 +126,7 @@ export const courseFields = `
   promoteVideo
   teacher {${userFields}}
   students {${userFields}}
+  dateCreated
   courseChapters {
     id
     name

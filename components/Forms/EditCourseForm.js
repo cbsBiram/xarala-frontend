@@ -1,17 +1,32 @@
 import React, { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useMutation, useQuery } from '@apollo/client'
 
 import FormError from '../Shared/FormError'
-import { ALL_LANGUAGES_QUERY } from '../../utils/queries'
-import { CREATE_COURSE } from '../../utils/mutations'
-import { useRouter } from 'next/router'
 import Loading from '../Shared/Loading'
+import { ALL_LANGUAGES_QUERY } from '../../utils/queries'
+import { SINGLE_COURSE_QUERY } from '../../utils/constants'
+import { UPDATE_COURSE } from '../../utils/mutations'
 
-export default function CreateCourse() {
-  const { loading, error, data: languagesData } = useQuery(ALL_LANGUAGES_QUERY)
-  const [createCourse] = useMutation(CREATE_COURSE)
-  const router = useRouter()
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false,
+})
 
+export default function UpdateCourse({ courseSlug }) {
+  const { loadingLanguages, errorLanguages, data: languagesData } = useQuery(
+    ALL_LANGUAGES_QUERY
+  )
+  const { loadingCourse, errorCourse, data: courseData } = useQuery(
+    SINGLE_COURSE_QUERY,
+    {
+      variables: {
+        courseSlug: courseSlug,
+      },
+    }
+  )
+  const [updateCourse] = useMutation(UPDATE_COURSE)
+
+  let { course } = courseData ? courseData : {}
   let { languages } = languagesData ? languagesData : {}
 
   const [title, setTitle] = useState('')
@@ -24,27 +39,38 @@ export default function CreateCourse() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
-    console.log(title, description, price, level, thumbnail, language)
-    const { errors, data } = await createCourse({
-      variables: { title, description, price, level, thumbnail, language },
+    let courseId = course.id
+    const { errors, data } = await updateCourse({
+      variables: {
+        courseId,
+        title,
+        description,
+        price,
+        level,
+        thumbnail,
+        language,
+      },
     })
 
     if (errors) setErrorMessage(errors[0].message)
     else {
-      alert('Cours créé avec succès!')
-      router.push('/admin/dashboard')
+      alert('Cours modifié avec succès!')
     }
   }
 
-  if (loading) return <Loading />
+  console.log('Cours', course)
+
+  if (loadingLanguages || loadingCourse) return <Loading />
 
   return (
     <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
       <div className="rounded-t bg-white mb-0 px-6 py-6">
         <div className="text-center flex justify-between">
           <h6 className="text-gray-800 text-xl font-bold">
-            Créer un nouveau cours
+            Modifier le cours{' '}
+            <span className="text-blue-400 uppercase">
+              {course ? course.title : ''}
+            </span>
           </h6>
         </div>
       </div>
@@ -63,7 +89,7 @@ export default function CreateCourse() {
                 <input
                   type="text"
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={''}
+                  defaultValue={course ? course.title : ''}
                   onChange={(event) => setTitle(event.target.value)}
                 />
               </div>
@@ -76,12 +102,18 @@ export default function CreateCourse() {
                 >
                   Description
                 </label>
-                <textarea
+                {/* <textarea
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                   rows="3"
-                  defaultValue={''}
+                  defaultValue={course ? course.description : ''}
                   onChange={(event) => setDescription(event.target.value)}
-                ></textarea>
+                ></textarea> */}
+                <ReactQuill
+                  theme="snow"
+                  defaultValue={course ? course.description : ''}
+                  className="bg-white"
+                  onChange={(value) => setDescription(value)}
+                />
               </div>
             </div>
             <div className="w-full lg:w-6/12 px-4">
@@ -95,7 +127,7 @@ export default function CreateCourse() {
                 <input
                   type="number"
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={0}
+                  defaultValue={course ? course.price : 0}
                   onChange={(event) => setPrice(event.target.value)}
                 />
               </div>
@@ -110,7 +142,7 @@ export default function CreateCourse() {
                 </label>
                 <select
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={'Débutant'}
+                  defaultValue={course ? course.level : ''}
                   onChange={(event) => setLevel(event.target.value)}
                 >
                   <option value="Débutant">Débutant</option>
@@ -131,7 +163,7 @@ export default function CreateCourse() {
                 <input
                   type="text"
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={''}
+                  defaultValue={course ? course.thumbnail : ''}
                   onChange={(event) => setThumbnail(event.target.value)}
                 />
               </div>
@@ -146,7 +178,7 @@ export default function CreateCourse() {
                 </label>
                 <select
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={'Français'}
+                  defaultValue={course ? course.language.name : ''}
                   onChange={(event) => setLanguage(event.target.value)}
                 >
                   <option>Choisir la langue</option>
@@ -166,7 +198,7 @@ export default function CreateCourse() {
               className="bg-green-400 active:bg-gray-700 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="submit"
             >
-              Créer
+              Modifier
             </button>
           </div>
         </form>

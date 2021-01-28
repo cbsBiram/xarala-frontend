@@ -8,6 +8,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.6",
     "@fortawesome/fontawesome-free": "5.14.0",
+    "@next-tools/dynamic": "^0.0.11",
     "@popperjs/core": "2.5.1",
     "@tailwindcss/custom-forms": "0.2.1",
     "@zeit/next-css": "1.0.1",
@@ -32,6 +33,7 @@
     "react-accessible-accordion": "^3.3.3",
     "react-dom": "16.13.1",
     "react-google-maps": "9.4.5",
+    "react-quill": "^1.3.5",
     "react-scripts": "3.4.3",
     "tailwindcss": "1.8.10",
     "webpack": "4.44.2"

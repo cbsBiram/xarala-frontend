@@ -14,7 +14,9 @@ export const CourseCard = ({ course }) => {
             />
             <div className="p-4 md:p-6">
               <p className="text-blue-500 font-semibold text-xs mb-1 leading-none">
-                {course.categories[0].name}
+                {course.categories && course.categories[0]
+                  ? course.categories[0].name
+                  : ''}
               </p>
               <h3 className="font-semibold mb-2 text-xl leading-tight sm:leading-normal">
                 {course.title}

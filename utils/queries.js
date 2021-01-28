@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client'
 import {
+  chapterFields,
   courseFields,
   languageFields,
   lessonFields,
@@ -74,5 +75,23 @@ export const ALL_USER_QUIZZES = gql`
 export const ALL_LANGUAGES_QUERY = gql`
   query {
     languages {${languageFields}}
+  }
+`
+
+export const ALL_CHAPTERS_COURSE = gql`
+  query($courseSlug: String!) {
+    chaptersCourse(courseSlug: $courseSlug) {${chapterFields}}
+  }
+`
+
+export const SINGLE_CHAPTER_QUERY = gql`
+  query($courseSlug: String!, $chapterSlug: String!) {
+    chapterCourse(courseSlug: $courseSlug, chapterSlug: $chapterSlug) {${chapterFields}}
+  }
+`
+
+export const ALL_LESSONS_CHAPTER = gql`
+  query($courseSlug: String!, $chapterSlug: String!) {
+    lessonsChapter(courseSlug: $courseSlug, chapterSlug: $chapterSlug) {${lessonFields}}
   }
 `

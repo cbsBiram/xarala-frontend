@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import '@fortawesome/fontawesome-free/js/all.min.js'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'react-quill/dist/quill.snow.css'
 import Head from 'next/head'
 import Router from 'next/router'
 
