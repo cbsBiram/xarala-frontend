@@ -18,7 +18,7 @@ export default function CourseDetailsComponent({ course }) {
           ></p>
           <div className="flex justify-center items-center mt-8">
             <span className="text-sm mx-2 font-semibold inline-block py-2 px-2 uppercase rounded-full text-white bg-indigo-600 uppercase last:mr-0 mr-1">
-              {course.categories[0] ? course.categories[0] : 'No category'}
+              {course.categories[0] ? course.categories[0].name : 'No category'}
             </span>
             <span className="text-sm mx-2 font-semibold inline-block py-2 px-2 uppercase rounded-full text-white bg-red-600 uppercase last:mr-0 mr-1">
               {course.level ? course.level : 'Débutant'}
