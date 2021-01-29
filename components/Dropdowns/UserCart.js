@@ -12,7 +12,7 @@ const UserCart = () => {
   return (
     <>
       <Link
-        href={`/order?orderId=${order && order.items.length ? order.id : ''}`}
+        href={`?orderId=${order && order.items.length ? order.id : '' / order}`}
       >
         <a
           className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
