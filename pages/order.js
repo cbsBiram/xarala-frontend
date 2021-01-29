@@ -15,7 +15,15 @@ const Order = () => {
   })
   if (loading) return <Loading />
   const { order } = data
-  return <>{order ? <OrderList order={order} /> : <EmptyOrder />}</>
+  return (
+    <>
+      {order && order.items.length ? (
+        <OrderList order={order} />
+      ) : (
+        <EmptyOrder />
+      )}
+    </>
+  )
 }
 
 Order.layout = Page

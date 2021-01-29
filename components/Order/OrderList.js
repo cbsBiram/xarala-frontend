@@ -1,21 +1,68 @@
-import { useMutation } from '@apollo/client'
+import { useApolloClient, useMutation } from '@apollo/client'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { totalSum } from '../../utils/common'
-import { REMOVE_COURSE_FROM_CART } from '../../utils/mutations'
+import {
+  REMOVE_COURSE_FROM_CART,
+  SUBSCRIBE_USER_TO_COURSE,
+  VALIDATE_ORDER,
+} from '../../utils/mutations'
 
 const OrderList = ({ order }) => {
   const subTotal = totalSum(order.items)
   const [discount, setDiscount] = useState(0)
   const [couponCode, setCouponCode] = useState('')
   const [removeCourse] = useMutation(REMOVE_COURSE_FROM_CART)
+  const [subscribeUser] = useMutation(SUBSCRIBE_USER_TO_COURSE)
+  const [validateOrder] = useMutation(VALIDATE_ORDER)
   const totalPrice = subTotal - discount
+  const apolloClient = useApolloClient()
   const tax = 0
+
+  const router = useRouter()
 
   const removeCourseFromCart = async (itemId) => {
     const { data, errors, loading } = await removeCourse({
       variables: { orderItemId: itemId },
     })
     alert('Element enleve')
+    await apolloClient.resetStore()
+  }
+
+  const redirectoToLecture = async (course) => {
+    const { data, error, loading } = await subscribeUser({
+      variables: { courseId: course.id },
+    })
+    console.log(data, error, course)
+    if (error) {
+      alert("Une erreur s'est produite")
+    } else {
+      alert('Cours enrollé avec succès')
+      router.push(
+        `/courses/lesson/${course.slug}?lecture=${course.courseChapters[0].courseLessons[0].slug}`
+      )
+    }
+  }
+
+  const handleOrderPayment = async (orderId, course) => {
+    const { data, error, loading } = await validateOrder({
+      variables: { orderId, courseId: course.id },
+    })
+    const { isSuccess } = data.validateOrder
+    if (isSuccess) {
+      await redirectoToLecture(course)
+    }
+  }
+
+  const handleSubscrireUserToCourse = async (items) => {
+    if (totalPrice <= 0)
+      if (items.length > 1) {
+        items.map((item) => {
+          handleOrderPayment(order.id, item.course)
+        })
+      } else {
+        await handleOrderPayment(order.id, items[0].course)
+      }
   }
 
   return (
@@ -42,7 +89,7 @@ const OrderList = ({ order }) => {
                   <tbody>
                     {order.items &&
                       order.items.map((item) => (
-                        <tr>
+                        <tr key={item.id}>
                           <td className="hidden pb-4 md:table-cell">
                             <a href="#">
                               <img
@@ -141,7 +188,7 @@ const OrderList = ({ order }) => {
                       </div>
                       <div className="flex justify-between pt-4 border-b">
                         <div className="flex lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-gray-800">
-                          <form action="" method="POST">
+                          <form>
                             <button type="submit" className="mr-2 mt-1 lg:mt-2">
                               <svg
                                 aria-hidden="true"
@@ -180,24 +227,26 @@ const OrderList = ({ order }) => {
                           {totalPrice}
                         </div>
                       </div>
-                      <a href="#">
-                        <button className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none">
-                          <svg
-                            aria-hidden="true"
-                            data-prefix="far"
-                            data-icon="credit-card"
-                            className="w-8"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 576 512"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"
-                            />
-                          </svg>
-                          <span className="ml-2 mt-5px">Payer</span>
-                        </button>
-                      </a>
+
+                      <button
+                        onClick={() => handleSubscrireUserToCourse(order.items)}
+                        className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          data-prefix="far"
+                          data-icon="credit-card"
+                          className="w-8"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 576 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"
+                          />
+                        </svg>
+                        <span className="ml-2 mt-5px">Valider</span>
+                      </button>
                     </div>
                   </div>
                 </div>

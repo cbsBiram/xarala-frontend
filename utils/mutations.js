@@ -87,9 +87,7 @@ export const CREATE_ORDER = gql`
 export const REMOVE_COURSE_FROM_CART = gql`
   mutation($orderItemId: Int) {
     removeOrderItem(orderItemId: $orderItemId) {
-      orderItem {
-        id
-      }
+      isDeleted
     }
   }
 `
@@ -140,6 +138,14 @@ export const CREATE_LESSON = gql`
   mutation($courseSlug: String!, $chapterSlug: String!, $title: String!, $duration: Int, $platform: String) {
     createLesson(courseSlug: $courseSlug, chapterSlug: $chapterSlug, title: $title, duration: $duration, platform: $platform) {
       lesson {${lessonFields}}
+    }
+  }
+`
+
+export const VALIDATE_ORDER = gql`
+  mutation($orderId: Int, $courseId: Int) {
+    validateOrder(courseId: $courseId, orderId: $orderId) {
+      isSuccess
     }
   }
 `

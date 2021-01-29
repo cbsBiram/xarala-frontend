@@ -5,16 +5,15 @@ import { ORDER_QUERY } from '../../utils/queries'
 
 const UserCart = () => {
   const { data, errors, loading } = useQuery(ORDER_QUERY)
-  // const [order, setOrderData] = useState(null)
   if (loading) return <h2>Loading...</h2>
-  // useEffect(() => {
-  //   const { order } = data
-  //   setOrderData(order)
-  // }, [data])
+
   const { order } = data
+
   return (
     <>
-      <Link href={`/order?orderId=${order ? order.id : ''}`}>
+      <Link
+        href={`/order?orderId=${order && order.items.length ? order.id : ''}`}
+      >
         <a
           className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
           href="#"
