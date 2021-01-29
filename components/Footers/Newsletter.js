@@ -41,7 +41,7 @@ const Newsletter = () => {
         <div className=" mt-3  flex  flex-row  flex-wrap">
           <form onSubmit={(e) => handleSubmit(e)}>
             <input
-              type="text"
+              type="email"
               className=" text-gray-600   p-2 rounded-l-lg"
               style={{
                 borderTopLeftRadius: '0.5rem',

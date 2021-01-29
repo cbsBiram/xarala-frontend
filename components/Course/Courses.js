@@ -6,7 +6,7 @@ import Pagination from '../Shared/Pagination'
 const AllCourses = ({ courses, pages, currentPage }) => {
   return (
     <>
-      <div className="relative block  bg-gray-200 pt-10">
+      <div className="relative block   pt-10">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-wrap justify-center text-center">
             <div
@@ -33,7 +33,7 @@ const AllCourses = ({ courses, pages, currentPage }) => {
                 <CourseCard key={course.id} course={course} />
               ))}
           </div>
-          <Pagination pages={pages} currentPage={currentPage} />
+          {pages > 1 && <Pagination pages={pages} currentPage={currentPage} />}
         </div>
       </div>
     </>

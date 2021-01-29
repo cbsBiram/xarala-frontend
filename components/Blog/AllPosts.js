@@ -17,7 +17,7 @@ const AllPosts = ({ posts, pages, currentPage }) => {
               posts.map((post) => <PostCard key={post.id} post={post} />)}
           </div>
         </div>
-        <Pagination pages={pages} currentPage={currentPage} />
+        {pages > 1 && <Pagination pages={pages} currentPage={currentPage} />}
       </div>
     </>
   )
