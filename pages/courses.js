@@ -17,7 +17,7 @@ const Courses = () => {
 
   if (loading) return <Loading />
   if (errors) return <h2>Error</h2>
-  const { objects: courses, pages } = data.courses
+  const { objects: courses, pages } = data.allCourses
   return (
     <h2>
       <AllCourses courses={courses} pages={pages} currentPage={currentPage} />

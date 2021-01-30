@@ -37,7 +37,7 @@ export const ALL_POSTS_QUERY = gql`
 
 export const ALL_COURSES_QUERY = gql`
 query($page: Int) {
-  courses(page: $page) {
+  allCourses(page: $page) {
     page
     hasNext
     hasPrev
