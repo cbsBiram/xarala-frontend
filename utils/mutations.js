@@ -149,3 +149,19 @@ export const VALIDATE_ORDER = gql`
     }
   }
 `
+
+export const PASSWORD_RESET_EMAIL = gql`
+mutation($email: String!){
+  sendPasswordResetEmail(email: $email){
+    user{${userFields}}
+  }
+}
+`
+
+export const PASSWORD_RESET_CONFIRM = gql`
+mutation($email: String!, $code: String!, $newPassword: String!){
+  resetPassword(email: $email, code: $code, newPassword: $newPassword){
+    user{${userFields}}
+  }
+}
+`

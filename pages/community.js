@@ -1,10 +1,6 @@
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 
-import Footer from 'components/Footers/Footer.js'
-import IndexNavbar from 'components/Navbars/IndexNavbar.js'
-import Navbar from 'components/Navbars/AuthNavbar.js'
 import Page from '../layouts/Page'
 
 let easing = [0.175, 0.85, 0.42, 0.96]

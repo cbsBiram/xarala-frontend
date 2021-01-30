@@ -1,13 +1,14 @@
 import React from 'react'
 import Page from '../../layouts/Page'
+import PasswordReset from '../../components/Auth/PasswordReset'
 
-const PasswordReset = () => {
+const PasswordResetComponent = () => {
   return (
     <>
-      <h2>Password reset</h2>
+      <PasswordReset />
     </>
   )
 }
 
-PasswordReset.layout = Page
-export default PasswordReset
+PasswordResetComponent.layout = Page
+export default PasswordResetComponent
