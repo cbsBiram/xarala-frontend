@@ -3,6 +3,7 @@ import UserDropdown from '../Dropdowns/UserDropdown'
 import VideoLecture from '../Partials/VideoLecture'
 
 import LessonsSidebar from './LessonsSidebar'
+import NextPreviousButton from './NextPreviousButton'
 
 const CourseLessons = ({ course, lesson }) => {
   const [openMenu, setOpenMenu] = useState('')
@@ -42,10 +43,12 @@ const CourseLessons = ({ course, lesson }) => {
               <VideoLecture lesson={lesson} />
             </div>
 
-            <div className="flex">
+            <div className="flex relative">
               <p className="mt-2">{lesson.text}</p>
               {/* ressources */}
             </div>
+
+            <NextPreviousButton courseSlug={course.slug} lesson={lesson} />
           </div>
           {/* Main Content  */}
         </div>

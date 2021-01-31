@@ -33,6 +33,8 @@ export const lessonFields = `
   platform
   drafted
   dateCreated
+  getPrevious
+  getNext
 `
 
 export const postFields = `

@@ -165,3 +165,26 @@ mutation($email: String!, $code: String!, $newPassword: String!){
   }
 }
 `
+
+export const CONTACT_US = gql`
+  mutation(
+    $email: String
+    $message: String
+    $phone: String
+    $fullName: String
+  ) {
+    contactUs(
+      email: $email
+      message: $message
+      phone: $phone
+      fullName: $fullName
+    ) {
+      contact {
+        id
+        fullName
+        email
+        phone
+      }
+    }
+  }
+`
