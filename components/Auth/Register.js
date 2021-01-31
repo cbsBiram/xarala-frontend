@@ -73,6 +73,7 @@ const Register = () => {
                         className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                         placeholder="email@gmail.com"
                         value={email}
+                        required
                         onChange={(event) => setEmail(event.target.value)}
                       />
                     </div>
@@ -108,6 +109,7 @@ const Register = () => {
                         className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                         placeholder="******"
                         value={password}
+                        required
                         onChange={(event) => setPassword(event.target.value)}
                       />
                     </div>
@@ -145,6 +147,7 @@ const Register = () => {
                         placeholder="******"
                         value={passwordTwo}
                         onChange={(event) => setPasswordTwo(event.target.value)}
+                        required
                       />
                     </div>
                   </div>
@@ -164,6 +167,7 @@ const Register = () => {
 
                   <div className="flex w-full">
                     <button
+                      disabled={!email || !password || !passwordTwo}
                       type="submit"
                       className="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 w-full transition duration-150 ease-in"
                     >
