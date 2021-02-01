@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import Link from 'next/link'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { ORDER_QUERY } from '../../utils/queries'
 
 const UserCart = () => {

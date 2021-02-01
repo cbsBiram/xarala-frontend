@@ -4,8 +4,10 @@ import { logout } from '../../utils/auth'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
 import { ME_QUERY } from '../../utils/constants'
+import { useApolloClient } from '@apollo/client'
 
 const UserDropdown = ({ setOpen }) => {
+  const apolloClient = useApolloClient()
   const { error, loading, data } = useQuery(ME_QUERY)
 
   // dropdown props
@@ -22,9 +24,10 @@ const UserDropdown = ({ setOpen }) => {
     setDropdownPopoverShow(false)
   }
 
-  const handleLogout = (event) => {
+  const handleLogout = async (event) => {
     event.preventDefault()
     logout()
+    await apolloClient.resetStore()
     closeDropdownPopover()
   }
   const { me } = data ? data : {}

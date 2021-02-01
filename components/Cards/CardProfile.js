@@ -11,6 +11,7 @@ export default function CardProfile({ me }) {
   const [avatar, setAvatar] = useState()
   const router = useRouter()
   const [updateAvatar] = useMutation(UPDATE_AVATAR)
+  const [imageUrl, setImageUrl] = useState('')
 
   const [popoverShow, setPopoverShow] = useState(false)
   const btnRef = React.createRef()
@@ -29,6 +30,8 @@ export default function CardProfile({ me }) {
 
   const handleAvatarChange = (e) => {
     const imageFile = e.target.files[0]
+    const imageUrl = URL.createObjectURL(imageFile)
+    setImageUrl(imageUrl)
     if (!imageFile.name.match(/\.(jpg|jpeg|png|gif|svg|tif)$/)) {
       setAvatar(null)
       return alert(
@@ -81,8 +84,10 @@ export default function CardProfile({ me }) {
                       <img
                         alt="..."
                         src={
-                          me.avatar
-                            ? `${process.env.MEDIA_URL}${me.avatar}`
+                          imageUrl
+                            ? `${imageUrl}`
+                              ? me.avatar
+                              : `${process.env.MEDIA_URL}${me.avatar}`
                             : require('assets/img/team-2-800x800.jpg')
                         }
                         style={{ height: '150px' }}
