@@ -57,11 +57,7 @@ export default function CardProfile({ me }) {
     const avatarInfos = await handleUpdateAvatar()
     const { avatarData, avatarErrors } = avatarInfos ? avatarInfos : {}
 
-    const { error, data } = await updateAvatar({
-      variables: { avatarData },
-    })
-
-    if (error || avatarErrors) setErrorMessage(errors[0].message)
+    if (avatarErrors) setErrorMessage(errors[0].message)
     if (!avatar) return
     else {
       alert('Profil modifié avec succès!')

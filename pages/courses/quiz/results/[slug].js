@@ -28,7 +28,7 @@ function Result() {
     <>
       <NextSeo
         title="Xarala Academy | Examen en ligne"
-        description="Testez votre niveau sur Xarala"
+        description="Evaluez vos résultats"
       />
       <div className="container px-10">
         <div className="flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0 mt-12">

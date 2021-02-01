@@ -1,9 +1,11 @@
 import React from 'react'
+import { NextSeo } from 'next-seo'
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
+
 import Loading from '../../../components/Shared/Loading'
-import { SINGLE_COURSE_QUERY } from '../../../utils/constants'
 import CourseLessons from '../../../components/Course/CourseLessons'
+import { SINGLE_COURSE_QUERY } from '../../../utils/constants'
 import { SINGLE_LESSON_QUERY } from '../../../utils/queries'
 
 const Lesson = () => {
@@ -33,7 +35,17 @@ const Lesson = () => {
   return (
     <>
       {courseData && lessonData && (
-        <CourseLessons course={courseData.course} lesson={lessonData.lesson} />
+        <>
+          <NextSeo
+            title={`Xarala Academy | ${courseData.course.title}`}
+            description={`Visionnez la leçon sur ${lessonData.lesson.title}`}
+          />
+
+          <CourseLessons
+            course={courseData.course}
+            lesson={lessonData.lesson}
+          />
+        </>
       )}
     </>
   )

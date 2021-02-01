@@ -1,7 +1,8 @@
 import React from 'react'
+import { NextSeo } from 'next-seo'
+import { useQuery } from '@apollo/client'
 
 import Loading from 'components/Shared/Loading'
-import { useQuery } from '@apollo/client'
 import { ME_QUERY } from '../../utils/constants'
 import { withAuthSync } from '../../utils/auth'
 
@@ -12,6 +13,10 @@ const Profile = () => {
   if (error) return 'error while loading users'
   return (
     <>
+      <NextSeo
+        title={`Xarala Academy | Profil`}
+        description={`Consultez les informations de votre profil`}
+      />
       <main className="profile-page">
         <section className="relative block h-500-px">
           <div

@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/client'
+import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -19,9 +20,15 @@ const Courses = () => {
   if (errors) return <h2>Error</h2>
   const { objects: courses, pages } = data.allCourses
   return (
-    <h2>
-      <AllCourses courses={courses} pages={pages} currentPage={currentPage} />
-    </h2>
+    <>
+      <NextSeo
+        title={`Xarala Academy | Nos cours`}
+        description={`Découvrez tous nos cours`}
+      />
+      <h2>
+        <AllCourses courses={courses} pages={pages} currentPage={currentPage} />
+      </h2>
+    </>
   )
 }
 

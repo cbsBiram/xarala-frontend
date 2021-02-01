@@ -38,18 +38,16 @@ export default function CourseDetailsComponent({ course }) {
             </p>
           </div>
           <div className="lg:mt-0 lg:flex-shrink-0">
-            <div className="mt-12 inline-flex rounded-md shadow">
-              {/* <button
-                type="button"
-                className="py-4 px-6  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
-              >
-                Get started
-              </button> */}
-            </div>
+            <div className="mt-12 inline-flex rounded-md shadow"></div>
           </div>
         </div>
         <img
-          src={require('assets/img/team-2-800x800.jpg')}
+          src={
+            course.thumbnail
+              ? `${process.env.MEDIA_URL}${course.thumbnail}`
+              : require('assets/img/team-2-800x800.jpg')
+          }
+          style={{ width: '459.5px', height: '459.5px' }}
           className="absolute h-full max-w-1/2 hidden lg:block right-0 top-0"
         />
       </div>

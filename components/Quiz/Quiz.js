@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { NextSeo } from 'next-seo'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 
@@ -53,11 +52,6 @@ const Quiz = ({ quiz }) => {
           exit="exit"
           variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
         >
-          <NextSeo
-            title="Xarala Academy | Examen en ligne"
-            description="Testez votre niveau sur Xarala"
-          />
-
           <div className="flex flex-wrap">
             <div className="shadow rounded-md w-full  h-full">
               <div className="rounded-t bg-gray-200 mb-0 px-6 py-6">

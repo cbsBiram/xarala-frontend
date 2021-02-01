@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useMutation, useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
 
 import FormError from '../Shared/FormError'
 import Loading from '../Shared/Loading'
 import { ALL_LANGUAGES_QUERY } from '../../utils/queries'
+import { fileToBase64 } from '../../utils/common'
 import { SINGLE_COURSE_QUERY } from '../../utils/constants'
 import { UPDATE_COURSE } from '../../utils/mutations'
 
@@ -13,6 +15,13 @@ const ReactQuill = dynamic(() => import('react-quill'), {
 })
 
 export default function UpdateCourse({ courseSlug }) {
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [price, setPrice] = useState(0)
+  const [level, setLevel] = useState('')
+  const [thumbnail, setThumbnail] = useState('')
+  const [languageName, setLanguageName] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
   const { loadingLanguages, errorLanguages, data: languagesData } = useQuery(
     ALL_LANGUAGES_QUERY
   )
@@ -25,21 +34,37 @@ export default function UpdateCourse({ courseSlug }) {
     }
   )
   const [updateCourse] = useMutation(UPDATE_COURSE)
+  const router = useRouter()
 
   let { course } = courseData ? courseData : {}
   let { languages } = languagesData ? languagesData : {}
 
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [price, setPrice] = useState(0)
-  const [level, setLevel] = useState('')
-  const [thumbnail, setThumbnail] = useState('')
-  const [language, setLanguage] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const handleThumbnailChange = (e) => {
+    const imageFile = e.target.files[0]
+    if (!imageFile.name.match(/\.(jpg|jpeg|png|gif|svg|tif)$/)) {
+      setThumbnail(null)
+      return alert(
+        'Oops!',
+        "Le type de l'image n'est pas supporté, choisir (PNG,JPG,JPEG,SVG,GIF ou TIF)",
+        'error'
+      )
+    } else {
+      setThumbnail(imageFile)
+    }
+  }
+
+  const thumbnailToBase64 = async () => {
+    if (!thumbnail) return ''
+    const imgTobase64 = await fileToBase64(thumbnail)
+    return imgTobase64
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+
     let courseId = course.id
+
+    const file = await thumbnailToBase64()
     const { errors, data } = await updateCourse({
       variables: {
         courseId,
@@ -47,18 +72,17 @@ export default function UpdateCourse({ courseSlug }) {
         description,
         price,
         level,
-        thumbnail,
-        language,
+        file,
+        languageName,
       },
     })
 
     if (errors) setErrorMessage(errors[0].message)
     else {
       alert('Cours modifié avec succès!')
+      router.push('/admin/dashboard')
     }
   }
-
-  console.log('Cours', course)
 
   if (loadingLanguages || loadingCourse) return <Loading />
 
@@ -76,7 +100,11 @@ export default function UpdateCourse({ courseSlug }) {
       </div>
       <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
         {errorMessage ? <FormError message={errorMessage} /> : <span></span>}
-        <form className="mt-6 mb-6" onSubmit={(event) => handleSubmit(event)}>
+        <form
+          className="mt-6 mb-6"
+          encType="multipart/form-data"
+          onSubmit={(event) => handleSubmit(event)}
+        >
           <div className="flex flex-wrap">
             <div className="w-full px-4">
               <div className="relative w-full mb-3">
@@ -102,12 +130,6 @@ export default function UpdateCourse({ courseSlug }) {
                 >
                   Description
                 </label>
-                {/* <textarea
-                  className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  rows="3"
-                  defaultValue={course ? course.description : ''}
-                  onChange={(event) => setDescription(event.target.value)}
-                ></textarea> */}
                 <ReactQuill
                   theme="snow"
                   defaultValue={course ? course.description : ''}
@@ -161,10 +183,10 @@ export default function UpdateCourse({ courseSlug }) {
                   Thumbnail
                 </label>
                 <input
-                  type="text"
+                  type="file"
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                   defaultValue={course ? course.thumbnail : ''}
-                  onChange={(event) => setThumbnail(event.target.value)}
+                  onChange={handleThumbnailChange}
                 />
               </div>
             </div>
@@ -179,7 +201,7 @@ export default function UpdateCourse({ courseSlug }) {
                 <select
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                   defaultValue={course ? course.language.name : ''}
-                  onChange={(event) => setLanguage(event.target.value)}
+                  onChange={(event) => setLanguageName(event.target.value)}
                 >
                   <option>Choisir la langue</option>
                   {languages &&

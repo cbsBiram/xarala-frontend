@@ -1,4 +1,5 @@
 import React from 'react'
+import { NextSeo } from 'next-seo'
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 
@@ -22,7 +23,15 @@ const Quiz = () => {
   const { quiz } = quizData ? quizData : {}
 
   if (quizLoading) return <Loading />
-  return <>{quiz && <QuizComponent quiz={quiz} />}</>
+  return (
+    <>
+      <NextSeo
+        title="Xarala Academy | Examen en ligne"
+        description="Testez votre niveau sur Xarala"
+      />
+      {quiz && <QuizComponent quiz={quiz} />}
+    </>
+  )
 }
 
 Quiz.layout = Page
