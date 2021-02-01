@@ -86,8 +86,8 @@ export default function CardProfile({ me }) {
                         src={
                           imageUrl
                             ? `${imageUrl}`
-                              ? me.avatar
-                              : `${process.env.MEDIA_URL}${me.avatar}`
+                            : me.avatar
+                            ? `${process.env.MEDIA_URL}${me.avatar}`
                             : require('assets/img/team-2-800x800.jpg')
                         }
                         style={{ height: '150px' }}
