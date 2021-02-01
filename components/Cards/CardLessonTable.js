@@ -1,23 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
 
-// components
-
-import TableDropdown from 'components/Dropdowns/TableDropdown.js'
-import { ALL_LESSONS_CHAPTER } from '../../utils/queries'
-import Link from 'next/link'
-
-export default function CardLessonTable({ color, chapterSlug, courseSlug }) {
-  const { loading, errors, data: lessonsData } = useQuery(ALL_LESSONS_CHAPTER, {
-    variables: {
-      courseSlug: courseSlug,
-      chapterSlug: chapterSlug,
-    },
-  })
-
-  let { lessonsData: lessons } = lessonsData ? lessonsData : {}
-  console.log('lessons', lessons)
+export default function CardLessonTable({
+  color,
+  chapter,
+  courseSlug,
+  lessons,
+}) {
+  const router = useRouter()
 
   return (
     <>
@@ -36,7 +27,7 @@ export default function CardLessonTable({ color, chapterSlug, courseSlug }) {
                   (color === 'light' ? 'text-gray-800' : 'text-white')
                 }
               >
-                Liste des chapitres
+                Liste des Leçons
               </h3>
             </div>
           </div>
@@ -46,14 +37,6 @@ export default function CardLessonTable({ color, chapterSlug, courseSlug }) {
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
               <tr>
-                <th
-                  className={
-                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left ' +
-                    (color === 'light'
-                      ? 'bg-gray-100 text-gray-600 border-gray-200'
-                      : 'bg-gray-700 text-gray-300 border-gray-600')
-                  }
-                ></th>
                 <th
                   className={
                     'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left ' +
@@ -81,6 +64,46 @@ export default function CardLessonTable({ color, chapterSlug, courseSlug }) {
                       ? 'bg-gray-100 text-gray-600 border-gray-200'
                       : 'bg-gray-700 text-gray-300 border-gray-600')
                   }
+                >
+                  Vidéo Id
+                </th>
+                <th
+                  className={
+                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left ' +
+                    (color === 'light'
+                      ? 'bg-gray-100 text-gray-600 border-gray-200'
+                      : 'bg-gray-700 text-gray-300 border-gray-600')
+                  }
+                >
+                  Durée
+                </th>
+                <th
+                  className={
+                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left ' +
+                    (color === 'light'
+                      ? 'bg-gray-100 text-gray-600 border-gray-200'
+                      : 'bg-gray-700 text-gray-300 border-gray-600')
+                  }
+                >
+                  Plateforme
+                </th>
+                <th
+                  className={
+                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left ' +
+                    (color === 'light'
+                      ? 'bg-gray-100 text-gray-600 border-gray-200'
+                      : 'bg-gray-700 text-gray-300 border-gray-600')
+                  }
+                >
+                  Slug
+                </th>
+                <th
+                  className={
+                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left ' +
+                    (color === 'light'
+                      ? 'bg-gray-100 text-gray-600 border-gray-200'
+                      : 'bg-gray-700 text-gray-300 border-gray-600')
+                  }
                 ></th>
               </tr>
             </thead>
@@ -88,34 +111,36 @@ export default function CardLessonTable({ color, chapterSlug, courseSlug }) {
               {lessons &&
                 lessons.map((lesson) => (
                   <tr key={lesson.id}>
-                    <td className="border-t-0 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-2 text-left">
-                      <TableDropdown />
-                    </td>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center">
                       {lesson.id}
                     </th>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
                       {lesson.title}
                     </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
+                      {lesson.videoId}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
+                      {lesson.duration}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
+                      {lesson.platform}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
+                      {lesson.slug}
+                    </td>
                     <td>
-                      {/* <Link
-                        as={`/admin/courses/chapters/details/${courseSlug}?section=${chapter.slug}`}
-                        passHref
-                        href="/admin/courses/chapters/details/[slug]?section=[chapterSlug]"
+                      <a
+                        role="button"
+                        tabIndex="0"
+                        onClick={() =>
+                          router.push(
+                            `/admin/courses/chapters/lessons/edit/${courseSlug}?section=${chapter.slug}&lecture=${lesson.slug}`
+                          )
+                        }
                       >
-                        <a href="#">
-                          <i className="fas fa-edit text-red-500 ml-2 mr-2 text-lg"></i>
-                        </a>
-                      </Link>
-                      <Link
-                        as={`/admin/courses/chapters/details/${courseSlug}?section=${chapter.slug}`}
-                        passHref
-                        href="/admin/courses/chapters/details/[slug]?section=[chapterSlug]"
-                      >
-                        <a href="#">
-                          <i className="fas fa-eye text-green-500 text-lg"></i>
-                        </a>
-                      </Link> */}
+                        <i className="fas fa-edit text-red-500 ml-2 mr-2 text-lg"></i>
+                      </a>
                     </td>
                   </tr>
                 ))}

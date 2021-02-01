@@ -1,37 +1,40 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
+import { useRouter } from 'next/router'
 
 import FormError from '../Shared/FormError'
-import { CREATE_LESSON } from '../../utils/mutations'
+import { UPDATE_LESSON } from '../../utils/mutations'
 
-export default function CreateLessonForm({ courseSlug, chapterSlug }) {
-  const [title, setTitle] = useState('')
-  const [videoId, setVideoId] = useState('')
-  const [duration, setDuration] = useState('')
-  const [platform, setPlatform] = useState('Youtube')
+export default function EditLessonForm({ lesson }) {
+  const [title, setTitle] = useState(lesson.title)
+  const [videoId, setVideoId] = useState(lesson.videoId)
+  const [duration, setDuration] = useState(lesson.duration)
+  const [platform, setPlatform] = useState(lesson.platform)
   const [errorMessage, setErrorMessage] = useState('')
-
-  const [createChapter] = useMutation(CREATE_LESSON)
   const router = useRouter()
+
+  const [updateLesson] = useMutation(UPDATE_LESSON)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(courseSlug, chapterSlug)
-    const { errors, data } = await createChapter({
+
+    const { id: lessonId, lectureNumber } = lesson
+
+    const { errors, data } = await updateLesson({
       variables: {
-        courseSlug,
-        chapterSlug,
-        videoId,
+        lessonId,
         title,
+        videoId,
         duration,
         platform,
+        lectureNumber,
       },
     })
+
     if (errors) setErrorMessage(errors[0].message)
     else {
-      alert('Leçon ajoutée avec succès!')
-      router.reload()
+      alert('Leçon modifiée avec succès!')
+      router.back()
     }
   }
 
@@ -39,17 +42,15 @@ export default function CreateLessonForm({ courseSlug, chapterSlug }) {
     <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
       <div className="rounded-t bg-white mb-0 px-6 py-6">
         <div className="text-center flex justify-between">
-          <h6 className="text-gray-800 text-xl font-bold">
-            Ajouter une nouvelle leçon
-          </h6>
+          <h6 className="text-gray-800 text-xl font-bold">Modifier leçon</h6>
         </div>
       </div>
       <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
         {errorMessage ? <FormError message={errorMessage} /> : <span></span>}
-        <form className="mt-6 mb-6" onSubmit={(event) => handleSubmit(event)}>
+        <form onSubmit={(event) => handleSubmit(event)}>
           <div className="flex flex-wrap">
             <div className="w-full px-4">
-              <div className="relative w-full mb-3">
+              <div className="relative w-full mb-3 mt-6">
                 <label
                   className="block uppercase text-gray-700 text-xs font-bold mb-2"
                   htmlFor="title"
@@ -58,51 +59,50 @@ export default function CreateLessonForm({ courseSlug, chapterSlug }) {
                 </label>
                 <input
                   type="text"
-                  id="title"
                   name="title"
-                  required
+                  id="title"
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={''}
+                  defaultValue={lesson ? lesson.title : ''}
                   onChange={(event) => setTitle(event.target.value)}
                 />
               </div>
             </div>
+          </div>
+          <div className="flex flex-wrap">
             <div className="w-full md:w-6/12 px-4">
-              <div className="relative w-full mb-3">
+              <div className="relative w-full mb-3 mt-2">
                 <label
                   className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="videoId"
+                  htmlFor="video-id"
                 >
                   Id Vidéo
                 </label>
                 <input
                   type="text"
-                  id="videoId"
                   name="videoId"
-                  required
+                  id="video-id"
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={''}
+                  defaultValue={lesson ? lesson.videoId : ''}
                   onChange={(event) => setVideoId(event.target.value)}
                 />
               </div>
             </div>
-            <div className="w-full md:w-6/12 px-4">
-              <div className="relative w-full mb-3">
-                <label
-                  className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="duration"
-                >
-                  Durée
-                </label>
-                <input
-                  type="number"
-                  id="duration"
-                  name="duration"
-                  required
-                  className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={''}
-                  onChange={(event) => setDuration(event.target.value)}
-                />
+            <div className="flex flex-wrap">
+              <div className="w-full md:w-6/12 px-4">
+                <div className="relative w-full mb-3 mt-2">
+                  <label
+                    className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Durée
+                  </label>
+                  <input
+                    type="number"
+                    className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                    defaultValue={lesson ? lesson.duration : ''}
+                    onChange={(event) => setDuration(event.target.value)}
+                  />
+                </div>
               </div>
             </div>
             <div className="w-full px-4">
@@ -117,7 +117,7 @@ export default function CreateLessonForm({ courseSlug, chapterSlug }) {
                   id="platform"
                   name="platform"
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={'Youtube'}
+                  defaultValue={lesson ? lesson.platform : 'Youtube'}
                   required
                   onChange={(event) => setPlatform(event.target.value)}
                 >
@@ -130,13 +130,12 @@ export default function CreateLessonForm({ courseSlug, chapterSlug }) {
               </div>
             </div>
           </div>
-
           <div className="flex mx-4 my-4 justify-end items-center">
             <button
               className="bg-green-400 active:bg-gray-700 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="submit"
             >
-              Ajouter
+              Modifier
             </button>
           </div>
         </form>

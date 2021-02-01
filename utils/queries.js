@@ -95,3 +95,9 @@ export const ALL_LESSONS_CHAPTER = gql`
     lessonsChapter(courseSlug: $courseSlug, chapterSlug: $chapterSlug) {${lessonFields}}
   }
 `
+
+export const SINGLE_LESSON_CHAPTER = gql`
+  query($courseSlug: String!, $chapterSlug: String!, $lessonSlug: String!) {
+    lessonChapter(courseSlug: $courseSlug, chapterSlug: $chapterSlug, lessonSlug: $lessonSlug) {${lessonFields}}
+  }
+`

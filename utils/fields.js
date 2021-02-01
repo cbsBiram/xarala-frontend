@@ -24,6 +24,7 @@ export const lessonFields = `
   id
   title
   isVideo
+  lectureNumber
   text
   slug
   file
@@ -112,6 +113,7 @@ export const chapterFields = `
   dateCreated
   slug
   drafted
+  chapterNumber
   courseLessons {${lessonFields}}
   quiz {${quizFields}}
 `
@@ -135,6 +137,7 @@ export const courseFields = `
     dateCreated
     slug
     drafted
+    chapterNumber
     courseLessons {${lessonFields}}
     quiz {${quizFields}}
   }

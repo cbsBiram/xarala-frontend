@@ -1,11 +1,13 @@
 import React from 'react'
+import { NextSeo } from 'next-seo'
+
+import EmptyOrder from '../components/Order/EmptyOrder'
+import Loading from '../components/Shared/Loading'
 import Page from '../layouts/Page'
 import OrderList from '../components/Order/OrderList'
 import { ORDER_QUERY } from '../utils/queries'
-import Loading from '../components/Shared/Loading'
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import EmptyOrder from '../components/Order/EmptyOrder'
 
 const Order = () => {
   const router = useRouter()
@@ -17,6 +19,10 @@ const Order = () => {
   const { order } = data
   return (
     <>
+      <NextSeo
+        title={`Xarala Academy | Commandes`}
+        description={`Consultez vos commandes`}
+      />
       {order && order.items.length ? (
         <OrderList order={order} />
       ) : (

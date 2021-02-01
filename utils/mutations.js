@@ -33,16 +33,16 @@ export const CREATE_USER_ANSWER = gql`
 `
 
 export const CREATE_COURSE = gql`
-  mutation($title: String!, $description: String, $price: Decimal, $level: String!, $thumbnail: String, $language: String!) {
-    createCourse(title: $title, description: $description, price: $price, level: $level, thumbnail: $thumbnail, language: $language) {
+  mutation($title: String!, $description: String, $price: Decimal, $level: String!, $file: String, $languageName: String!,) {
+    createCourse(title: $title, description: $description, price: $price, level: $level, file: $file, languageName: $languageName) {
       course{${courseFields}}
     }
   }
 `
 
 export const UPDATE_COURSE = gql`
-  mutation($courseId: Int!, $title: String, $description: String, $price: Decimal, $level: String!, $thumbnail: String, $language: String!) {
-    updateCourse(courseId: $courseId, title: $title, description: $description, price: $price, level: $level, thumbnail: $thumbnail, language: $language) {
+  mutation($courseId: Int!, $title: String, $description: String, $price: Decimal, $level: String, $file: String, $languageName: String) {
+    updateCourse(courseId: $courseId, title: $title, description: $description, price: $price, level: $level, file: $file, languageName: $languageName) {
       course{${courseFields}}
     }
   }
@@ -134,10 +134,26 @@ export const CREATE_CHAPTER = gql`
   }
 `
 
+export const UPDATE_CHAPTER = gql`
+  mutation($chapterId: Int!, $name: String, $chapterNumber: Int) {
+    updateChapter(chapterId: $chapterId, name: $name, chapterNumber: $chapterNumber) {
+      chapter{${chapterFields}}
+    }
+  }
+`
+
 export const CREATE_LESSON = gql`
-  mutation($courseSlug: String!, $chapterSlug: String!, $title: String!, $duration: Int, $platform: String) {
-    createLesson(courseSlug: $courseSlug, chapterSlug: $chapterSlug, title: $title, duration: $duration, platform: $platform) {
+  mutation($courseSlug: String!, $chapterSlug: String!, $title: String!, $videoId: String!, $duration: Int, $platform: String!) {
+    createLesson(courseSlug: $courseSlug, chapterSlug: $chapterSlug, title: $title, videoId: $videoId, duration: $duration, platform: $platform) {
       lesson {${lessonFields}}
+    }
+  }
+`
+
+export const UPDATE_LESSON = gql`
+  mutation($lessonId: Int!, $title: String, $videoId: String, $duration: Int, $platform: String, $lectureNumber: Int!) {
+    updateLesson(lessonId: $lessonId, title: $title, videoId: $videoId, duration: $duration, platform: $platform, lectureNumber: $lectureNumber) {
+      lesson{${lessonFields}}
     }
   }
 `

@@ -43,7 +43,6 @@ const QuizComponent = ({ quiz }) => {
     })
     router.push(`/courses/quiz/results/${quiz.chapter.slug}`)
   }
-  console.log('hey', userAnswers)
 
   return (
     <motion.div

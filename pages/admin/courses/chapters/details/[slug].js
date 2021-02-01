@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import _ from 'lodash'
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 
@@ -7,6 +8,7 @@ import CardLessonTable from '../../../../../components/Cards/CardLessonTable'
 import CreateLessonForm from '../../../../../components/Forms/CreateLessonForm'
 import Loading from '../../../../../components/Shared/Loading'
 import { SINGLE_CHAPTER_QUERY } from '../../../../../utils/queries'
+import ListLessons from '../../../../../components/DragAndDrop/ListLessons'
 
 export default function CourseDetails() {
   const [openTab, setOpenTab] = useState(1)
@@ -21,7 +23,8 @@ export default function CourseDetails() {
   })
 
   let { chapterCourse: chapter } = chapterData ? chapterData : {}
-  console.log(chapter)
+  let { courseLessons } = chapter ? chapter : {}
+  let lessons = _.orderBy(courseLessons, ['lectureNumber'], ['asc'])
 
   if (loading) return <Loading />
 
@@ -71,6 +74,25 @@ export default function CourseDetails() {
                 Liste des leçons
               </a>
             </li>
+            <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+              <a
+                className={
+                  'text-xs font-bold uppercase px-3 py-3 shadow-lg rounded block leading-normal ' +
+                  (openTab === 3
+                    ? 'text-white bg-gray-600'
+                    : 'text-gray-600 bg-white')
+                }
+                onClick={(e) => {
+                  e.preventDefault()
+                  setOpenTab(3)
+                }}
+                data-toggle="tab"
+                href="#link3"
+                role="tablist"
+              >
+                Ordre des leçons
+              </a>
+            </li>
           </ul>
 
           <div className={openTab === 1 ? 'block' : 'hidden'} id="link1">
@@ -78,7 +100,16 @@ export default function CourseDetails() {
           </div>
           <div className="w-full mb-12">
             <div className={openTab === 2 ? 'block' : 'hidden'} id="link2">
-              <CardLessonTable chapterSlug={section} courseSlug={slug} />
+              <CardLessonTable
+                courseSlug={slug}
+                chapter={chapter}
+                lessons={lessons}
+              />
+            </div>
+          </div>
+          <div className={openTab === 3 ? 'block' : 'hidden'} id="link3">
+            <div className="mb-12">
+              {lessons && <ListLessons lessons={lessons} />}
             </div>
           </div>
         </div>

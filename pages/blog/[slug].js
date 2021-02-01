@@ -1,10 +1,12 @@
-import { useRouter } from 'next/router'
 import React from 'react'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import PostDetails from '../../components/Blog/PostDetails'
-import Page from '../../layouts/Page'
-import { SINGLE_POST_QUERY } from '../../utils/constants'
+import { NextSeo } from 'next-seo'
+
 import Loading from '../../components/Shared/Loading'
+import Page from '../../layouts/Page'
+import PostDetails from '../../components/Blog/PostDetails'
+import { SINGLE_POST_QUERY } from '../../utils/constants'
 
 const Post = () => {
   const router = useRouter()
@@ -18,10 +20,14 @@ const Post = () => {
 
   if (loading) return <Loading />
   if (error) return <h2>Error</h2>
-  const post = data.post
+  const { post } = data ? data : {}
 
   return (
     <>
+      <NextSeo
+        title={`Xarala Academy | ${post.title}`}
+        description={`Lisez notre article sur ${post.title}`}
+      />
       <PostDetails post={post} />
     </>
   )

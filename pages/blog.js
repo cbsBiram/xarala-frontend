@@ -1,6 +1,8 @@
+import React from 'react'
+import { NextSeo } from 'next-seo'
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import React from 'react'
+
 import AllPosts from '../components/Blog/AllPosts'
 import Loading from '../components/Shared/Loading'
 import Page from '../layouts/Page'
@@ -20,11 +22,14 @@ function Blog() {
   const { objects: posts, pages } = data.posts
   return (
     <>
+      <NextSeo
+        title={`Xarala Academy | Blog`}
+        description={`Consultez nos articles`}
+      />
       <AllPosts posts={posts} pages={pages} currentPage={currentPage} />
     </>
   )
 }
 
 Blog.layout = Page
-Blog.pageTitle = 'Le blog de Xarala'
 export default Blog

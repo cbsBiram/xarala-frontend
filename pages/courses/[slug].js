@@ -1,6 +1,8 @@
-import { useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import React from 'react'
+import { useQuery } from '@apollo/client'
+import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
+
 import CourseOverview from '../../components/Course/CourseOverview'
 import Loading from '../../components/Shared/Loading'
 import Page from '../../layouts/Page'
@@ -15,11 +17,20 @@ const Course = () => {
       courseSlug: slug,
     },
   })
+
+  let { course } = data ? data : {}
+
   if (loading) return <Loading />
 
   return (
     <>
-      <CourseOverview course={data.course} />
+      <>
+        <NextSeo
+          title={`Xarala Academy | ${course.title}`}
+          description={`Découvrez notre cours sur ${course.title}`}
+        />
+        <CourseOverview course={course} />
+      </>
     </>
   )
 }
