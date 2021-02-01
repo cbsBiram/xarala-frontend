@@ -3,26 +3,46 @@ import { useMutation } from '@apollo/client'
 
 import FormError from '../Shared/FormError'
 import { CREATE_CHAPTER } from '../../utils/mutations'
-import { useRouter } from 'next/router'
+import { SINGLE_COURSE_QUERY } from '../../utils/constants'
 
 export default function CreateChapterForm({ courseSlug }) {
   const [name, setName] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-  const router = useRouter()
-  const [createChapter] = useMutation(CREATE_CHAPTER)
+
+  const updateCache = (cache, { data }) => {
+    const existingCourse = cache.readQuery({
+      query: SINGLE_COURSE_QUERY,
+      variables: { courseSlug },
+    })
+
+    const { chapter } = data.createChapter
+    cache.writeQuery({
+      query: SINGLE_COURSE_QUERY,
+      data: {
+        course: [
+          existingCourse.course,
+          ...existingCourse.course.courseChapters.concat(chapter),
+        ],
+      },
+    })
+  }
+
+  const [createChapter, { data, errors }] = useMutation(CREATE_CHAPTER, {
+    update: updateCache,
+  })
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const { errors, data } = await createChapter({
+    const { data, errors } = await createChapter({
       variables: {
         courseSlug,
         name,
       },
     })
+
     if (errors) setErrorMessage(errors[0].message)
     else {
       alert('Section ajoutée avec succès!')
-      router.reload()
     }
   }
 
