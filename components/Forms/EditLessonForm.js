@@ -94,7 +94,7 @@ export default function EditLessonForm({ lesson }) {
                     className="block uppercase text-gray-700 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Durée
+                    Durée (en minutes)
                   </label>
                   <input
                     type="number"

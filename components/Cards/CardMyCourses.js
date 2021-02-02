@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Tooltip from '../Partials/Tooltip'
 
 export default function CardMyCourses({
   courses,
@@ -60,26 +61,36 @@ export default function CardMyCourses({
                     </td>
                     <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                       {teacher ? (
-                        <>
-                          <Link
-                            as={`/admin/courses/details/${course.slug}`}
-                            passHref
-                            href="/admin/courses/details/[slug]"
+                        <div className="flex flex-wrap">
+                          <Tooltip
+                            tooltipText="Voir"
+                            color="rgba(52, 211, 153)"
                           >
-                            <a href="#">
-                              <i className="fas fa-eye text-green-500 text-lg"></i>
-                            </a>
-                          </Link>
-                          <Link
-                            as={`/admin/courses/edit/${course.slug}`}
-                            passHref
-                            href="/admin/courses/edit/[slug]"
+                            <Link
+                              as={`/admin/courses/details/${course.slug}`}
+                              passHref
+                              href="/admin/courses/details/[slug]"
+                            >
+                              <a href="#">
+                                <i className="fas fa-eye text-green-500 text-lg"></i>
+                              </a>
+                            </Link>
+                          </Tooltip>
+                          <Tooltip
+                            tooltipText="Modifier"
+                            color="rgba(248, 113, 113)"
                           >
-                            <a href="#">
-                              <i className="fas fa-edit text-red-500 ml-2 mr-2 text-lg"></i>
-                            </a>
-                          </Link>
-                        </>
+                            <Link
+                              as={`/admin/courses/edit/${course.slug}`}
+                              passHref
+                              href="/admin/courses/edit/[slug]"
+                            >
+                              <a href="#">
+                                <i className="fas fa-edit text-red-500 ml-2 mr-2 text-lg"></i>
+                              </a>
+                            </Link>
+                          </Tooltip>
+                        </div>
                       ) : (
                         <Link
                           as={`/courses/${course.slug}`}
