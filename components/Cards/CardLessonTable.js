@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
+import Tooltip from '../Partials/Tooltip'
 
 export default function CardLessonTable({
   color,
@@ -130,17 +131,22 @@ export default function CardLessonTable({
                       {lesson.slug}
                     </td>
                     <td>
-                      <a
-                        role="button"
-                        tabIndex="0"
-                        onClick={() =>
-                          router.push(
-                            `/admin/courses/chapters/lessons/edit/${courseSlug}?section=${chapter.slug}&lecture=${lesson.slug}`
-                          )
-                        }
+                      <Tooltip
+                        tooltipText="Modifier"
+                        color="rgba(248, 113, 113)"
                       >
-                        <i className="fas fa-edit text-red-500 ml-2 mr-2 text-lg"></i>
-                      </a>
+                        <a
+                          role="button"
+                          tabIndex="0"
+                          onClick={() =>
+                            router.push(
+                              `/admin/courses/chapters/lessons/edit/${courseSlug}?section=${chapter.slug}&lecture=${lesson.slug}`
+                            )
+                          }
+                        >
+                          <i className="fas fa-edit text-red-500 ml-2 mr-2 text-lg"></i>
+                        </a>
+                      </Tooltip>
                     </td>
                   </tr>
                 ))}

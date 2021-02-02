@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
+import Tooltip from '../Partials/Tooltip'
 
 export default function CardChapterTable({ color, chapters, course }) {
   const router = useRouter()
@@ -86,29 +87,36 @@ export default function CardChapterTable({ color, chapters, course }) {
                     <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
                       {chapter.slug}
                     </td>
-                    <td>
-                      <a
-                        role="button"
-                        tabIndex="0"
-                        onClick={() =>
-                          router.push(
-                            `/admin/courses/chapters/edit/${courseSlug}?section=${chapter.slug}`
-                          )
-                        }
+                    <td className="flex flex-wrap">
+                      <Tooltip
+                        color="rgba(248, 113, 113)"
+                        tooltipText="Modifier"
                       >
-                        <i className="fas fa-edit text-red-500 ml-2 mr-2 text-lg"></i>
-                      </a>
-                      <a
-                        role="button"
-                        tabIndex="0"
-                        onClick={() =>
-                          router.push(
-                            `/admin/courses/chapters/details/${courseSlug}?section=${chapter.slug}`
-                          )
-                        }
-                      >
-                        <i className="fas fa-eye text-green-500 text-lg"></i>
-                      </a>
+                        <a
+                          role="button"
+                          tabIndex="0"
+                          onClick={() =>
+                            router.push(
+                              `/admin/courses/chapters/edit/${courseSlug}?section=${chapter.slug}`
+                            )
+                          }
+                        >
+                          <i className="fas fa-edit text-red-500 ml-2 mr-2 text-lg"></i>
+                        </a>
+                      </Tooltip>
+                      <Tooltip tooltipText="Voir" color="rgba(52, 211, 153)">
+                        <a
+                          role="button"
+                          tabIndex="0"
+                          onClick={() =>
+                            router.push(
+                              `/admin/courses/chapters/details/${courseSlug}?section=${chapter.slug}`
+                            )
+                          }
+                        >
+                          <i className="fas fa-eye text-green-500 text-lg"></i>
+                        </a>
+                      </Tooltip>
                     </td>
                   </tr>
                 ))}

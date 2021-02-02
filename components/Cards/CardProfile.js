@@ -64,7 +64,6 @@ export default function CardProfile({ me }) {
     if (!avatar) return
     else {
       alert('Profil modifié avec succès!')
-      router.reload()
     }
   }
 
@@ -98,6 +97,7 @@ export default function CardProfile({ me }) {
                       id="file-input"
                       type="file"
                       name="files"
+                      accept="image/*"
                       className="px-3 py-3 placeholder-gray-400 text-gray-700 rounded text-sm focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150 hidden"
                       onChange={handleAvatarChange}
                     />
@@ -152,13 +152,6 @@ export default function CardProfile({ me }) {
                   <p className="mb-4 text-lg leading-relaxed text-gray-800">
                     {me.bio ? me.bio : 'None'}
                   </p>
-                  {/* <a
-                    href="#xarala"
-                    className="font-normal text-blue-500"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    Show more
-                  </a> */}
                 </div>
               </div>
             </div>
