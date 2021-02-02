@@ -45,6 +45,7 @@ export const postFields = `
   description
   slug
   publishDate
+  timestamp
   imageUrl
   image
   tags{
@@ -166,4 +167,12 @@ export const orderFields = `
     quantity
     id
   }
+`
+
+export const tagFields = `
+    id
+    description
+    postSet{
+      ${postFields}
+    }
 `

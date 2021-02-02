@@ -7,6 +7,7 @@ import {
   orderFields,
   postFields,
   quizFields,
+  tagFields,
   userAnswerFields,
   userFields,
 } from './fields'
@@ -100,4 +101,10 @@ export const SINGLE_LESSON_CHAPTER = gql`
   query($courseSlug: String!, $chapterSlug: String!, $lessonSlug: String!) {
     lessonChapter(courseSlug: $courseSlug, chapterSlug: $chapterSlug, lessonSlug: $lessonSlug) {${lessonFields}}
   }
+`
+
+export const TAGS_QUERY = gql`
+query{
+  tags{${tagFields}}
+}
 `

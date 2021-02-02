@@ -4,6 +4,7 @@ import {
   courseFields,
   errorFields,
   lessonFields,
+  postFields,
   userAnswerFields,
   userFields,
 } from './fields'
@@ -201,6 +202,22 @@ export const CONTACT_US = gql`
         email
         phone
       }
+    }
+  }
+`
+
+export const CREATE_POST = gql`
+  mutation(
+    $title: String,
+    $content: String,
+    $image:String,
+    $description: String){
+    createPost(
+      title: $title,
+      content: $content,
+      image: $image,
+      description: $description){
+      post{${postFields}}
     }
   }
 `

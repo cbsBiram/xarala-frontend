@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import dateformat from 'dateformat'
 import React from 'react'
 
 const CardPosts = ({ posts }) => {
@@ -49,19 +50,17 @@ const CardPosts = ({ posts }) => {
                       {post.description}
                     </td>
                     <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                      {post.publishDate}
+                      {dateformat(post.timestamp, 'dd/mm/yyyy')}
                     </td>
                     <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                       <>
-                        <Link
-                          as={`/admin/posts/details/${post.slug}`}
-                          passHref
-                          href="/admin/posts/details/[slug]"
-                        >
-                          <a href="#">
-                            <i className="fas fa-eye text-green-500 text-lg"></i>
-                          </a>
-                        </Link>
+                        <button type="button" title="Publier">
+                          <i
+                            className="fas fa-paper-plane text-green-500 text-lg"
+                            title="Publier"
+                          ></i>{' '}
+                        </button>
+
                         <Link
                           as={`/admin/posts/edit/${post.slug}`}
                           passHref

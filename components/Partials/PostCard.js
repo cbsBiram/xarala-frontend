@@ -19,7 +19,7 @@ export const PostCard = ({ post }) => {
             />
             <div className="p-4 md:p-6">
               <p className="text-blue-500 font-semibold text-xs mb-1 leading-none">
-                {post.tags[0].name}
+                {post.tags[0] ? post.tags[0].name : 'Xarala'}
               </p>
               <h3 className="font-semibold mb-2 text-xl leading-tight sm:leading-normal">
                 {post.title}
