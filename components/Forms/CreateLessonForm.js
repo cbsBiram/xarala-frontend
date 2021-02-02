@@ -1,24 +1,42 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 
 import FormError from '../Shared/FormError'
 import { CREATE_LESSON } from '../../utils/mutations'
+import { SINGLE_CHAPTER_QUERY } from '../../utils/queries'
 
 export default function CreateLessonForm({ courseSlug, chapterSlug }) {
   const [title, setTitle] = useState('')
   const [videoId, setVideoId] = useState('')
-  const [duration, setDuration] = useState('')
+  const [duration, setDuration] = useState(1)
   const [platform, setPlatform] = useState('Youtube')
   const [errorMessage, setErrorMessage] = useState('')
 
-  const [createChapter] = useMutation(CREATE_LESSON)
-  const router = useRouter()
+  const updateCache = (cache, { data }) => {
+    const existingChapter = cache.readQuery({
+      query: SINGLE_CHAPTER_QUERY,
+      variables: { courseSlug, chapterSlug },
+    })
+
+    const { lesson } = data.createLesson
+    cache.writeQuery({
+      query: SINGLE_CHAPTER_QUERY,
+      data: {
+        chapterCourse: [
+          existingChapter.chapterCourse,
+          ...existingChapter.chapterCourse.courseLessons.concat(lesson),
+        ],
+      },
+    })
+  }
+
+  const [createLesson, { data, errors }] = useMutation(CREATE_LESSON, {
+    update: updateCache,
+  })
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(courseSlug, chapterSlug)
-    const { errors, data } = await createChapter({
+    const { errors, data } = await createLesson({
       variables: {
         courseSlug,
         chapterSlug,
@@ -31,7 +49,6 @@ export default function CreateLessonForm({ courseSlug, chapterSlug }) {
     if (errors) setErrorMessage(errors[0].message)
     else {
       alert('Leçon ajoutée avec succès!')
-      router.reload()
     }
   }
 
@@ -92,7 +109,7 @@ export default function CreateLessonForm({ courseSlug, chapterSlug }) {
                   className="block uppercase text-gray-700 text-xs font-bold mb-2"
                   htmlFor="duration"
                 >
-                  Durée
+                  Durée (En minutes)
                 </label>
                 <input
                   type="number"
@@ -100,7 +117,7 @@ export default function CreateLessonForm({ courseSlug, chapterSlug }) {
                   name="duration"
                   required
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={''}
+                  defaultValue={1}
                   onChange={(event) => setDuration(event.target.value)}
                 />
               </div>

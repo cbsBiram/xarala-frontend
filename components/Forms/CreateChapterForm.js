@@ -42,7 +42,7 @@ export default function CreateChapterForm({ courseSlug }) {
 
     if (errors) setErrorMessage(errors[0].message)
     else {
-      alert('Section ajoutée avec succès!')
+      alert('Chapitre ajouté avec succès!')
     }
   }
 
@@ -51,7 +51,7 @@ export default function CreateChapterForm({ courseSlug }) {
       <div className="rounded-t bg-white mb-0 px-6 py-6">
         <div className="text-center flex justify-between">
           <h6 className="text-gray-800 text-xl font-bold">
-            Ajouter une nouvelle section
+            Ajouter un nouveau chapitre
           </h6>
         </div>
       </div>
