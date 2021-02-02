@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import NotificationDropdown from 'components/Dropdowns/NotificationDropdown.js'
 import UserDropdown from 'components/Dropdowns/UserDropdown.js'
 
-export default function Sidebar() {
+export default function Sidebar({ user }) {
   const [collapseShow, setCollapseShow] = React.useState('hidden')
   const router = useRouter()
   return (
@@ -91,7 +91,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Admin Layout Pages
+              Tableau de board
             </h6>
             {/* Navigation */}
 
@@ -109,13 +109,13 @@ export default function Sidebar() {
                   >
                     <i
                       className={
-                        'fas fa-tv mr-2 text-sm ' +
+                        'fas fa-chart-line mr-2 text-sm ' +
                         (router.pathname.indexOf('/admin/dashboard') !== -1
                           ? 'opacity-75'
                           : 'text-gray-400')
                       }
                     ></i>{' '}
-                    Dashboard
+                    Stats
                   </a>
                 </Link>
               </li>
@@ -133,7 +133,7 @@ export default function Sidebar() {
                   >
                     <i
                       className={
-                        'fas fa-tools mr-2 text-sm ' +
+                        'fas fa-user mr-2 text-sm ' +
                         (router.pathname.indexOf('/admin/settings') !== -1
                           ? 'opacity-75'
                           : 'text-gray-400')
@@ -145,27 +145,51 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/admin/tables">
-                  <a
-                    href="#xarala"
-                    className={
-                      'text-xs uppercase py-3 font-bold block ' +
-                      (router.pathname.indexOf('/admin/tables') !== -1
-                        ? 'text-blue-500 hover:text-blue-600'
-                        : 'text-gray-800 hover:text-gray-600')
-                    }
-                  >
-                    <i
+                {user.isWriter ? (
+                  <Link href="/admin/posts">
+                    <a
+                      href="#xarala"
                       className={
-                        'fas fa-table mr-2 text-sm ' +
-                        (router.pathname.indexOf('/admin/tables') !== -1
-                          ? 'opacity-75'
-                          : 'text-gray-400')
+                        'text-xs uppercase py-3 font-bold block ' +
+                        (router.pathname.indexOf('/admin/posts') !== -1
+                          ? 'text-blue-500 hover:text-blue-600'
+                          : 'text-gray-800 hover:text-gray-600')
                       }
-                    ></i>{' '}
-                    Mes cours
-                  </a>
-                </Link>
+                    >
+                      <i
+                        className={
+                          'fas fa-shapes mr-2 text-sm ' +
+                          (router.pathname.indexOf('/admin/posts') !== -1
+                            ? 'opacity-75'
+                            : 'text-gray-400')
+                        }
+                      ></i>{' '}
+                      Mes artilces
+                    </a>
+                  </Link>
+                ) : (
+                  <Link href="/admin/courses">
+                    <a
+                      href="#xarala"
+                      className={
+                        'text-xs uppercase py-3 font-bold block ' +
+                        (router.pathname.indexOf('/admin/courses') !== -1
+                          ? 'text-blue-500 hover:text-blue-600'
+                          : 'text-gray-800 hover:text-gray-600')
+                      }
+                    >
+                      <i
+                        className={
+                          'fas fa-play mr-2 text-sm ' +
+                          (router.pathname.indexOf('/admin/courses') !== -1
+                            ? 'opacity-75'
+                            : 'text-gray-400')
+                        }
+                      ></i>{' '}
+                      Mes cours
+                    </a>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>

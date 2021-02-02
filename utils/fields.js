@@ -87,7 +87,7 @@ export const userFields = `
     price
   }
   postSet{
-    id
+    ${postFields}
   }
   bio
 `
