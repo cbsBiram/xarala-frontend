@@ -3,39 +3,28 @@ import dynamic from 'next/dynamic'
 import { useMutation } from '@apollo/client'
 
 import FormError from '../Shared/FormError'
-import { CREATE_POST } from '../../utils/mutations'
+import { UPDATE_POST } from '../../utils/mutations'
 import { fileToBase64 } from '../../utils/common'
-import { ME_QUERY } from '../../utils/constants'
+import { useRouter } from 'next/router'
 
 const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false,
 })
 
 export default function EditPostForm({ post }) {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [content, setContent] = useState('')
+  const {
+    title: existTitle,
+    description: existDesc,
+    content: existContent,
+  } = post
+  const [title, setTitle] = useState(existTitle)
+  const [description, setDescription] = useState(existDesc)
+  const [content, setContent] = useState(existContent)
   const [image, setImage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
-  const updateCache = (cache, { data }) => {
-    const existingPost = cache.readQuery({
-      query: ME_QUERY,
-    })
-    const { postSet } = existingPost.me
-
-    const { post } = data.createPost
-    cache.writeQuery({
-      query: ME_QUERY,
-      data: {
-        me: [postSet, ...postSet.concat(post)],
-      },
-    })
-  }
-
-  const [createPost, { data, error }] = useMutation(CREATE_POST, {
-    update: updateCache,
-  })
+  const [createPost] = useMutation(UPDATE_POST)
+  const router = useRouter()
 
   const handleThumbnailChange = (e) => {
     const imageFile = e.target.files[0]
@@ -54,14 +43,21 @@ export default function EditPostForm({ post }) {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    const imageStr = await fileToBase64(image)
+    const imageStr = image ? await fileToBase64(image) : null
     const { errors, data } = await createPost({
-      variables: { title, description, content, image: imageStr },
+      variables: {
+        title,
+        description,
+        content,
+        image: imageStr,
+        postId: post.id,
+      },
     })
 
     if (errors) setErrorMessage(errors[0].message)
     else {
-      alert('Post créé avec succès!')
+      alert('Post modifié avec succès!')
+      router.push('/admin/posts', undefined, { shallow: true })
     }
   }
 
@@ -94,7 +90,7 @@ export default function EditPostForm({ post }) {
                   type="text"
                   required
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={post.title}
+                  value={title}
                   onChange={(event) => setTitle(event.target.value)}
                 />
               </div>
@@ -110,7 +106,7 @@ export default function EditPostForm({ post }) {
                 <textarea
                   required
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={post.description}
+                  value={description}
                   onChange={(event) => setDescription(event.target.value)}
                 />
               </div>
@@ -125,7 +121,7 @@ export default function EditPostForm({ post }) {
                 </label>
                 <ReactQuill
                   theme="snow"
-                  defaultValue={post.content}
+                  value={content}
                   className="bg-white"
                   required
                   onChange={(value) => setContent(value)}
@@ -144,7 +140,6 @@ export default function EditPostForm({ post }) {
                 <input
                   type="file"
                   accept="image/*"
-                  required
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                   defaultValue={''}
                   onChange={handleThumbnailChange}

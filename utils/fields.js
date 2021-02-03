@@ -45,6 +45,7 @@ export const postFields = `
   description
   slug
   publishDate
+  published
   timestamp
   imageUrl
   image

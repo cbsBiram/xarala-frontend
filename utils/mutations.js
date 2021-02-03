@@ -221,3 +221,20 @@ export const CREATE_POST = gql`
     }
   }
 `
+export const UPDATE_POST = gql`
+ mutation(
+  	$postId: Int!,
+    $title: String,
+    $content: String,
+    $image:String,
+    $description: String){
+    updatePost(
+      postId: $postId,
+      title: $title,
+      content: $content,
+      image: $image,
+      description: $description){
+      post{${postFields}}
+    }
+  }
+`

@@ -64,7 +64,7 @@ export default function CreatePostForm() {
     if (errors) setErrorMessage(errors[0].message)
     else {
       alert('Post créé avec succès!')
-      router.push('/admin/posts')
+      router.push('/admin/posts', undefined, { shallow: true })
     }
   }
 
