@@ -145,7 +145,7 @@ export default function Sidebar({ user }) {
               </li>
 
               <li className="items-center">
-                {user.isWriter ? (
+                {user && user.isWriter ? (
                   <Link href="/admin/posts">
                     <a
                       href="#xarala"

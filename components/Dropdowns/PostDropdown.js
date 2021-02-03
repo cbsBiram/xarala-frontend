@@ -1,12 +1,32 @@
 import React from 'react'
 import { createPopper } from '@popperjs/core'
 import Link from 'next/link'
+import { useMutation } from '@apollo/client'
+import { SUBMIT_POST_TO_REVIEW } from '../../utils/mutations'
 
 const PostDropdown = ({ post }) => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false)
   const btnDropdownRef = React.createRef()
   const popoverDropdownRef = React.createRef()
+
+  const [submitPost] = useMutation(SUBMIT_POST_TO_REVIEW)
+
+  const submitPostToReview = async (e) => {
+    e.preventDefault()
+    const { errors, data } = await submitPost({
+      variables: {
+        postId: post.id,
+      },
+    })
+
+    if (errors) setErrorMessage(errors[0].message)
+    else {
+      alert('Article envoyé, vous serez notifié de la publication')
+    }
+    closeDropdownPopover()
+  }
+
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: 'left-start',
@@ -56,7 +76,7 @@ const PostDropdown = ({ post }) => {
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
           }
-          onClick={(e) => e.preventDefault()}
+          onClick={(e) => submitPostToReview(e)}
         >
           Publier
         </a>

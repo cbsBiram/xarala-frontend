@@ -238,3 +238,13 @@ export const UPDATE_POST = gql`
     }
   }
 `
+
+export const SUBMIT_POST_TO_REVIEW = gql`
+  mutation(
+      $postId: Int!){
+      submitPostToReview(
+        postId: $postId){
+          post{${postFields}}
+      }
+    }
+`
