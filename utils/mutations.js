@@ -248,3 +248,11 @@ export const SUBMIT_POST_TO_REVIEW = gql`
       }
     }
 `
+
+export const DELETE_POST = gql`
+  mutation($postId: Int!) {
+    deletePost(postId: $postId) {
+      postId
+    }
+  }
+`

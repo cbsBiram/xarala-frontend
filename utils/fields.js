@@ -45,6 +45,7 @@ export const postFields = `
   description
   slug
   publishDate
+  submitted
   published
   timestamp
   imageUrl
@@ -88,7 +89,7 @@ export const userFields = `
     slug
     price
   }
-  postSet{
+  getUserPosts{
     ${postFields}
   }
   bio

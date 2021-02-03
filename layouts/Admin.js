@@ -37,7 +37,7 @@ const Admin = ({ children }) => {
             userQuizzes={userQuizzes}
           />
         ) : user.isWriter ? (
-          <WriterHeaderStats posts={user.postSet} />
+          <WriterHeaderStats posts={user.getUserPosts} />
         ) : (
           <h2>No data</h2>
         )}

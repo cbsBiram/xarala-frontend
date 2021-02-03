@@ -2,7 +2,8 @@ import React from 'react'
 import { createPopper } from '@popperjs/core'
 import Link from 'next/link'
 import { useMutation } from '@apollo/client'
-import { SUBMIT_POST_TO_REVIEW } from '../../utils/mutations'
+import { SUBMIT_POST_TO_REVIEW, DELETE_POST } from '../../utils/mutations'
+import { useRouter } from 'next/router'
 
 const PostDropdown = ({ post }) => {
   // dropdown props
@@ -11,6 +12,8 @@ const PostDropdown = ({ post }) => {
   const popoverDropdownRef = React.createRef()
 
   const [submitPost] = useMutation(SUBMIT_POST_TO_REVIEW)
+  const [deletePost] = useMutation(DELETE_POST)
+  const router = useRouter()
 
   const submitPostToReview = async (e) => {
     e.preventDefault()
@@ -25,6 +28,22 @@ const PostDropdown = ({ post }) => {
       alert('Article envoyé, vous serez notifié de la publication')
     }
     closeDropdownPopover()
+  }
+
+  const handleDeletePost = async (e) => {
+    e.preventDefault()
+    const { errors, data } = await deletePost({
+      variables: {
+        postId: post.id,
+      },
+    })
+
+    if (errors) setErrorMessage(errors[0].message)
+    else {
+      alert('Article archivé!')
+    }
+    closeDropdownPopover()
+    router.push('/admin/posts', undefined, { shallow: true })
   }
 
   const openDropdownPopover = () => {
@@ -71,21 +90,34 @@ const PostDropdown = ({ post }) => {
             Modifier
           </a>
         </Link>
+        {post.submitted ? (
+          <a
+            href="#xarala"
+            className={
+              'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
+            }
+            onClick={(e) => e.preventDefault()}
+          >
+            Partager
+          </a>
+        ) : (
+          <a
+            href="#xarala"
+            className={
+              'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
+            }
+            onClick={(e) => submitPostToReview(e)}
+          >
+            Publier
+          </a>
+        )}
+
         <a
           href="#xarala"
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
           }
-          onClick={(e) => submitPostToReview(e)}
-        >
-          Publier
-        </a>
-        <a
-          href="#xarala"
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800'
-          }
-          onClick={(e) => e.preventDefault()}
+          onClick={(e) => handleDeletePost(e)}
         >
           Archiver
         </a>

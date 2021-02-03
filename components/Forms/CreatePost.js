@@ -24,13 +24,13 @@ export default function CreatePostForm() {
     const existingPost = cache.readQuery({
       query: ME_QUERY,
     })
-    const { postSet } = existingPost.me
+    const { getUserPosts } = existingPost.me
 
     const { post } = data.createPost
     cache.writeQuery({
       query: ME_QUERY,
       data: {
-        me: [postSet, ...postSet.concat(post)],
+        me: [getUserPosts, ...getUserPosts.concat(post)],
       },
     })
   }
