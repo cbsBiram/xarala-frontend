@@ -104,6 +104,7 @@ export const questionFields = `
 export const quizFields = `
   id
   title
+  description
   questions {${questionFields}}
   chapter {
     slug

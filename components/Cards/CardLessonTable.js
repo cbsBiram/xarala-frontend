@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 import Tooltip from '../Partials/Tooltip'
+import LessonDropdown from '../Dropdowns/LessonDropdown'
 
 export default function CardLessonTable({
   color,
@@ -131,22 +132,7 @@ export default function CardLessonTable({
                       {lesson.slug}
                     </td>
                     <td>
-                      <Tooltip
-                        tooltipText="Modifier"
-                        color="rgba(248, 113, 113)"
-                      >
-                        <a
-                          role="button"
-                          tabIndex="0"
-                          onClick={() =>
-                            router.push(
-                              `/admin/courses/chapters/lessons/edit/${courseSlug}?section=${chapter.slug}&lecture=${lesson.slug}`
-                            )
-                          }
-                        >
-                          <i className="fas fa-edit text-red-500 ml-2 mr-2 text-lg"></i>
-                        </a>
-                      </Tooltip>
+                      <LessonDropdown lesson={lesson} />
                     </td>
                   </tr>
                 ))}
