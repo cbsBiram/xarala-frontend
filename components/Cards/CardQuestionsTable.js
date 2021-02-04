@@ -1,17 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useRouter } from 'next/router'
 
 import Modal from '../Partials/Modal'
-import Tooltip from '../Partials/Tooltip'
-import EditQuizForm from '../Forms/EditQuizForm'
-import ChapterDropdown from '../Dropdowns/ChapterDropdown'
-import QuizDropdown from '../Dropdowns/QuizDropdown'
+import EditQuestionForm from '../Forms/EditQuestionForm'
+import CreateAnswerForm from '../Forms/CreateAnswerForm'
+import EditAnswerForm from '../Forms/EditAnswerForm'
+import QuestionDropdown from '../Dropdowns/QuestionDropdown'
+import AnswerDropdown from '../Dropdowns/AnswerDropdown'
 
-export default function CardChapterTable({ color, chapters, course }) {
-  const router = useRouter()
-  const { slug: courseSlug } = course ? course : ''
-
+export default function CardQuestionsTable({ color, questions, chapterSlug }) {
   return (
     <>
       <div
@@ -29,7 +26,7 @@ export default function CardChapterTable({ color, chapters, course }) {
                   (color === 'light' ? 'text-gray-800' : 'text-white')
                 }
               >
-                Liste des chapitres
+                Liste des questions
               </h3>
             </div>
           </div>
@@ -70,41 +67,46 @@ export default function CardChapterTable({ color, chapters, course }) {
               </tr>
             </thead>
             <tbody>
-              {chapters &&
-                chapters.map((chapter) => (
+              {questions &&
+                questions.map((question) => (
                   <>
-                    <tr key={chapter.id}>
+                    <tr key={question.id}>
                       <th className="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center">
-                        {chapter.id}
+                        {question.id}
                       </th>
                       <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
-                        {chapter.name}
+                        {question.label}
                       </td>
                       <td className="flex flex-wrap justify-center items-center">
-                        <ChapterDropdown
-                          chapter={chapter}
-                          courseSlug={courseSlug}
+                        <QuestionDropdown
+                          question={question}
+                          chapterSlug={chapterSlug}
                         />
                       </td>
                     </tr>
-                    {chapter.quiz && (
-                      <tr
-                        className="bg-gray-800 text-white"
-                        key={chapter.quiz + 500}
-                      >
-                        <th className="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center"></th>
-                        <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
-                          {chapter.quiz.title} (EXERCICE)
-                        </td>
-                        <td className="flex flex-wrap justify-center items-center">
-                          <QuizDropdown
-                            quiz={chapter.quiz}
-                            chapterSlug={chapter.slug}
-                            courseSlug={courseSlug}
-                          />
-                        </td>
-                      </tr>
-                    )}
+                    {question.answers &&
+                      question.answers.map((answer) => (
+                        <tr className="bg-gray-700 text-white">
+                          <th className="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center"></th>
+                          <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
+                            {answer.isCorrect ? (
+                              <i className="far fa-check-circle text-green-500 text-lg"></i>
+                            ) : (
+                              <i class="fas fa-ban text-red-500 text-lg"></i>
+                            )}
+                            <span className="ml-2">
+                              {answer.label} (EXERCICE)
+                            </span>
+                          </td>
+                          <td className="flex flex-wrap justify-center items-center">
+                            <AnswerDropdown
+                              answer={answer}
+                              chapterSlug={chapterSlug}
+                              question={question}
+                            />
+                          </td>
+                        </tr>
+                      ))}
                   </>
                 ))}
             </tbody>
@@ -115,10 +117,10 @@ export default function CardChapterTable({ color, chapters, course }) {
   )
 }
 
-CardChapterTable.defaultProps = {
+CardQuestionsTable.defaultProps = {
   color: 'light',
 }
 
-CardChapterTable.propTypes = {
+CardQuestionsTable.propTypes = {
   color: PropTypes.oneOf(['light', 'dark']),
 }

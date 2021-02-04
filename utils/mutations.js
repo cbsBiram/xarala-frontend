@@ -1,10 +1,13 @@
 import { gql } from '@apollo/client'
 import {
+  answerFields,
   chapterFields,
   courseFields,
   errorFields,
   lessonFields,
   postFields,
+  questionFields,
+  quizFields,
   userAnswerFields,
   userFields,
 } from './fields'
@@ -29,6 +32,54 @@ export const CREATE_USER_ANSWER = gql`
   mutation($quizId: Int!, $questionId: Int!, $answerId: Int!) {
     createUserAnswer(quizId: $quizId, questionId: $questionId, answerId: $answerId) {
       userAnswer{${userAnswerFields}}
+    }
+  }
+`
+
+export const CREATE_QUIZ = gql`
+  mutation($chapterId: Int!, $title: String!, $description: String) {
+    createQuiz(chapterId: $chapterId, title: $title, description: $description) {
+      quiz{${quizFields}}
+    }
+  }
+`
+
+export const UPDATE_QUIZ = gql`
+  mutation($quizId: Int!, $title: String, $description: String) {
+    updateQuiz(quizId: $quizId, title: $title, description: $description) {
+      quiz{${quizFields}}
+    }
+  }
+`
+
+export const CREATE_QUESTION = gql`
+  mutation($quizId: Int!, $label: String!) {
+    createQuestion(quizId: $quizId, label: $label) {
+      question{${questionFields}}
+    }
+  }
+`
+
+export const UPDATE_QUESTION = gql`
+  mutation($questionId: Int!, $label: String) {
+    updateQuestion(questionId: $questionId, label: $label) {
+      question{${questionFields}}
+    }
+  }
+`
+
+export const CREATE_ANSWER = gql`
+  mutation($questionId: Int!, $label: String!, $isCorrect: Boolean) {
+    createAnswer(questionId: $questionId, label: $label, isCorrect: $isCorrect) {
+      answer{${answerFields}}
+    }
+  }
+`
+
+export const UPDATE_ANSWER = gql`
+  mutation($questionId: Int!, $answerId: Int!, $label: String, $isCorrect: Boolean) {
+    updateAnswer(questionId: $questionId, answerId: $answerId, label: $label, isCorrect: $isCorrect) {
+      answer{${answerFields}}
     }
   }
 `

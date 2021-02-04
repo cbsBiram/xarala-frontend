@@ -39,12 +39,7 @@ export default function EditLessonForm({ lesson }) {
   }
 
   return (
-    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
-      <div className="rounded-t bg-white mb-0 px-6 py-6">
-        <div className="text-center flex justify-between">
-          <h6 className="text-gray-800 text-xl font-bold">Modifier leçon</h6>
-        </div>
-      </div>
+    <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-gray-200 border-0">
       <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
         {errorMessage ? <FormError message={errorMessage} /> : <span></span>}
         <form onSubmit={(event) => handleSubmit(event)}>
@@ -68,7 +63,7 @@ export default function EditLessonForm({ lesson }) {
               </div>
             </div>
           </div>
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap items-center">
             <div className="w-full md:w-6/12 px-4">
               <div className="relative w-full mb-3 mt-2">
                 <label
@@ -87,14 +82,14 @@ export default function EditLessonForm({ lesson }) {
                 />
               </div>
             </div>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap items-center">
               <div className="w-full md:w-6/12 px-4">
                 <div className="relative w-full mb-3 mt-2">
                   <label
                     className="block uppercase text-gray-700 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Durée (en minutes)
+                    Durée (mn)
                   </label>
                   <input
                     type="number"

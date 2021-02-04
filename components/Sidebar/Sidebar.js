@@ -191,6 +191,30 @@ export default function Sidebar({ user }) {
                   </Link>
                 )}
               </li>
+
+              <li className="items-center">
+                <Link href="/admin/quizzes/index">
+                  <a
+                    href="#xarala"
+                    className={
+                      'text-xs uppercase py-3 font-bold block ' +
+                      (router.pathname.indexOf('/admin/quizzes/index') !== -1
+                        ? 'text-blue-500 hover:text-blue-600'
+                        : 'text-gray-800 hover:text-gray-600')
+                    }
+                  >
+                    <i
+                      className={
+                        'fas fa-marker mr-2 text-sm ' +
+                        (router.pathname.indexOf('/admin/quizzes/index') !== -1
+                          ? 'opacity-75'
+                          : 'text-gray-400')
+                      }
+                    ></i>{' '}
+                    Mes quizs
+                  </a>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
