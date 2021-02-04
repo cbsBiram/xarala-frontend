@@ -138,3 +138,11 @@ query{
   tags{${tagFields}}
 }
 `
+
+export const POST_AUTHORS = gql`
+query{
+  authors{
+    ${userFields}
+  }
+}
+`

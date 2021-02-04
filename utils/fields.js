@@ -196,6 +196,7 @@ export const orderFields = `
 
 export const tagFields = `
     id
+    name
     description
     postSet{
       ${postFields}

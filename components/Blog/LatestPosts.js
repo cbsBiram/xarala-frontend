@@ -4,7 +4,9 @@ const LatestPosts = () => {
   return (
     <>
       <div className="mt-10 px-8">
-        <h1 className="mb-4 text-xl font-bold text-gray-700">Recent Post</h1>
+        <h1 className="mb-4 text-xl font-bold text-gray-700">
+          Récemment publié
+        </h1>
         <div className="flex flex-col bg-white px-8 py-6 max-w-sm mx-auto rounded-lg shadow-md">
           <div className="flex justify-center items-center">
             <a
