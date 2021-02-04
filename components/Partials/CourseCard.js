@@ -10,7 +10,7 @@ export const CourseCard = ({ course }) => {
             <img
               src={`${process.env.MEDIA_URL}${course.thumbnail}`}
               alt={course.title}
-              className="w-full object-cover h-32 sm:h-48 md:h-64"
+              className="h-full w-full object-cover object-center"
             />
             <div className="p-4 md:p-6">
               <p className="text-blue-500 font-semibold text-xs mb-1 leading-none">
