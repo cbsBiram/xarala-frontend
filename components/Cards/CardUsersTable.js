@@ -1,17 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useRouter } from 'next/router'
-import Tooltip from '../Partials/Tooltip'
-import LessonDropdown from '../Dropdowns/LessonDropdown'
 
-export default function CardLessonTable({
-  color,
-  chapter,
-  courseSlug,
-  lessons,
-}) {
-  const router = useRouter()
-
+export default function CardUsersTable({ color, users, type }) {
   return (
     <>
       <div
@@ -29,7 +19,7 @@ export default function CardLessonTable({
                   (color === 'light' ? 'text-gray-800' : 'text-white')
                 }
               >
-                Liste des Leçons
+                Liste des Apprenants
               </h3>
             </div>
           </div>
@@ -57,7 +47,7 @@ export default function CardLessonTable({
                       : 'bg-gray-700 text-gray-300 border-gray-600')
                   }
                 >
-                  Titre
+                  Email
                 </th>
                 <th
                   className={
@@ -67,7 +57,18 @@ export default function CardLessonTable({
                       : 'bg-gray-700 text-gray-300 border-gray-600')
                   }
                 >
-                  Vidéo Id
+                  Nom
+                </th>
+
+                <th
+                  className={
+                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left ' +
+                    (color === 'light'
+                      ? 'bg-gray-100 text-gray-600 border-gray-200'
+                      : 'bg-gray-700 text-gray-300 border-gray-600')
+                  }
+                >
+                  Téléphone
                 </th>
                 <th
                   className={
@@ -77,27 +78,13 @@ export default function CardLessonTable({
                       : 'bg-gray-700 text-gray-300 border-gray-600')
                   }
                 >
-                  Durée
-                </th>
-                <th
-                  className={
-                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left ' +
-                    (color === 'light'
-                      ? 'bg-gray-100 text-gray-600 border-gray-200'
-                      : 'bg-gray-700 text-gray-300 border-gray-600')
-                  }
-                >
-                  Plateforme
-                </th>
-                <th
-                  className={
-                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left ' +
-                    (color === 'light'
-                      ? 'bg-gray-100 text-gray-600 border-gray-200'
-                      : 'bg-gray-700 text-gray-300 border-gray-600')
-                  }
-                >
-                  Slug
+                  {type === 'student'
+                    ? 'Cours Enrollés'
+                    : type === 'teacher'
+                    ? 'Cours créés'
+                    : type === 'author'
+                    ? 'Articles créés'
+                    : ''}
                 </th>
                 <th
                   className={
@@ -110,32 +97,40 @@ export default function CardLessonTable({
               </tr>
             </thead>
             <tbody>
-              {lessons &&
-                lessons.map((lesson) => (
-                  <tr key={lesson.id}>
+              {users.length ? (
+                users.map((user) => (
+                  <tr key={user.id}>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center">
-                      {lesson.id}
+                      {user.id}
                     </th>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
-                      {lesson.title}
+                      {user.email}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
-                      {lesson.videoId}
+                      {user.firstName} {user.lastName}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
-                      {lesson.duration}
+                      {user.phone}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
-                      {lesson.platform}
+                      {user.isStudent
+                        ? user.coursesEnrolled.length
+                        : user.isTeacher
+                        ? user.coursesCreated.length
+                        : user.isWriter
+                        ? user.getUserPosts.length
+                        : ''}
                     </td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
-                      {lesson.slug}
-                    </td>
-                    <td>
-                      <LessonDropdown lesson={lesson} />
-                    </td>
+                    <td></td>
                   </tr>
-                ))}
+                ))
+              ) : (
+                <tr>
+                  <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center">
+                    Pas d'utilisateurs
+                  </th>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
@@ -144,10 +139,10 @@ export default function CardLessonTable({
   )
 }
 
-CardLessonTable.defaultProps = {
+CardUsersTable.defaultProps = {
   color: 'light',
 }
 
-CardLessonTable.propTypes = {
+CardUsersTable.propTypes = {
   color: PropTypes.oneOf(['light', 'dark']),
 }

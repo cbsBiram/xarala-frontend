@@ -91,7 +91,7 @@ export default function Sidebar({ user }) {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Tableau de board
+              Tableau de bord
             </h6>
             {/* Navigation */}
 
@@ -145,7 +145,7 @@ export default function Sidebar({ user }) {
               </li>
 
               <li className="items-center">
-                {user && user.isWriter ? (
+                {user && user.isWriter && !user.isStaff ? (
                   <Link href="/admin/posts">
                     <a
                       href="#xarala"
@@ -164,7 +164,7 @@ export default function Sidebar({ user }) {
                             : 'text-gray-400')
                         }
                       ></i>{' '}
-                      Mes artilces
+                      Mes articles
                     </a>
                   </Link>
                 ) : (
@@ -191,6 +191,108 @@ export default function Sidebar({ user }) {
                   </Link>
                 )}
               </li>
+
+              {user.isTeacher || user.isStudent ? (
+                <li className="items-center">
+                  <Link href="/admin/quizzes">
+                    <a
+                      href="#xarala"
+                      className={
+                        'text-xs uppercase py-3 font-bold block ' +
+                        (router.pathname.indexOf('/admin/quizzes') !== -1
+                          ? 'text-blue-500 hover:text-blue-600'
+                          : 'text-gray-800 hover:text-gray-600')
+                      }
+                    >
+                      <i
+                        className={
+                          'fas fa-th-large mr-2 text-sm ' +
+                          (router.pathname.indexOf('/admin/quizzes') !== -1
+                            ? 'opacity-75'
+                            : 'text-gray-400')
+                        }
+                      ></i>{' '}
+                      Mes quizs
+                    </a>
+                  </Link>
+                </li>
+              ) : (
+                ''
+              )}
+
+              {user.isStaff && (
+                <>
+                  <li className="items-center">
+                    <Link href="/admin/authors">
+                      <a
+                        href="#xarala"
+                        className={
+                          'text-xs uppercase py-3 font-bold block ' +
+                          (router.pathname.indexOf('/admin/authors') !== -1
+                            ? 'text-blue-500 hover:text-blue-600'
+                            : 'text-gray-800 hover:text-gray-600')
+                        }
+                      >
+                        <i
+                          className={
+                            'fas fa-feather-alt mr-2 text-sm ' +
+                            (router.pathname.indexOf('/admin/authors') !== -1
+                              ? 'opacity-75'
+                              : 'text-gray-400')
+                          }
+                        ></i>
+                        Auteurs
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="items-center">
+                    <Link href="/admin/students">
+                      <a
+                        href="#xarala"
+                        className={
+                          'text-xs uppercase py-3 font-bold block ' +
+                          (router.pathname.indexOf('/admin/students') !== -1
+                            ? 'text-blue-500 hover:text-blue-600'
+                            : 'text-gray-800 hover:text-gray-600')
+                        }
+                      >
+                        <i
+                          className={
+                            'fas fa-user-graduate mr-2 text-sm ' +
+                            (router.pathname.indexOf('/admin/students') !== -1
+                              ? 'opacity-75'
+                              : 'text-gray-400')
+                          }
+                        ></i>
+                        Apprenants
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="items-center">
+                    <Link href="/admin/teachers">
+                      <a
+                        href="#xarala"
+                        className={
+                          'text-xs uppercase py-3 font-bold block ' +
+                          (router.pathname.indexOf('/admin/teachers') !== -1
+                            ? 'text-blue-500 hover:text-blue-600'
+                            : 'text-gray-800 hover:text-gray-600')
+                        }
+                      >
+                        <i
+                          className={
+                            'fas fa-chalkboard-teacher mr-2 text-sm ' +
+                            (router.pathname.indexOf('/admin/teachers') !== -1
+                              ? 'opacity-75'
+                              : 'text-gray-400')
+                          }
+                        ></i>
+                        Instructeurs
+                      </a>
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
