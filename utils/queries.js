@@ -12,6 +12,30 @@ import {
   userFields,
 } from './fields'
 
+export const ALL_STUDENTS_QUERY = gql`
+  query {
+    students {${userFields}}
+  }
+`
+
+export const ALL_TEACHERS_QUERY = gql`
+  query {
+    teachers {${userFields}}
+  }
+`
+
+export const ALL_AUTHORS_QUERY = gql`
+  query {
+    authors {${userFields}}
+  }
+`
+
+export const ALL_USERS_QUERY = gql`
+  query {
+    users {${userFields}}
+  }
+`
+
 export const CHECK_ENROLLEMENT_QUERY = gql`
   query($courseId: Int!) {
     checkEnrollement(courseId: $courseId)
@@ -82,6 +106,12 @@ export const ALL_LANGUAGES_QUERY = gql`
 export const ALL_CHAPTERS_COURSE = gql`
   query($courseSlug: String!) {
     chaptersCourse(courseSlug: $courseSlug) {${chapterFields}}
+  }
+`
+
+export const ALL_CHAPTERS_CREATED = gql`
+  query {
+    chaptersCreated {${chapterFields}}
   }
 `
 

@@ -7,36 +7,44 @@ import FormError from '../Shared/FormError'
 import Loading from '../Shared/Loading'
 import { ALL_LANGUAGES_QUERY } from '../../utils/queries'
 import { fileToBase64 } from '../../utils/common'
-import { SINGLE_COURSE_QUERY } from '../../utils/constants'
 import { UPDATE_COURSE } from '../../utils/mutations'
+import { ME_QUERY } from '../../utils/constants'
 
 const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false,
 })
 
-export default function UpdateCourse({ courseSlug }) {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [price, setPrice] = useState(0)
-  const [level, setLevel] = useState('')
-  const [thumbnail, setThumbnail] = useState('')
-  const [languageName, setLanguageName] = useState('')
+export default function UpdateCourse({ course }) {
+  const [title, setTitle] = useState(course.title)
+  const [description, setDescription] = useState(course.description)
+  const [price, setPrice] = useState(course.price)
+  const [level, setLevel] = useState(course.level)
+  const [thumbnail, setThumbnail] = useState(course.thumbnail)
+  const [languageName, setLanguageName] = useState(
+    course.language ? course.language : 'Wolof'
+  )
   const [errorMessage, setErrorMessage] = useState('')
   const { loadingLanguages, errorLanguages, data: languagesData } = useQuery(
     ALL_LANGUAGES_QUERY
   )
-  const { loadingCourse, errorCourse, data: courseData } = useQuery(
-    SINGLE_COURSE_QUERY,
-    {
-      variables: {
-        courseSlug: courseSlug,
-      },
-    }
-  )
-  const [updateCourse] = useMutation(UPDATE_COURSE)
-  const router = useRouter()
 
-  let { course } = courseData ? courseData : {}
+  const updateCache = (cache, { data }) => {
+    const existingUser = cache.readQuery({
+      query: ME_QUERY,
+    })
+
+    const { course } = data.updateCourse
+
+    cache.writeQuery({
+      query: ME_QUERY,
+      data: {
+        course: [existingUser.me, ...existingUser.me.coursesCreated, course],
+      },
+    })
+  }
+
+  const [updateCourse] = useMutation(UPDATE_COURSE, { update: updateCache })
+
   let { languages } = languagesData ? languagesData : {}
 
   const handleThumbnailChange = (e) => {
@@ -80,24 +88,13 @@ export default function UpdateCourse({ courseSlug }) {
     if (errors) setErrorMessage(errors[0].message)
     else {
       alert('Cours modifié avec succès!')
-      router.push('/admin/dashboard')
     }
   }
 
-  if (loadingLanguages || loadingCourse) return <Loading />
+  if (loadingLanguages) return <Loading />
 
   return (
-    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
-      <div className="rounded-t bg-white mb-0 px-6 py-6">
-        <div className="text-center flex justify-between">
-          <h6 className="text-gray-800 text-xl font-bold">
-            Modifier le cours{' '}
-            <span className="text-blue-400 uppercase">
-              {course ? course.title : ''}
-            </span>
-          </h6>
-        </div>
-      </div>
+    <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-gray-200 border-0">
       <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
         {errorMessage ? <FormError message={errorMessage} /> : <span></span>}
         <form
@@ -132,8 +129,8 @@ export default function UpdateCourse({ courseSlug }) {
                 </label>
                 <ReactQuill
                   theme="snow"
-                  defaultValue={course ? course.description : ''}
-                  className="bg-white"
+                  defaultValue={course.description}
+                  className="bg-white text-gray-700"
                   onChange={(value) => setDescription(value)}
                 />
               </div>
@@ -201,10 +198,11 @@ export default function UpdateCourse({ courseSlug }) {
                 </label>
                 <select
                   className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  defaultValue={course ? course.language.name : ''}
+                  defaultValue={
+                    course.language ? course.language.name : 'Wolof'
+                  }
                   onChange={(event) => setLanguageName(event.target.value)}
                 >
-                  <option>Choisir la langue</option>
                   {languages &&
                     languages.map((language) => (
                       <option key={language.id} value={language.name}>
