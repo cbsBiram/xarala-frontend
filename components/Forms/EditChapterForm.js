@@ -4,13 +4,32 @@ import { useRouter } from 'next/router'
 
 import { UPDATE_CHAPTER } from '../../utils/mutations'
 import FormError from '../Shared/FormError'
+import { SINGLE_COURSE_QUERY } from '../../utils/constants'
 
-export default function EditChapterForm({ chapter }) {
+export default function EditChapterForm({ chapter, courseSlug }) {
   const [name, setName] = useState(chapter.name)
   const [errorMessage, setErrorMessage] = useState('')
-  const router = useRouter()
 
-  const [updateChapter] = useMutation(UPDATE_CHAPTER)
+  const updateCache = (cache, { data }) => {
+    const existingCourse = cache.readQuery({
+      query: SINGLE_COURSE_QUERY,
+      variables: { courseSlug },
+    })
+
+    const { chapter } = data.updateChapter
+    cache.writeQuery({
+      query: SINGLE_COURSE_QUERY,
+      data: {
+        course: [
+          existingCourse.course,
+          ...existingCourse.course.courseChapters,
+          chapter,
+        ],
+      },
+    })
+  }
+
+  const [updateChapter] = useMutation(UPDATE_CHAPTER, { update: updateCache })
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -24,17 +43,11 @@ export default function EditChapterForm({ chapter }) {
     if (errors) setErrorMessage(errors[0].message)
     else {
       alert('Chapitre modifié avec succès!')
-      router.back()
     }
   }
 
   return (
-    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
-      <div className="rounded-t bg-white mb-0 px-6 py-6">
-        <div className="text-center flex justify-between">
-          <h6 className="text-gray-800 text-xl font-bold">Modifier chapitre</h6>
-        </div>
-      </div>
+    <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-gray-200 border-0">
       <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
         {errorMessage ? <FormError message={errorMessage} /> : <span></span>}
         <form onSubmit={(event) => handleSubmit(event)}>

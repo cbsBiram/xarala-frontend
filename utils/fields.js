@@ -72,6 +72,7 @@ export const userFields = `
   isStudent
   isTeacher
   isWriter
+  isStaff
   phone
   address
   title
@@ -82,12 +83,33 @@ export const userFields = `
     slug
     price
     level
+    description
+    courseChapters {
+      id
+      name
+      slug
+      quiz {
+        id
+        title
+        description
+      }
+    }
   }
   coursesEnrolled{
     id
     title
     slug
     price
+    courseChapters {
+      id
+      name
+      slug
+      quiz {
+        id
+        title
+        description
+      }
+    }
   }
   getUserPosts{
     ${postFields}
