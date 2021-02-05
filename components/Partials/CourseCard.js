@@ -18,7 +18,7 @@ export const CourseCard = ({ course }) => {
                   ? course.categories[0].name
                   : ''}
               </p>
-              <h3 className="font-semibold mb-2 text-xl leading-tight sm:leading-normal">
+              <h3 className="font-semibold mb-2 text-sm leading-tight sm:leading-normal">
                 {course.title}
               </h3>
               <p className="mb-0">
