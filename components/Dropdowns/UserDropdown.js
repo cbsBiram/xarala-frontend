@@ -91,7 +91,7 @@ const UserDropdown = ({ setOpen }) => {
               >
                 <i className="text-gray-500 fas fa-school fa-tachometer-alt text-lg leading-lg " />
 
-                <span className="inline-block ml-2">Tableau de board</span>
+                <span className="inline-block ml-2">Tableau de bord</span>
               </a>
             </Link>
             <Link href="/admin/settings">

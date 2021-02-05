@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import Tooltip from '../Partials/Tooltip'
+
 import CourseDropdown from '../Dropdowns/CourseDropdown'
+import TablePagination from '../Shared/TablePagination'
+import { paginate } from '../../utils/common'
 
 export default function CardMyCourses({
   courses,
@@ -9,6 +11,15 @@ export default function CardMyCourses({
   title,
   teacher = false,
 }) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageSize = 5
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const paginatedCourses = paginate(courses, currentPage, pageSize)
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
@@ -46,8 +57,8 @@ export default function CardMyCourses({
               </tr>
             </thead>
             <tbody>
-              {courses && courses.length ? (
-                courses.map((course) => (
+              {paginatedCourses && paginatedCourses.length ? (
+                paginatedCourses.map((course) => (
                   <tr key={course.id}>
                     <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                       {course.title}
@@ -93,6 +104,14 @@ export default function CardMyCourses({
               )}
             </tbody>
           </table>
+          {courses && (
+            <TablePagination
+              itemsCount={courses}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          )}
         </div>
       </div>
     </>

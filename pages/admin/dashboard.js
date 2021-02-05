@@ -25,7 +25,7 @@ const Dashboard = () => {
       variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
     >
       {/* nous allons afficher ici les KPIS */}
-      {me.isStaff && <AdminKpis users={users} />}
+      {me.isStaff && <AdminKpis usersInfo={users} />}
     </motion.div>
   )
 }

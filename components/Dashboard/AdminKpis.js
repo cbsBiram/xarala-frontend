@@ -1,17 +1,7 @@
 import React from 'react'
 
-export default function AdminKpis({ users }) {
-  const teachers = users.filter((user) => user.isTeacher)
-  const students = users.filter((user) => user.isStudent)
-  const authors = users.filter((user) => user.isWriter)
-  const prices = students.map((student) =>
-    student.coursesEnrolled.map((course) => Number(course.price))
-  )
-  const sales_figures = prices.reduce(
-    (totalSale, price) =>
-      totalSale + price.reduce((itemPrice, item) => itemPrice + item, 0),
-    0
-  )
+export default function AdminKpis({ usersInfo }) {
+  const { studentsCount, teachersCount, authorsCount, salesFigures } = usersInfo
 
   return (
     <>
@@ -24,7 +14,7 @@ export default function AdminKpis({ users }) {
         </div>
         <div className="flex flex-col justify-start">
           <p className="text-gray-800 text-4xl text-left dark:text-white font-bold my-4">
-            {students ? students.length : 0}
+            {studentsCount}
           </p>
           <div className="relative w-28 h-2 bg-gray-200 rounded">
             <div className="absolute top-0 h-1  left-0 rounded bg-green-500 w-2/3"></div>
@@ -40,7 +30,7 @@ export default function AdminKpis({ users }) {
         </div>
         <div className="flex flex-col justify-start">
           <p className="text-gray-800 text-4xl text-left dark:text-white font-bold my-4">
-            {authors ? authors.length : 0}
+            {authorsCount}
           </p>
           <div className="relative w-28 h-2 bg-gray-200 rounded">
             <div className="absolute top-0 h-2  left-0 rounded bg-black w-2/3"></div>
@@ -56,7 +46,7 @@ export default function AdminKpis({ users }) {
         </div>
         <div className="flex flex-col justify-start">
           <p className="text-gray-800 text-4xl text-left dark:text-white font-bold my-4">
-            {teachers ? teachers.length : 0}
+            {teachersCount}
           </p>
           <div className="relative w-28 h-2 bg-gray-200 rounded">
             <div className="absolute top-0 h-1  left-0 rounded bg-green-500 w-2/3"></div>
@@ -72,7 +62,7 @@ export default function AdminKpis({ users }) {
         </div>
         <div className="flex flex-col justify-start">
           <p className="text-gray-800 text-4xl text-left dark:text-white font-bold my-4">
-            {sales_figures} &nbsp;F CFA
+            {Number(salesFigures)} &nbsp;F CFA
           </p>
           <div className="relative w-28 h-2 bg-gray-200 rounded">
             <div className="absolute top-0 h-1  left-0 rounded bg-green-500 w-2/3"></div>

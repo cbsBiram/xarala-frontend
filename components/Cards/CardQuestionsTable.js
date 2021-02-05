@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Modal from '../Partials/Modal'
-import EditQuestionForm from '../Forms/EditQuestionForm'
-import CreateAnswerForm from '../Forms/CreateAnswerForm'
-import EditAnswerForm from '../Forms/EditAnswerForm'
-import QuestionDropdown from '../Dropdowns/QuestionDropdown'
 import AnswerDropdown from '../Dropdowns/AnswerDropdown'
+import QuestionDropdown from '../Dropdowns/QuestionDropdown'
+import { paginate } from '../../utils/common'
+import TablePagination from '../Shared/TablePagination'
 
 export default function CardQuestionsTable({ color, questions, chapterSlug }) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageSize = 5
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const paginatedQuestions = paginate(questions, currentPage, pageSize)
+
   return (
     <>
       <div
@@ -67,8 +74,8 @@ export default function CardQuestionsTable({ color, questions, chapterSlug }) {
               </tr>
             </thead>
             <tbody>
-              {questions &&
-                questions.map((question) => (
+              {paginatedQuestions ? (
+                paginatedQuestions.map((question) => (
                   <>
                     <tr key={question.id}>
                       <th className="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center">
@@ -108,9 +115,20 @@ export default function CardQuestionsTable({ color, questions, chapterSlug }) {
                         </tr>
                       ))}
                   </>
-                ))}
+                ))
+              ) : (
+                <tr>Aucune question disponible pour le moment</tr>
+              )}
             </tbody>
           </table>
+          {questions && (
+            <TablePagination
+              itemsCount={questions}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          )}
         </div>
       </div>
     </>

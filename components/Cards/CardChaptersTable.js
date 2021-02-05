@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useRouter } from 'next/router'
 
-import Modal from '../Partials/Modal'
-import Tooltip from '../Partials/Tooltip'
-import EditQuizForm from '../Forms/EditQuizForm'
 import ChapterDropdown from '../Dropdowns/ChapterDropdown'
 import QuizDropdown from '../Dropdowns/QuizDropdown'
+import TablePagination from '../Shared/TablePagination'
+import { paginate } from '../../utils/common'
 
 export default function CardChapterTable({ color, chapters, course }) {
-  const router = useRouter()
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageSize = 5
   const { slug: courseSlug } = course ? course : ''
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const paginatedChapters = paginate(chapters, currentPage, pageSize)
 
   return (
     <>
@@ -70,8 +75,8 @@ export default function CardChapterTable({ color, chapters, course }) {
               </tr>
             </thead>
             <tbody>
-              {chapters &&
-                chapters.map((chapter) => (
+              {paginatedChapters ? (
+                paginatedChapters.map((chapter) => (
                   <>
                     <tr key={chapter.id}>
                       <th className="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center">
@@ -106,9 +111,20 @@ export default function CardChapterTable({ color, chapters, course }) {
                       </tr>
                     )}
                   </>
-                ))}
+                ))
+              ) : (
+                <tr>Aucun chapitre ajouté pour le moment</tr>
+              )}
             </tbody>
           </table>
+          {chapters && (
+            <TablePagination
+              itemsCount={chapters}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          )}
         </div>
       </div>
     </>
