@@ -2,6 +2,7 @@ import React from 'react'
 import PostSideBar from './PostSideBar'
 import dateformat from 'dateformat'
 import DisqusComments from './DisqusComments'
+import NextPreviousPost from './NextPreviousPost'
 
 const PostDetails = ({ post }) => {
   return (
@@ -27,6 +28,10 @@ const PostDetails = ({ post }) => {
               />
             </article>
 
+            <NextPreviousPost
+              getNext={post.getNext}
+              getPrevious={post.getPrevious}
+            />
             <DisqusComments post={post} />
 
             {/* related articles */}

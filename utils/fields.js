@@ -50,6 +50,8 @@ export const postFields = `
   timestamp
   imageUrl
   image
+  getNext
+  getPrevious
   tags{
     id
     name
