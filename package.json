@@ -3,7 +3,7 @@
   "homepage": "https://www.xarala.co",
   "version": "1.0.0",
   "description": "Xarala Academy.",
-  "repository": "https://github.com/xarala",
+  "repository": "https://gitlab.com/xarala-acadmey/xarala-frontend/",
   "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.3.6",
