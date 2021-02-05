@@ -153,7 +153,6 @@ export const courseFields = `
   thumbnail
   slug
   language{${languageFields}}
-  promoteVideo
   teacher {${userFields}}
   students {${userFields}}
   dateCreated
