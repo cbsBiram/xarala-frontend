@@ -15,8 +15,6 @@ export default function EditQuizForm({ quiz, courseSlug }) {
   const [description, setDescription] = useState(quiz.description)
   const [errorMessage, setErrorMessage] = useState('')
 
-  console.log(title, description)
-
   const updateCache = (cache, { data }) => {
     const existingCourse = cache.readQuery({
       query: SINGLE_COURSE_QUERY,
@@ -35,7 +33,6 @@ export default function EditQuizForm({ quiz, courseSlug }) {
         ],
       },
     })
-    console.log('Data', data)
   }
 
   const [updateQuiz, { data, errors }] = useMutation(UPDATE_QUIZ, {

@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import React from 'react'
 
 import AllCourses from '../components/Course/Courses'
-import Loading from '../components/Shared/Loading'
 import Page from '../layouts/Page'
 import { ALL_COURSES_QUERY } from '../utils/queries'
 
@@ -16,7 +15,7 @@ const Courses = () => {
     variables: { page: currentPage },
   })
 
-  if (loading) return <Loading />
+  if (loading) return <h2>Chargement...</h2>
   if (errors) return <h2>Error</h2>
   const { objects: courses, pages } = data.allCourses
   return (

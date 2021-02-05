@@ -22,7 +22,6 @@ const Register = () => {
         variables: { email, password },
       })
       if (errors) {
-        console.log('Err', errors)
         setErrorMessage(errors[0].message)
       } else {
         signup()

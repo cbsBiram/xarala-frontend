@@ -12,8 +12,6 @@ const Quiz = () => {
   const router = useRouter()
   const { slug } = router.query
 
-  console.log(slug)
-
   const { loading: quizLoading, errors: quizErrors, data: quizData } = useQuery(
     SINGLE_QUIZ_QUERY,
     {

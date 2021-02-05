@@ -14,7 +14,6 @@ export default function Index() {
   const { coursesEnrolled } = me ? me : {}
 
   const courses = me.isTeacher ? coursesCreated : coursesEnrolled
-  console.log(courses)
 
   if (loading) return <Loading />
 

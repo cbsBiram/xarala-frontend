@@ -37,7 +37,6 @@ const ListLessons = ({ lessons }) => {
       let lessonId = lesson.id
       let { title, videoId, duration, platform } = lesson
       let lectureNumber = index + 1
-      console.log('orderedLessons', lessonId, title, videoId, index)
       const { loading, errors, data } = updateLesson({
         variables: {
           lessonId,

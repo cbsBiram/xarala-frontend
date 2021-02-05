@@ -39,8 +39,6 @@ export default function CreateAnswerForm({ question, chapterSlug }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
-    console.log(label, isCorrect)
     const { errors, data } = await createAnswer({
       variables: { questionId, label, isCorrect },
     })

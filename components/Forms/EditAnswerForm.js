@@ -17,7 +17,6 @@ export default function EditAnswerForm({ answer, question, chapterSlug }) {
       query: SINGLE_QUIZ_QUERY,
       variables: { chapterSlug },
     })
-    console.log('Data', data)
     const { answer } = data.updateAnswer
 
     const existingAnwers = [...existingQuiz.quiz.questions, question]
@@ -40,8 +39,6 @@ export default function EditAnswerForm({ answer, question, chapterSlug }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
-    console.log(label, isCorrect)
     const { errors, data } = await updateAnswer({
       variables: { questionId, answerId, label, isCorrect },
     })
