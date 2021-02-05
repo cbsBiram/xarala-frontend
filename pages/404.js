@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import Router from "next/router";
+import React from 'react'
+// import Router from "next/router";
+import ErrorPage from '../components/Pages/404'
+import Page from '../layouts/Page'
 
-export default class Error404 extends Component {
-  componentDidMount = () => {
-    Router.push("/");
-  };
-
-  render() {
-    return <div />;
-  }
+const Error404 = () => {
+  return <ErrorPage />
 }
+
+Error404.layout = Page
+
+export default Error404
