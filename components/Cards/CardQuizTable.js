@@ -109,7 +109,7 @@ export default function CardQuizTable({ color, user, courses }) {
                           {chapter.name}
                         </td>
                         <td className="flex flex-wrap justify-center items-center">
-                          {user.isTeacher ? (
+                          {user && user.isTeacher ? (
                             <QuizDropdown
                               quiz={chapter.quiz}
                               chapterSlug={chapter.slug}

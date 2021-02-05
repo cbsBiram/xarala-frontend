@@ -4,7 +4,7 @@ import CardMyCourses from '../Cards/CardMyCourses'
 const Courses = ({ user }) => {
   return (
     <>
-      {user.isTeacher ? (
+      {user && user.isTeacher ? (
         <CardMyCourses
           courses={user.coursesCreated}
           title="Cours Créés"

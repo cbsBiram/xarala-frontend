@@ -29,7 +29,7 @@ const Admin = ({ children }) => {
       <div className="relative md:ml-64 bg-gray-200">
         <AdminNavbar />
         {/* Header */}
-        {user.isTeacher ? (
+        {user && user.isTeacher ? (
           <TeacherHeaderStats courses={user.coursesCreated} />
         ) : user.isStudent ? (
           <StudentHeaderStats

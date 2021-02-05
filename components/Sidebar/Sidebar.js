@@ -192,7 +192,7 @@ export default function Sidebar({ user }) {
                 )}
               </li>
 
-              {user.isTeacher || user.isStudent ? (
+              {(user && user.isTeacher) || user.isStudent ? (
                 <li className="items-center">
                   <Link href="/admin/quizzes">
                     <a
