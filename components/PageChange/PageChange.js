@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function PageChange(props) {
   return (
-    <div>
+    <>
       <div
         className="bg-cover fixed z-40 w-full h-full top-0 left-0"
         style={{
@@ -17,6 +17,6 @@ export default function PageChange(props) {
         </div>
         <h4 className="text-lg font-medium text-white">Chargement...</h4>
       </div>
-    </div>
+    </>
   )
 }

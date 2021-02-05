@@ -3,15 +3,20 @@ import React from 'react'
 const Loading = () => {
   return (
     <>
-      <div className="w-full h-full fixed block top-0 left-0 bg-white opacity-75 z-50 content-center items-center justify-center text-center">
-        <span
-          className="text-green-500 opacity-75 top-1/2 my-0 mx-auto block relative w-0 h-0"
+      <div>
+        <div
+          className="bg-cover fixed z-40 w-full h-full top-0 left-0"
           style={{
-            top: '50%',
+            backgroundImage:
+              'url(' + require('assets/img/img-1-1000x600.jpg') + ')',
           }}
-        >
-          <i className="fas fa-circle-notch fa-spin fa-5x"></i>
-        </span>
+        ></div>
+        <div className="top-0 left-0 w-full h-full block z-50 absolute bg-black bg-opacity-50"></div>
+        <div className="my-32 mx-auto max-w-sm text-center relative z-50 top-0">
+          <div className="block mb-4">
+            <i className="fas fa-circle-notch animate-spin text-white mx-auto text-6xl"></i>
+          </div>
+        </div>
       </div>
     </>
   )
