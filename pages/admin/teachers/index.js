@@ -5,8 +5,9 @@ import Admin from '../../../layouts/Admin'
 import CardUsersTable from '../../../components/Cards/CardUsersTable'
 import Loading from '../../../components/Shared/Loading'
 import { ALL_TEACHERS_QUERY } from '../../../utils/queries'
+import { withAuthSync } from '../../../utils/auth'
 
-export default function Index() {
+const Index = () => {
   const { loading, data } = useQuery(ALL_TEACHERS_QUERY)
   const { teachers } = data ? data : []
 
@@ -19,4 +20,4 @@ export default function Index() {
   )
 }
 
-Index.layout = Admin
+export default withAuthSync(Index)

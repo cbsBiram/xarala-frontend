@@ -1,12 +1,12 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 
-import Admin from '../../../layouts/Admin'
 import Loading from '../../../components/Shared/Loading'
 import Quizzes from '../../../components/Dashboard/Quizzes'
 import { ME_QUERY } from '../../../utils/constants'
+import { withAuthSync } from '../../../utils/auth'
 
-export default function Index() {
+const Index = () => {
   const { error, loading, data } = useQuery(ME_QUERY)
   const { me } = data ? data : []
 
@@ -24,4 +24,4 @@ export default function Index() {
   )
 }
 
-Index.layout = Admin
+export default withAuthSync(Index)

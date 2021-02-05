@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 
-import Admin from '../../../../layouts/Admin'
 import CardQuestionsTable from '../../../../components/Cards/CardQuestionsTable'
 import CreateQuestionForm from '../../../../components/Forms/CreateQuestionForm'
 import Loading from '../../../../components/Shared/Loading'
 import { SINGLE_QUIZ_QUERY } from '../../../../utils/queries'
+import { withAuthSync } from '../../../../utils/auth'
 
-export default function ViewQuiz() {
+const ViewQuiz = () => {
   const [openTab, setOpenTab] = useState(1)
   const router = useRouter()
 
@@ -87,4 +87,4 @@ export default function ViewQuiz() {
   )
 }
 
-ViewQuiz.layout = Admin
+export default withAuthSync(ViewQuiz)

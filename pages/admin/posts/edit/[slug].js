@@ -3,7 +3,8 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import EditPostForm from '../../../../components/Forms/EditPost'
 import Loading from '../../../../components/Shared/Loading'
-import Admin from '../../../../layouts/Admin'
+
+import { withAuthSync } from '../../../../utils/auth'
 import { SINGLE_POST_QUERY } from '../../../../utils/constants'
 
 const EditPost = () => {
@@ -25,5 +26,5 @@ const EditPost = () => {
     </>
   )
 }
-EditPost.layout = Admin
-export default EditPost
+
+export default withAuthSync(EditPost)

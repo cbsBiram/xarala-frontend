@@ -4,12 +4,11 @@ import React from 'react'
 import CardSettings from 'components/Cards/CardSettings.js'
 import CardProfile from 'components/Cards/CardProfile.js'
 
-// layout for page
-import Admin from 'layouts/Admin.js'
 import { ME_QUERY } from '../../utils/constants'
 import { useQuery } from '@apollo/client'
+import { withAuthSync } from '../../utils/auth'
 
-export default function Settings() {
+const Settings = () => {
   const { loading, error, data } = useQuery(ME_QUERY)
   const { me } = data ? data : {}
 
@@ -27,4 +26,4 @@ export default function Settings() {
   )
 }
 
-Settings.layout = Admin
+export default withAuthSync(Settings)

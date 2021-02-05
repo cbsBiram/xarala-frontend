@@ -3,14 +3,14 @@ import _ from 'lodash'
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 
-import Admin from '../../../../../layouts/Admin'
 import CardLessonTable from '../../../../../components/Cards/CardLessonTable'
 import CreateLessonForm from '../../../../../components/Forms/CreateLessonForm'
 import Loading from '../../../../../components/Shared/Loading'
 import { SINGLE_CHAPTER_QUERY } from '../../../../../utils/queries'
 import ListLessons from '../../../../../components/DragAndDrop/ListLessons'
+import { withAuthSync } from '../../../../../utils/auth'
 
-export default function CourseDetails() {
+const CourseDetails = () => {
   const [openTab, setOpenTab] = useState(1)
   const router = useRouter()
   const { slug, section } = router.query
@@ -118,4 +118,4 @@ export default function CourseDetails() {
   )
 }
 
-CourseDetails.layout = Admin
+export default withAuthSync(CourseDetails)

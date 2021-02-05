@@ -2,8 +2,9 @@ import React from 'react'
 
 import Admin from 'layouts/Admin.js'
 import CreateCourseForm from '../../../components/Forms/CreateCourseForm'
+import { withAuthSync } from '../../../utils/auth'
 
-export default function CreateCourse() {
+const CreateCourse = () => {
   return (
     <>
       <div className="flex flex-wrap">
@@ -15,4 +16,4 @@ export default function CreateCourse() {
   )
 }
 
-CreateCourse.layout = Admin
+export default withAuthSync(CreateCourse)

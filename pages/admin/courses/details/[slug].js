@@ -10,8 +10,9 @@ import CourseDetailsComponent from '../../../../components/Course/CourseDetails'
 import ListChapters from '../../../../components/DragAndDrop/ListChapters'
 import Loading from '../../../../components/Shared/Loading'
 import { SINGLE_COURSE_QUERY } from '../../../../utils/constants'
+import { withAuthSync } from '../../../../utils/auth'
 
-export default function CourseDetails() {
+const CourseDetails = () => {
   const [openTab, setOpenTab] = useState(1)
   const router = useRouter()
 
@@ -116,4 +117,4 @@ export default function CourseDetails() {
   )
 }
 
-CourseDetails.layout = Admin
+export default withAuthSync(CourseDetails)

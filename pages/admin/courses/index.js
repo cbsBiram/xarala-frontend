@@ -2,7 +2,8 @@ import { useQuery } from '@apollo/client'
 import React from 'react'
 import Courses from '../../../components/Dashboard/Courses'
 import Loading from '../../../components/Shared/Loading'
-import Admin from '../../../layouts/Admin'
+
+import { withAuthSync } from '../../../utils/auth'
 import { ME_QUERY } from '../../../utils/constants'
 
 const Index = () => {
@@ -18,6 +19,4 @@ const Index = () => {
   )
 }
 
-Index.layout = Admin
-
-export default Index
+export default withAuthSync(Index)

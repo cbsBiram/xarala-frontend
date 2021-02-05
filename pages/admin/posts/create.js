@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Admin from 'layouts/Admin.js'
 import CreatePostForm from '../../../components/Forms/CreatePost'
+import { withAuthSync } from '../../../utils/auth'
 
-export default function CreatePost() {
+const CreatePost = () => {
   return (
     <>
       <div className="flex flex-wrap">
@@ -15,4 +15,4 @@ export default function CreatePost() {
   )
 }
 
-CreatePost.layout = Admin
+export default withAuthSync(CreatePost)
