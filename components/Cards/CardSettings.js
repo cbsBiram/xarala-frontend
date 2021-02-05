@@ -6,11 +6,11 @@ import FormError from '../Shared/FormError'
 import { UPDATE_PROFILE } from '../../utils/mutations'
 
 export default function CardSettings({ me }) {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [address, setAddress] = useState('')
-  const [phone, setPhone] = useState('')
-  const [bio, setBio] = useState('')
+  const [firstName, setFirstName] = useState(me.firstName)
+  const [lastName, setLastName] = useState(me.lastName)
+  const [address, setAddress] = useState(me.address)
+  const [phone, setPhone] = useState(me.phone)
+  const [bio, setBio] = useState(me.bio)
   const [errorMessage, setErrorMessage] = useState('')
 
   const [updateUser] = useMutation(UPDATE_PROFILE)
@@ -55,7 +55,7 @@ export default function CardSettings({ me }) {
                   <input
                     type="text"
                     className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                    defaultValue={me ? me.firstName : ''}
+                    defaultValue={firstName}
                     onChange={(event) => setFirstName(event.target.value)}
                   />
                 </div>
@@ -71,7 +71,7 @@ export default function CardSettings({ me }) {
                   <input
                     type="text"
                     className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                    defaultValue={me ? me.lastName : ''}
+                    defaultValue={lastName}
                     onChange={(event) => setLastName(event.target.value)}
                   />
                 </div>
@@ -95,7 +95,7 @@ export default function CardSettings({ me }) {
                   <input
                     type="text"
                     className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                    defaultValue={me ? me.address : ''}
+                    defaultValue={address}
                     onChange={(event) => setAddress(event.target.value)}
                   />
                 </div>
@@ -111,7 +111,7 @@ export default function CardSettings({ me }) {
                   <input
                     type="text"
                     className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                    defaultValue={me ? me.phone : ''}
+                    defaultValue={phone}
                     onChange={(event) => setPhone(event.target.value)}
                   />
                 </div>
@@ -136,7 +136,7 @@ export default function CardSettings({ me }) {
                     type="text"
                     className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                     rows="4"
-                    defaultValue={me ? me.bio : ''}
+                    defaultValue={bio}
                     onChange={(event) => setBio(event.target.value)}
                   ></textarea>
                 </div>
