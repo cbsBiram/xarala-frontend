@@ -13,26 +13,49 @@ import {
 } from './fields'
 
 export const ALL_STUDENTS_QUERY = gql`
-  query {
-    students {${userFields}}
+  query($page: Int) {
+    students(page: $page) {
+      page
+      hasNext
+      hasPrev
+      pages
+      objects{${userFields}}
+    }
   }
 `
 
 export const ALL_TEACHERS_QUERY = gql`
-  query {
-    teachers {${userFields}}
+  query($page: Int) {
+    teachers(page: $page) {
+      page
+      hasNext
+      hasPrev
+      pages
+      objects{${userFields}}
+    }
   }
 `
 
 export const ALL_AUTHORS_QUERY = gql`
-  query {
-    authors {${userFields}}
+  query($page: Int) {
+    authors(page: $page) {
+      page
+      hasNext
+      hasPrev
+      pages
+      objects{${userFields}}
+    }
   }
 `
 
 export const ALL_USERS_QUERY = gql`
   query {
-    users {${userFields}}
+    users {
+      studentsCount
+      teachersCount
+      authorsCount
+      salesFigures
+    }
   }
 `
 
@@ -109,9 +132,9 @@ export const ALL_CHAPTERS_COURSE = gql`
   }
 `
 
-export const ALL_CHAPTERS_CREATED = gql`
+export const ALL_CHAPTERS_USER_QUERY = gql`
   query {
-    chaptersCreated {${chapterFields}}
+    chaptersUser {${chapterFields}}
   }
 `
 

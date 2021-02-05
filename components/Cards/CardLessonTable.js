@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useRouter } from 'next/router'
-import Tooltip from '../Partials/Tooltip'
-import LessonDropdown from '../Dropdowns/LessonDropdown'
 
-export default function CardLessonTable({
-  color,
-  chapter,
-  courseSlug,
-  lessons,
-}) {
-  const router = useRouter()
+import LessonDropdown from '../Dropdowns/LessonDropdown'
+import TablePagination from '../Shared/TablePagination'
+import { paginate } from '../../utils/common'
+
+export default function CardLessonTable({ color, lessons }) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageSize = 5
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const paginatedLessons = paginate(lessons, currentPage, pageSize)
 
   return (
     <>
@@ -110,8 +113,8 @@ export default function CardLessonTable({
               </tr>
             </thead>
             <tbody>
-              {lessons &&
-                lessons.map((lesson) => (
+              {paginatedLessons ? (
+                paginatedLessons.map((lesson) => (
                   <tr key={lesson.id}>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center">
                       {lesson.id}
@@ -135,9 +138,20 @@ export default function CardLessonTable({
                       <LessonDropdown lesson={lesson} />
                     </td>
                   </tr>
-                ))}
+                ))
+              ) : (
+                <tr>Aucune leçon ajoutée pour le moment</tr>
+              )}
             </tbody>
           </table>
+          {lessons && (
+            <TablePagination
+              itemsCount={lessons}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          )}
         </div>
       </div>
     </>

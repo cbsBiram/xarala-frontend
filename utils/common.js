@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { getToken } from './auth'
 
 export const textTruncate = (str, length, ending) => {
@@ -41,3 +42,8 @@ export const fileToBase64 = (file) =>
     reader.onload = () => resolve(reader.result)
     reader.onerror = (error) => reject(error)
   })
+
+export const paginate = (items, pageNumber, pageSize) => {
+  const startIndex = (pageNumber - 1) * pageSize
+  return _(items).slice(startIndex).take(pageSize).value()
+}

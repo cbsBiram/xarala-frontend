@@ -1,9 +1,21 @@
 import dateformat from 'dateformat'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
+
 import PostDropdown from '../Dropdowns/PostDropdown'
+import TablePagination from '../Shared/TablePagination'
+import { paginate } from '../../utils/common'
 
 export default function CardPosts({ posts }) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageSize = 10
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const paginatedPosts = paginate(posts, currentPage, pageSize)
+
   return (
     <>
       <div
@@ -72,7 +84,7 @@ export default function CardPosts({ posts }) {
                 </tr>
               </thead>
               <tbody>
-                {posts.map((post) => (
+                {paginatedPosts.map((post) => (
                   <tr>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
                       <img
@@ -116,9 +128,17 @@ export default function CardPosts({ posts }) {
                 ))}
               </tbody>
             </table>
+            {posts && (
+              <TablePagination
+                itemsCount={posts}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              />
+            )}
           </div>
         ) : (
-          <h2> Aucun article ecris pour le moment</h2>
+          <h2> Aucun article écrit pour le moment</h2>
         )}
       </div>
     </>

@@ -7,18 +7,19 @@ const Pagination = ({ pages, currentPage }) => {
   let paginationItems = []
 
   for (let i = 1; i < pages + 1; i++) {
-    paginationItems.push(
-      <li
-        key={i}
-        className={`w-12 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full   ${
-          currentPage == i ? 'text-white bg-blue-400' : 'text-gray-500'
-        } `}
-      >
-        <Link href={`${router.pathname}/?page=${i}`}>
-          <a href="#">{i}</a>
-        </Link>
-      </li>
-    )
+    if (Math.abs(currentPage - i) < 3)
+      paginationItems.push(
+        <li
+          key={i}
+          className={`w-12 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full   ${
+            currentPage == i ? 'text-white bg-blue-400' : 'text-gray-500'
+          } `}
+        >
+          <Link href={`${router.pathname}/?page=${i}`}>
+            <a href="#">{i}</a>
+          </Link>
+        </li>
+      )
   }
 
   return (

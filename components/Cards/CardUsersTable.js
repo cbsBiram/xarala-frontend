@@ -1,7 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Pagination from '../Shared/Pagination'
 
-export default function CardUsersTable({ color, users, type }) {
+export default function CardUsersTable({
+  color,
+  users,
+  type,
+  pages,
+  currentPage,
+}) {
   return (
     <>
       <div
@@ -133,6 +140,7 @@ export default function CardUsersTable({ color, users, type }) {
               )}
             </tbody>
           </table>
+          {pages > 1 && <Pagination pages={pages} currentPage={currentPage} />}
         </div>
       </div>
     </>

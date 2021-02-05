@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import ChapterDropdown from '../Dropdowns/ChapterDropdown'
 import QuizDropdown from '../Dropdowns/QuizDropdown'
 import Link from 'next/link'
-import { textTruncate } from '../../utils/common'
+import { paginate, textTruncate } from '../../utils/common'
+import TablePagination from '../Shared/TablePagination'
 
-export default function CardQuizTable({ color, user, courses }) {
+export default function CardQuizTable({ color, user, chapters }) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageSize = 5
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const paginatedChapters = paginate(chapters, currentPage, pageSize)
+
   return (
     <>
       <div
@@ -85,62 +94,68 @@ export default function CardQuizTable({ color, user, courses }) {
               </tr>
             </thead>
             <tbody>
-              {courses.map((course) =>
-                course.courseChapters.map((chapter, index) =>
-                  chapter.quiz !== null ? (
-                    <>
-                      <tr key={index}>
-                        <th className="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center">
-                          {chapter.quiz.id}
-                        </th>
-                        <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
-                          {chapter.quiz.title}
-                        </td>
-                        <td
-                          className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold"
-                          dangerouslySetInnerHTML={{
-                            __html: `${textTruncate(
-                              chapter.quiz.description,
-                              50
-                            )}`,
-                          }}
-                        ></td>
-                        <td className="border-t-0 uppercase px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
-                          {chapter.name}
-                        </td>
-                        <td className="flex flex-wrap justify-center items-center">
-                          {user && user.isTeacher ? (
-                            <QuizDropdown
-                              quiz={chapter.quiz}
-                              chapterSlug={chapter.slug}
-                              courseSlug={course.slug}
-                            />
-                          ) : (
-                            <Link
-                              as={`/courses/quiz/${chapter.slug}`}
-                              passHref
-                              href="/courses/quiz/[slug]"
-                            >
-                              <a href="#">
-                                <button
-                                  className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                  type="button"
-                                >
-                                  Retenter
-                                </button>
-                              </a>
-                            </Link>
-                          )}
-                        </td>
-                      </tr>
-                    </>
-                  ) : (
-                    ''
-                  )
+              {paginatedChapters.map((chapter, index) =>
+                chapter.quiz !== null ? (
+                  <>
+                    <tr key={index}>
+                      <th className="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex jusify- items-center">
+                        {chapter.quiz.id}
+                      </th>
+                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
+                        {chapter.quiz.title}
+                      </td>
+                      <td
+                        className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold"
+                        dangerouslySetInnerHTML={{
+                          __html: `${textTruncate(
+                            chapter.quiz.description,
+                            50
+                          )}`,
+                        }}
+                      ></td>
+                      <td className="border-t-0 uppercase px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 font-bold">
+                        {chapter.name}
+                      </td>
+                      <td className="flex flex-wrap justify-center items-center">
+                        {user && user.isTeacher ? (
+                          <QuizDropdown
+                            quiz={chapter.quiz}
+                            chapterSlug={chapter.slug}
+                            courseSlug={chapter.course.slug}
+                          />
+                        ) : (
+                          <Link
+                            as={`/courses/quiz/${chapter.slug}`}
+                            passHref
+                            href="/courses/quiz/[slug]"
+                          >
+                            <a href="#">
+                              <button
+                                className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                type="button"
+                              >
+                                Retenter
+                              </button>
+                            </a>
+                          </Link>
+                        )}
+                      </td>
+                    </tr>
+                  </>
+                ) : (
+                  <tr>Aucun quiz disponible</tr>
                 )
               )}
             </tbody>
           </table>
+          {chapters && (
+            <TablePagination
+              itemsCount={chapters}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          )}
         </div>
       </div>
     </>
