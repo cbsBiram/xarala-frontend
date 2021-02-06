@@ -17,7 +17,9 @@ const PostDetails = ({ post }) => {
               <p className="text-center mb-2">
                 <span>{dateformat(post.pub, 'dd/mm/yyyy')}, par</span>
                 <a className="ml-1 text-indigo-600 hover:underline" href="#">
-                  {post.author.firstName} {post.author.lastName}
+                  {post.author
+                    ? `${post.author.firstName} ${post.author.lastName}`
+                    : 'Xarala'}
                 </a>
               </p>
               <div

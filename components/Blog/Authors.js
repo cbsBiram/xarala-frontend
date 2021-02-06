@@ -5,7 +5,7 @@ import { POST_AUTHORS } from '../../utils/queries'
 const Authors = () => {
   const { data, error, loading } = useQuery(POST_AUTHORS)
   if (loading) return <h2>Chargement</h2>
-  const { authors } = data
+  const { postAuthors: authors } = data
   return (
     <>
       <div className="px-8">

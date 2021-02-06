@@ -164,7 +164,7 @@ query{
 
 export const POST_AUTHORS = gql`
 query{
-  authors{
+  postAuthors{
     ${userFields}
   }
 }
