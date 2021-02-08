@@ -261,7 +261,7 @@ const ContactUs = () => {
                               </div>
 
                               <motion.button
-                                whileHover="hover"
+                                whilehover="hover"
                                 variants={{
                                   hover: {
                                     scale: 1.1,

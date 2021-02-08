@@ -9,8 +9,8 @@ const NextPreviousButton = ({ courseSlug, lesson }) => {
       <div className="flex relative items-center my-4">
         {getPrevious && (
           <Link href={`/courses/lesson/${courseSlug}?lecture=${getPrevious}`}>
-            <button className="border cursor-pointer border-blue-400 text-blue-400  rounded-sm font-bold py-4 px-6 mr-2 flex items-center hover:bg-blue-700 hover:text-white">
-              Précedent
+            <button className="border cursor-pointer border-blue-400 text-blue-400  rounded-sm font-bold py-2 px-4  mr-2 flex items-center hover:bg-blue-700 hover:text-white">
+              <i className="fas fa-arrow-left"></i> Précedent
             </button>
           </Link>
         )}
@@ -19,8 +19,8 @@ const NextPreviousButton = ({ courseSlug, lesson }) => {
           <Link
             href={`/courses/lesson/${courseSlug}?lecture=${lesson.getNext}`}
           >
-            <button className="border cursor-pointer border-blue-400 bg-blue-400 text-white rounded-sm font-bold py-4 px-6 ml-2 flex items-center">
-              Suivant
+            <button className="border cursor-pointer border-blue-400 bg-blue-400 text-white rounded-sm font-bold py-2 px-4  ml-2 flex items-center">
+              Suivant <i className="fas fa-arrow-right"></i>
             </button>
           </Link>
         )}

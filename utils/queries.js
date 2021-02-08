@@ -10,6 +10,7 @@ import {
   tagFields,
   userAnswerFields,
   userFields,
+  categoryFields,
 } from './fields'
 
 export const ALL_STUDENTS_QUERY = gql`
@@ -90,7 +91,20 @@ query($page: Int) {
     hasNext
     hasPrev
     pages
-    objects {${courseFields}}
+    objects {
+      id
+      title
+      price
+      thumbnail
+      slug
+      teacher{
+        id
+        email
+        firstName
+        lastName
+  }
+  categories {${categoryFields}}
+    }
   }
 }
 `

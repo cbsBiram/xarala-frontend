@@ -11,6 +11,7 @@ import { ALL_COURSES_QUERY } from '../utils/queries'
 const Courses = () => {
   const router = useRouter()
   const { page } = router.query
+
   const currentPage = page ? page : 1
   const { data, errors, loading } = useQuery(ALL_COURSES_QUERY, {
     variables: { page: currentPage },

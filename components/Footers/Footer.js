@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function Footer() {
@@ -65,36 +66,44 @@ export default function Footer() {
                   </span>
                   <ul className="list-unstyled">
                     <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="/about"
-                      >
-                        Qui sommes-nous
-                      </a>
+                      <Link href="/about">
+                        <a
+                          className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                          href="#"
+                        >
+                          Qui sommes-nous
+                        </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="/blog"
-                      >
-                        Notre Blog
-                      </a>
+                      <Link href="/blog">
+                        <a
+                          className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                          href="#"
+                        >
+                          Notre Blog
+                        </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="/courses"
-                      >
-                        Formation
-                      </a>
+                      <Link href="/courses">
+                        <a
+                          className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                          href="#"
+                        >
+                          Formation
+                        </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="/contact"
-                      >
-                        Contacts
-                      </a>
+                      <Link href="/contact">
+                        <a
+                          className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                          href="#"
+                        >
+                          Contacts
+                        </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -105,36 +114,44 @@ export default function Footer() {
                   <ul className="list-unstyled">
                     {' '}
                     <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="/community"
-                      >
-                        Notre communauté
-                      </a>
+                      <Link href="/community">
+                        <a
+                          className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                          href="#"
+                        >
+                          Notre communauté
+                        </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="/about"
-                      >
-                        Qui sommes-nous
-                      </a>
+                      <Link href="/about">
+                        <a
+                          className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                          href="#"
+                        >
+                          Qui sommes-nous
+                        </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="/blog"
-                      >
-                        Notre Blog
-                      </a>
+                      <Link href="/blog">
+                        <a
+                          className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                          href="#"
+                        >
+                          Notre Blog
+                        </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="/privacy-policy"
-                      >
-                        Politique de confidentialité
-                      </a>
+                      <Link href="/privacy-policy">
+                        <a
+                          className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                          href="#"
+                        >
+                          Politique de confidentialité
+                        </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -145,7 +162,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center md:justify-between justify-center">
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm text-gray-600 font-semibold py-1">
-                Copyright © {new Date().getFullYear()} Xarala Academy{' '}
+                Copyright © {new Date().getFullYear()} Xarala v.1.7.0{' '}
                 <a href="#" className="text-gray-600 hover:text-gray-900">
                   Xarala
                 </a>

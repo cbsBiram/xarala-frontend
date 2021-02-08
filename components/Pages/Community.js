@@ -47,8 +47,7 @@ const Community = () => {
         <main>
           <section className="relative py-20 border-b">
             <div
-              className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
-              bg-gray-300
+              className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20 bg-gray-300"
               style={{ transform: 'translateZ(0)' }}
             >
               <svg
@@ -219,11 +218,12 @@ const Community = () => {
                 className="items-center flex flex-wrap justify-center"
               >
                 <motion.div
-                  whileHover="hover"
+                  whilehover="hover"
                   variants={{ hover: { scale: 1.1 } }}
                   className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                 >
                   <a
+                    target="_blank"
                     href="http://bit.ly/xaralaYouTube"
                     className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
                   >
@@ -237,13 +237,14 @@ const Community = () => {
                 </motion.div>
 
                 <motion.div
-                  whileHover="hover"
+                  whilehover="hover"
                   variants={{ hover: { scale: 1.1 } }}
                   className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                 >
                   <a
+                    target="_blank"
                     href="https://discord.gg/2gZqqp5"
-                    whileHover="hover"
+                    whilehover="hover"
                     variants={{ hover: { scale: 1.1 } }}
                     className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
                   >
@@ -260,11 +261,12 @@ const Community = () => {
                 </motion.div>
 
                 <motion.div
-                  whileHover="hover"
+                  whilehover="hover"
                   variants={{ hover: { scale: 1.1 } }}
                   className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                 >
                   <a
+                    target="_blank"
                     href="https://twitter.com/xarala221"
                     className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
                   >
@@ -278,11 +280,12 @@ const Community = () => {
                 </motion.div>
 
                 <motion.div
-                  whileHover="hover"
+                  whilehover="hover"
                   variants={{ hover: { scale: 1.1 } }}
                   className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                 >
                   <a
+                    target="_blank"
                     href="https://web.facebook.com/xarala"
                     className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
                   >
@@ -296,11 +299,12 @@ const Community = () => {
                 </motion.div>
 
                 <motion.div
-                  whileHover="hover"
+                  whilehover="hover"
                   variants={{ hover: { scale: 1.1 } }}
                   className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                 >
                   <a
+                    target="_blank"
                     href="https://linkedin.com/in/xarala221"
                     className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
                   >
@@ -313,11 +317,12 @@ const Community = () => {
                   </a>
                 </motion.div>
                 <motion.div
-                  whileHover="hover"
+                  whilehover="hover"
                   variants={{ hover: { scale: 1.1 } }}
                   className="lg:pt-8 pt-4 w-full md:w-4/12 px-4 text-center"
                 >
                   <a
+                    target="_blank"
                     href="https://github.com/xarala221"
                     className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
                   >

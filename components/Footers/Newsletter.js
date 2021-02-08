@@ -26,8 +26,7 @@ const Newsletter = () => {
       style={{
         backgroundBlendMode: 'multiply',
         backgroundPosition: 'center center',
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1572297870735-065d402f7b29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')",
+        backgroundImage: `url(${require('assets/img/xarala-header.jpg')})`,
       }}
     >
       <div className=" p-10  py-20  flex  flex-col  flex-wrap items-center justify-center  content-center">
@@ -56,7 +55,7 @@ const Newsletter = () => {
             <motion.button
               className=" p-2  bg-indigo-400  rounded-r-lg  text-white hover:bg-blue-300"
               type="submit"
-              whileHover="hover"
+              whilehover="hover"
               variants={{
                 hover: {
                   backgroundColor: 'rgba(129, 140, 248)',
