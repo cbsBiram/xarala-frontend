@@ -4,6 +4,12 @@
   "version": "1.0.0",
   "description": "Xarala Academy.",
   "repository": "https://gitlab.com/xarala-acadmey/xarala-frontend/",
+  "keywords": [
+    "Xarala",
+    "Xarala Academy",
+    "Formation Python",
+    "Formation Django"
+  ],
   "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.3.6",
