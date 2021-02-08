@@ -45,7 +45,7 @@ const ValidateButton = ({ order, totalPrice }) => {
     <>
       <button
         onClick={() => handleSubscrireUserToCourse(order.items)}
-        className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none"
+        className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-blue-500 rounded-full shadow item-center hover:bg-blue-700 focus:shadow-outline focus:outline-none"
       >
         <svg
           aria-hidden="true"

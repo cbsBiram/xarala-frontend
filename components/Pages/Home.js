@@ -358,7 +358,7 @@ const Home = ({ allPosts, allCourses }) => {
                 className="flex items-center justify-center mt-8"
                 style={{ marginBottom: '-40px' }}
               >
-                <a href="/blog">
+                <Link href="/blog">
                   <button
                     className="text-white active:bg-gray-700 text-md font-bold uppercase px-4 py-2 rounded-full hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                     type="button"
@@ -366,7 +366,7 @@ const Home = ({ allPosts, allCourses }) => {
                   >
                     Découvrir nos articles
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
           </section>

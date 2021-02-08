@@ -32,30 +32,40 @@ export default function Footer() {
                 Choisissez Xarala et bénéficiez de l'emploi garanti.
               </h5>
               <div className="mt-6 lg:mb-0 mb-6">
-                <button
-                  className="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-twitter"></i>
-                </button>
-                <button
-                  className="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                </button>
-                <button
-                  className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-dribbble"></i>
-                </button>
-                <button
-                  className="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-github"></i>
-                </button>
+                <a href="https://twitter.com/xaralatech" target="_blank">
+                  <button
+                    className="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                    type="button"
+                  >
+                    <i className="fab fa-twitter"></i>
+                  </button>
+                </a>
+
+                <a href="https://www.facebook.com/xarala" target="_blank">
+                  <button
+                    className="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                    type="button"
+                  >
+                    <i className="fab fa-facebook-square"></i>
+                  </button>
+                </a>
+
+                <a href="http://bit.ly/xaralaYouTube" target="_blank">
+                  <button
+                    className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                    type="button"
+                  >
+                    <i className="fab fa-youtube"></i>
+                  </button>
+                </a>
+                <a href="https://github.com/Xarala-Academy" target="_blank">
+                  <button
+                    className="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                    type="button"
+                  >
+                    <i className="fab fa-github"></i>
+                  </button>
+                </a>
               </div>
             </div>
             <div className="w-full lg:w-8/12 px-4">

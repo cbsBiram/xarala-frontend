@@ -15,7 +15,7 @@ export const PostCard = ({ post }) => {
                   : `${process.env.MEDIA_URL}${post.image}`
               }
               alt={post.title}
-              className="h-full w-full object-cover object-center"
+              className="h-auto  w-full object-contain object-center"
             />
             <div className="p-4 md:p-6">
               <p className="text-blue-500 font-semibold text-xs mb-1 leading-none">
