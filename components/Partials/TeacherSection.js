@@ -10,7 +10,11 @@ const TeacherSection = ({ teacher }) => {
               <div className="relative">
                 <img
                   alt="..."
-                  src={require('assets/img/team-2-800x800.jpg')}
+                  src={
+                    teacher.avatar
+                      ? `${process.env.MEDIA_URL}${teacher.avatar}`
+                      : require('assets/img/team-2-800x800.jpg')
+                  }
                   className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                 />
               </div>
@@ -23,22 +27,10 @@ const TeacherSection = ({ teacher }) => {
                   </span>
                   <span className="text-sm text-gray-500">Cours</span>
                 </div>
-                <div className="mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
-                    10
-                  </span>
-                  <span className="text-sm text-gray-500">Étudiants</span>
-                </div>
-                <div className="lg:mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
-                    89
-                  </span>
-                  <span className="text-sm text-gray-500">Article</span>
-                </div>
               </div>
             </div>
           </div>
-          <div className="text-center mt-12">
+          <div className="text-center mt-2">
             <h3 className="text-xl font-semibold leading-normal mb-2 text-gray-800">
               {teacher.firstName} {teacher.lastName}
             </h3>
@@ -46,7 +38,7 @@ const TeacherSection = ({ teacher }) => {
               <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{' '}
               {teacher.address}
             </div>
-            <div className="mb-2 text-gray-700 mt-10">
+            <div className="mb-2 text-gray-700 mt-2">
               <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
               {teacher.title}
             </div>
