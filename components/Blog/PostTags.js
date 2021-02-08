@@ -17,7 +17,7 @@ const PostTags = () => {
               tags.map((tag) => (
                 <li>
                   <a
-                    href="#"
+                    href={`/blog/tags/${tag.name}`}
                     className="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline"
                   >
                     - {tag.name}

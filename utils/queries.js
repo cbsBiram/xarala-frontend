@@ -183,3 +183,23 @@ query{
   }
 }
 `
+
+export const POST_BY_TAG = gql`
+  query($tagName: String!) {
+    tag(tagName: $tagName) {
+      id
+      name
+      getTagPosts {
+        id
+        title
+        imageUrl
+        image
+        slug
+        tags {
+          id
+          name
+        }
+      }
+    }
+  }
+`
