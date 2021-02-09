@@ -11,15 +11,15 @@ export default function CardSettings({ me }) {
   const [address, setAddress] = useState(me.address)
   const [phone, setPhone] = useState(me.phone)
   const [bio, setBio] = useState(me.bio)
+  const [accountType, setAccountType] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
   const [updateUser] = useMutation(UPDATE_PROFILE)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
     const { error: userErrors, data: userData } = await updateUser({
-      variables: { firstName, lastName, address, phone, bio },
+      variables: { firstName, lastName, address, phone, bio, accountType },
     })
 
     if (userErrors) setErrorMessage(errors[0].message)
@@ -142,6 +142,65 @@ export default function CardSettings({ me }) {
                 </div>
               </div>
             </div>
+
+            <hr className="mt-6 border-b-1 border-gray-400" />
+
+            <h6 className="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
+              Type de compte
+            </h6>
+            <div className="flex flex-wrap">
+              <div className="w-full lg:w-12/12 px-4">
+                <div className="flex items-center w-full mb-3">
+                  <input
+                    type="radio"
+                    className="text-green-500"
+                    name="account_type"
+                    id="account-type"
+                    value="student"
+                    onChange={(event) => setAccountType(event.target.value)}
+                  />
+                  <label
+                    className="uppercase text-gray-700 text-xs font-bold ml-2"
+                    htmlFor="account-type"
+                  >
+                    Apprenant
+                  </label>
+                </div>
+                <div className="flex items-center w-full mb-3">
+                  <input
+                    type="radio"
+                    className="text-green-500"
+                    name="account_type"
+                    id="account-type"
+                    value="teacher"
+                    onChange={(event) => setAccountType(event.target.value)}
+                  />
+                  <label
+                    className="uppercase text-gray-700 text-xs font-bold ml-2"
+                    htmlFor="account-type"
+                  >
+                    Instructeur
+                  </label>
+                </div>
+                <div className="flex items-center w-full mb-3">
+                  <input
+                    type="radio"
+                    className="text-green-500"
+                    name="account_type"
+                    id="account-type"
+                    value="author"
+                    onChange={(event) => setAccountType(event.target.value)}
+                  />
+                  <label
+                    className="uppercase text-gray-700 text-xs font-bold ml-2"
+                    htmlFor="account-type"
+                  >
+                    Auteur
+                  </label>
+                </div>
+              </div>
+            </div>
+
             <div className="flex mx-4 my-4 justify-end items-center">
               <button
                 className="bg-blue-400 active:bg-gray-700 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
