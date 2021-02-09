@@ -21,28 +21,7 @@ export const CourseCard = ({ course }) => {
               <h3 className="font-semibold mb-2 text-sm leading-tight sm:leading-normal">
                 {course.title}
               </h3>
-              <p className="mb-0">
-                <i
-                  className="fas fa-star text-yellow-600"
-                  style={{ color: 'rgba(251, 191, 36)' }}
-                ></i>
-                <i
-                  className="fas fa-star text-warning"
-                  style={{ color: 'rgba(251, 191, 36)' }}
-                ></i>
-                <i
-                  className="fas fa-star text-warning"
-                  style={{ color: 'rgba(251, 191, 36)' }}
-                ></i>
-                <i
-                  className="fas fa-star text-warning"
-                  style={{ color: 'rgba(251, 191, 36)' }}
-                ></i>
-                <i
-                  className="fas fa-star text-warning"
-                  style={{ color: 'rgba(251, 191, 36)' }}
-                ></i>
-              </p>
+
               <div className="text-sm flex items-center">
                 <i className="far fa-user mx-2"></i>
 

@@ -254,7 +254,7 @@ const ContactUs = () => {
                                   required
                                   value={message}
                                   onChange={(e) => setMessage(e.target.value)}
-                                  class="description  sec p-3 h-60 border border-gray-300 outline-none focus:border-indigo-500 focus:outline-none"
+                                  className="description  sec p-3 h-60 border border-gray-300 outline-none focus:border-indigo-500 focus:outline-none"
                                   spellcheck="false"
                                   placeholder="Votre message"
                                 />

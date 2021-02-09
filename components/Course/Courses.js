@@ -71,104 +71,93 @@ const AllCourses = ({
 
   return (
     <>
-      <div className="block">
-        <div>
-          <div
-            className="flex flex-wrap items-center bg-gray-200 px-6 mb-5 pt-16 pb-5"
-            style={{ width: '100%' }}
-          >
-            <table>
-              <tbody>
-                <td className="w-full" style={{ width: '40%' }}>
-                  <label class="flex inline-flex items-center justify-center bg-white py-2 rounded mr-4">
-                    <span
-                      htmlFor="category"
-                      class="text-blue-400 font-semibold ml-2 mr-2"
-                    >
-                      Catégories :
-                    </span>
-                    <select
-                      class="form-select bg-white border mr-2 rounded py-1"
-                      name="category"
-                      id="category"
-                      defaultValue={categoryName}
-                      onChange={(e) => {
-                        setCategoryName(e.target.value)
-                        filterCourseByCategory(e)
-                      }}
-                    >
-                      <option value="">Toutes</option>
-                      {categories.map((category) => (
-                        <option
-                          key={category.id}
-                          className="px-2"
-                          value={category.name}
-                        >
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                </td>
-                <td style={{ width: '40%' }}>
-                  <label
-                    class="flex inline-flex items-center justify-center bg-white py-2 rounded mr-4"
-                    style={{ width: '100%' }}
-                  >
-                    <span
-                      htmlFor="teachers"
-                      class="text-blue-400 font-semibold ml-2 mr-2"
-                    >
-                      Instructeurs :
-                    </span>
-                    <select
-                      class="form-select bg-white border mr-2 rounded py-1"
-                      name="teachers"
-                      id="teachers"
-                      defaultValue={teacherId}
-                      onChange={(e) => {
-                        setTeacherId(e.target.value)
-                        filterCourseByTeacher(e)
-                      }}
-                    >
-                      <option value="0">Tous</option>
-                      {teachers.map((teacher) => (
-                        <option
-                          key={teacher.id}
-                          className="px-2"
-                          value={teacher.id}
-                        >
-                          {teacher.firstName} {teacher.lastName}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                </td>
-                <td style={{ width: '20%' }}>
-                  <div class="ml-4 inline-flex text-gray-600">
-                    <input
-                      class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                      type="text"
-                      name="search"
-                      defaultValue={query}
-                      placeholder="Que souhaitez-vous apprendre ?"
-                      onChange={(e) => setQuery(e.target.value)}
-                      style={{ width: '400px' }}
-                    />
-                    <button
-                      type="submit"
-                      onClick={(e) => submitSearch(e)}
-                      class="right-0 top-0 mr-4 text-white rounded px-2 bg-blue-400 hover:bg-blue-500"
-                    >
-                      Rechercher
-                    </button>
-                  </div>
-                </td>
-              </tbody>
-            </table>
-          </div>
-
+      <div className="relative block   pt-10">
+        <div className="container mx-auto px-4 py-8 ">
           <div className="flex flex-wrap justify-center text-center">
+            <div className="w-full px-4 flex-1">
+              <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
+                <span
+                  htmlFor="category"
+                  className="text-blue-400 font-semibold ml-2 mr-2"
+                >
+                  Catégories :
+                </span>
+                <select
+                  className="form-select bg-white border mr-2 rounded py-1"
+                  name="category"
+                  id="category"
+                  defaultValue={categoryName}
+                  onChange={(e) => {
+                    setCategoryName(e.target.value)
+                    filterCourseByCategory(e)
+                  }}
+                >
+                  <option value="">Toutes</option>
+                  {categories.map((category) => (
+                    <option
+                      key={category.id}
+                      className="px-2"
+                      value={category.name}
+                    >
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="w-full px-4 flex-1">
+              <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
+                <span
+                  htmlFor="teachers"
+                  className="text-blue-400 font-semibold ml-2 mr-2"
+                >
+                  Instructeurs :
+                </span>
+                <select
+                  className="form-select bg-white border mr-2 rounded py-1"
+                  name="teachers"
+                  id="teachers"
+                  defaultValue={teacherId}
+                  onChange={(e) => {
+                    setTeacherId(e.target.value)
+                    filterCourseByTeacher(e)
+                  }}
+                >
+                  <option value="0">Tous</option>
+                  {teachers.map((teacher) => (
+                    <option
+                      key={teacher.id}
+                      className="px-2"
+                      value={teacher.id}
+                    >
+                      {teacher.firstName} {teacher.lastName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="w-full px-4 flex-1">
+              <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
+                <div className="ml-4 inline-flex text-gray-600">
+                  <input
+                    className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                    type="text"
+                    name="search"
+                    defaultValue={query}
+                    placeholder="Que souhaitez-vous apprendre ?"
+                    onChange={(e) => setQuery(e.target.value)}
+                  />
+                  <button
+                    type="submit"
+                    onClick={(e) => submitSearch(e)}
+                    className="right-0 top-0 mr-4 text-white rounded px-2 bg-blue-400 hover:bg-blue-500"
+                  >
+                    Rechercher
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <div
               className="w-full lg:w-7/12 px-4 mb-10"
               style={{
@@ -185,15 +174,17 @@ const AllCourses = ({
                 style={{ marginBottom: '30px' }}
               ></div>
             </div>
-          </div>
 
-          <div className="flex flex-wrap">
-            {courses &&
-              courses.map((course) => (
-                <CourseCard key={course.id} course={course} />
-              ))}
+            <div className="flex flex-wrap">
+              {courses &&
+                courses.map((course) => (
+                  <CourseCard key={course.id} course={course} />
+                ))}
+            </div>
+            {pages > 1 && (
+              <Pagination pages={pages} currentPage={currentPage} />
+            )}
           </div>
-          {pages > 1 && <Pagination pages={pages} currentPage={currentPage} />}
         </div>
       </div>
     </>

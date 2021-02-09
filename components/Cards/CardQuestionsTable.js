@@ -99,7 +99,7 @@ export default function CardQuestionsTable({ color, questions, chapterSlug }) {
                             {answer.isCorrect ? (
                               <i className="far fa-check-circle text-green-500 text-lg"></i>
                             ) : (
-                              <i class="fas fa-ban text-red-500 text-lg"></i>
+                              <i className="fas fa-ban text-red-500 text-lg"></i>
                             )}
                             <span className="ml-2">
                               {answer.label} (EXERCICE)

@@ -66,15 +66,15 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
           <table>
             <tbody>
               <td style={{ width: '40%' }}>
-                <label class="flex inline-flex items-center bg-white py-1 rounded mr-2">
+                <label className="flex inline-flex items-center bg-white py-1 rounded mr-2">
                   <span
                     htmlFor="authors"
-                    class="text-blue-400 font-semibold ml-2 mr-2"
+                    className="text-blue-400 font-semibold ml-2 mr-2"
                   >
                     Auteurs :
                   </span>
                   <select
-                    class="form-select bg-white border mr-2 rounded py-1"
+                    className="form-select bg-white border mr-2 rounded py-1"
                     name="authors"
                     id="authors"
                     defaultValue={authorId}
@@ -97,15 +97,15 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
                 </label>
               </td>
               <td style={{ width: '40%' }}>
-                <label class="flex inline-flex items-center bg-white py-1 rounded ml-2">
+                <label className="flex inline-flex items-center bg-white py-1 rounded ml-2">
                   <span
                     htmlFor="tags"
-                    class="text-blue-400 font-semibold ml-2 mr-2"
+                    className="text-blue-400 font-semibold ml-2 mr-2"
                   >
                     Tags :
                   </span>
                   <select
-                    class="form-select bg-white border mr-2 rounded py-1"
+                    className="form-select bg-white border mr-2 rounded py-1"
                     name="tags"
                     id="tags"
                     defaultValue={tag}
@@ -124,9 +124,9 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
                 </label>
               </td>
               <td style={{ width: '20%' }}>
-                <div class="w-full inline-flex text-gray-600 ml-3">
+                <div className="w-full inline-flex text-gray-600 ml-3">
                   <input
-                    class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                    className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                     type="text"
                     name="search"
                     placeholder="Que souhaitez-vous apprendre ?"
@@ -136,7 +136,7 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
                   />
                   <button
                     type="submit"
-                    class="right-0 top-0 mr-4 text-white rounded px-2 bg-blue-400 hover:bg-blue-500"
+                    className="right-0 top-0 mr-4 text-white rounded px-2 bg-blue-400 hover:bg-blue-500"
                     onClick={() => searchPosts()}
                   >
                     Rechercher
