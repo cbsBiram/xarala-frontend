@@ -203,3 +203,25 @@ export const POST_BY_TAG = gql`
     }
   }
 `
+
+export const POSTS_BY_AUTHOR = gql`
+  query($authorId: Int!) {
+    user(id: $authorId) {
+      id
+      firstName
+      lastName
+      email
+      getUserPosts {
+        id
+        title
+        imageUrl
+        image
+        slug
+        tags {
+          id
+          name
+        }
+      }
+    }
+  }
+`

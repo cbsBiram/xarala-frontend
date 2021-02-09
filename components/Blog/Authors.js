@@ -1,11 +1,14 @@
 import { useQuery } from '@apollo/client'
+import Link from 'next/link'
 import React from 'react'
+import { createUUID } from '../../utils/common'
 import { POST_AUTHORS } from '../../utils/queries'
 
 const Authors = () => {
   const { data, error, loading } = useQuery(POST_AUTHORS)
   if (loading) return <h2>Chargement</h2>
   const { postAuthors: authors } = data
+  const randomId = createUUID()
   return (
     <>
       <div className="px-8">
@@ -25,12 +28,15 @@ const Authors = () => {
                     className="w-10 h-10 object-cover rounded-full mx-4"
                   />
                   <p>
-                    <a
-                      href="#"
-                      className="text-gray-700 font-bold mx-1 hover:underline"
-                    >
-                      {`${author.firstName} ${author.lastName}`}
-                    </a>
+                    <Link href={`/blog/authors/${author.id}${randomId}`}>
+                      <a
+                        href="#"
+                        className="text-gray-700 font-bold mx-1 hover:underline"
+                      >
+                        {`${author.firstName} ${author.lastName}`}
+                      </a>
+                    </Link>
+
                     <span className="text-gray-700 text-sm font-light">
                       {author.getUserPosts.length} Articles
                     </span>
