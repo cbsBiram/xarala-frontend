@@ -151,7 +151,6 @@ export const courseFields = `
   title
   price
   description
-  shortDescription
   thumbnail
   slug
   language{${languageFields}}
@@ -175,6 +174,7 @@ export const userAnswerFields = `
   id
   question {${questionFields}}
   quiz {
+    id
     title
     questions {${questionFields}
     }
@@ -182,6 +182,7 @@ export const userAnswerFields = `
   answer{
     label
     isCorrect
+    id
   }
 `
 

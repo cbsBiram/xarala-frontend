@@ -6,27 +6,56 @@ import { useRouter } from 'next/router'
 import AllPosts from '../components/Blog/AllPosts'
 import Loading from '../components/Shared/Loading'
 import Page from '../layouts/Page'
-import { ALL_POSTS_QUERY } from '../utils/queries'
+import {
+  ALL_AUTHORS_QUERY,
+  ALL_POSTS_QUERY,
+  TAGS_QUERY,
+} from '../utils/queries'
 
 function Blog() {
   const router = useRouter()
   const { page } = router.query
   const currentPage = page ? page : 1
-  const { loading, error, data } = useQuery(ALL_POSTS_QUERY, {
+  const {
+    loading: loadingPosts,
+    errors: postsErrors,
+    data: postsData,
+  } = useQuery(ALL_POSTS_QUERY, {
+    variables: { search: null, page: currentPage },
+  })
+  const {
+    data: authorsData,
+    errors: authorsErrors,
+    loading: loadingAuthors,
+  } = useQuery(ALL_AUTHORS_QUERY, {
     variables: { page: currentPage },
   })
+  const { data: tagsData, errors: tagsErrors, loading: loadingTags } = useQuery(
+    TAGS_QUERY
+  )
 
-  if (loading) return <Loading />
-  if (error) return <h2>Error</h2>
+  if (loadingPosts || loadingAuthors || loadingTags) return <Loading />
+  if (postsErrors || authorsErrors || tagsErrors) return <h2>Error</h2>
 
-  const { objects: posts, pages } = data.posts
+  const { objects: posts, pages } = postsData.posts
+  const { objects: users } = authorsData ? authorsData.authors : {}
+  const { tags } = tagsData ? tagsData : {}
+
+  console.log(tags)
+
   return (
     <>
       <NextSeo
         title={`Xarala Academy | Blog`}
         description={`Consultez nos articles`}
       />
-      <AllPosts posts={posts} pages={pages} currentPage={currentPage} />
+      <AllPosts
+        allPosts={posts}
+        pages={pages}
+        currentPage={currentPage}
+        tags={tags}
+        authors={users}
+      />
     </>
   )
 }

@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client'
 import {
+  categoryFields,
   chapterFields,
   courseFields,
   languageFields,
@@ -10,7 +11,6 @@ import {
   tagFields,
   userAnswerFields,
   userFields,
-  categoryFields,
 } from './fields'
 
 export const ALL_STUDENTS_QUERY = gql`
@@ -73,8 +73,8 @@ query($lessonSlug: String!){
 `
 
 export const ALL_POSTS_QUERY = gql`
-  query($page:Int){
-    posts(page: $page){
+  query($search: String, $page:Int){
+    posts(search: $search, page: $page){
       page
       hasNext
       hasPrev
@@ -85,28 +85,73 @@ export const ALL_POSTS_QUERY = gql`
 `
 
 export const ALL_COURSES_QUERY = gql`
-query($page: Int) {
-  allCourses(page: $page) {
-    page
-    hasNext
-    hasPrev
-    pages
-    objects {
+  query($search: String, $page: Int) {
+    allCourses(search: $search, page: $page) {
+      page
+      hasNext
+      hasPrev
+      pages
+      objects {
+        id
+        title
+        price
+        description
+        thumbnail
+        slug
+        dateCreated
+        teacher {
+          id
+          firstName
+          lastName
+          email
+          phone
+        }
+      }
+    }
+  }
+`
+
+export const COURSES_BY_SEARCH = gql`
+  query($query: String) {
+    coursesBySearch(query: $query) {
       id
       title
       price
+      description
       thumbnail
       slug
-      teacher{
+      dateCreated
+      teacher {
         id
-        email
         firstName
         lastName
-  }
-  categories {${categoryFields}}
+        email
+        phone
+      }
     }
   }
+`
+
+export const COURSES_BY_USER = gql`
+query ($userId: Int){
+  coursesByUser(userId: $userId) {
+    ${courseFields}
+  }
 }
+`
+
+export const POSTS_AUTHOR = gql`
+query ($userId: Int){
+  postsByAuthor(userId: $userId) {
+    ${postFields}
+  }
+}
+`
+
+export const POSTS_BY_SEARCH = gql`
+  query($query: String) {
+    postsBySearch(query: $query) {${postFields}}
+  }
 `
 
 export const SINGLE_QUIZ_QUERY = gql`
@@ -176,10 +221,40 @@ query{
 }
 `
 
+export const TAG_QUERY = gql`
+query ($tagName: String!) {
+  tag(name: $tagName) {${tagFields}}
+}
+`
+
 export const POST_AUTHORS = gql`
 query{
   postAuthors{
     ${userFields}
+  }
+}
+`
+
+export const ALL_CATEGORIES = gql`
+query{
+  categories{
+    ${categoryFields}
+  }
+}
+`
+
+export const COURSES_BY_CATEGORY = gql`
+query ($categoryName: String){
+  coursesByCategory(categoryName: $categoryName) {
+    ${courseFields}
+  }
+}
+`
+
+export const POSTS_BY_TAG = gql`
+query ($tagName: String!){
+  postsByTag(tagName: $tagName) {
+    ${postFields}
   }
 }
 `

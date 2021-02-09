@@ -145,8 +145,8 @@ export const REMOVE_COURSE_FROM_CART = gql`
 `
 
 export const UPDATE_PROFILE = gql`
-  mutation($firstName: String, $lastName: String, $phone: String, $address: String, $bio: String) {
-    updateUser(firstName: $firstName, lastName: $lastName, phone: $phone, address :$address, bio: $bio) {
+  mutation($firstName: String, $lastName: String, $phone: String, $address: String, $bio: String, $accountType: String) {
+    updateUser(firstName: $firstName, lastName: $lastName, phone: $phone, address :$address, bio: $bio, accountType: $accountType) {
       user {${userFields}}
     }
   }

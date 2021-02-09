@@ -1,28 +1,37 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
 import { NextSeo } from 'next-seo'
 
 import Page from '../../../../layouts/Page'
-import { USER_ANSWERS_QUERY } from '../../../../utils/queries'
-import { useRouter } from 'next/router'
 import Loading from '../../../../components/Shared/Loading'
+import {
+  SINGLE_QUIZ_QUERY,
+  USER_ANSWERS_QUERY,
+} from '../../../../utils/queries'
 
 function Result() {
   const router = useRouter()
   const { slug } = router.query
-
-  const { error, loading, data } = useQuery(USER_ANSWERS_QUERY, {
+  const { loading: loadingUserAnswer, data: userAnswerData } = useQuery(
+    USER_ANSWERS_QUERY,
+    {
+      variables: { chapterSlug: slug },
+    }
+  )
+  const { loading: loadingQuiz, data: quizData } = useQuery(SINGLE_QUIZ_QUERY, {
     variables: { chapterSlug: slug },
   })
 
-  const { userAnswer } = data ? data : {}
+  const { userAnswer } = userAnswerData ? userAnswerData : {}
+  const { quiz } = quizData ? quizData : {}
   const nbQuestions = userAnswer ? userAnswer[0].quiz.questions.length : 0
   const nbCorrectAnswers = userAnswer
     ? userAnswer.filter((userAns) => userAns.answer.isCorrect).length
     : 0
   const score = nbQuestions ? (nbCorrectAnswers / nbQuestions) * 100 : 0
 
-  if (loading) return <Loading />
+  if (loadingUserAnswer || loadingQuiz) return <Loading />
 
   return (
     <>
@@ -54,8 +63,8 @@ function Result() {
             </p>
           </div>
           <div className="flex-auto px-4 lg:px-10 py-8 pt-0">
-            {userAnswer
-              ? userAnswer[0].quiz.questions.map((question) => (
+            {quiz
+              ? quiz.questions.map((question, i) => (
                   <div key={question.id}>
                     <hr className="mt-6 mb-6 border-b-1 border-gray-400" />
                     <p className="flex text-gray-700 text-lg mt-2 mb-2 font-bold">
@@ -74,22 +83,56 @@ function Result() {
                             >
                               Réponse(s) :
                             </th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody className="text-sm font-normal text-gray-700">
                           {question.answers &&
-                            question.answers.map((ans) => (
-                              <tr
-                                key={ans.id}
-                                className={`hover:bg-gray-100  ${
-                                  ans.isCorrect
-                                    ? 'bg-green-500 text-white font-bold'
-                                    : ''
-                                }  border-b border-gray-200 py-10`}
-                              >
-                                <td className="px-4 py-4">{ans.label}</td>
-                              </tr>
-                            ))}
+                            question.answers.map((answer) =>
+                              userAnswer &&
+                              userAnswer[i].answer.id === answer.id ? (
+                                <tr
+                                  key={answer.id}
+                                  className={`${
+                                    answer.isCorrect
+                                      ? 'bg-green-400 text-white font-bold'
+                                      : 'bg-red-500 text-white font-bold'
+                                  } border-gray-200`}
+                                >
+                                  <td className="px-4 py-4">{answer.label} </td>
+                                  <td>
+                                    <i
+                                      className={`fas fa-${
+                                        answer.isCorrect ? 'check' : 'times'
+                                      }  text-xl text-white`}
+                                    ></i>
+                                  </td>
+                                </tr>
+                              ) : (
+                                <tr
+                                  key={answer.id}
+                                  className={`${
+                                    answer.isCorrect
+                                      ? 'bg-green-400 hover:bg-green-100 text-white font-bold'
+                                      : 'hover:bg-gray-100'
+                                  }  border-b border-gray-200 py-10`}
+                                >
+                                  <td
+                                    className="px-4 py-4"
+                                    style={{ width: '95%' }}
+                                  >
+                                    {answer.label}
+                                  </td>
+                                  <td style={{ width: '5%' }}>
+                                    <i
+                                      className={`fas fa-${
+                                        answer.isCorrect ? 'check' : 'times'
+                                      }  text-xl text-white`}
+                                    ></i>
+                                  </td>
+                                </tr>
+                              )
+                            )}
                         </tbody>
                       </table>
                     </div>

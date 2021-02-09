@@ -1,13 +1,6 @@
 import { gql } from '@apollo/client'
 
-import {
-  courseFields,
-  postFields,
-  userFields,
-  userAnswerFields,
-  categoryFields,
-  errorFields,
-} from './fields'
+import { courseFields, postFields, userFields, categoryFields } from './fields'
 
 export function getFromMediaUrl(url) {
   return process.env.MEDIA_URL + url

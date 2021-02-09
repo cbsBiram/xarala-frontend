@@ -103,8 +103,16 @@ const UserDropdown = ({ setOpen }) => {
                 <span className="inline-block ml-2">Mon Compte</span>
               </a>
             </Link>
+            <Link href="/admin/courses">
+              <a
+                href="/admin/courses"
+                className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+              >
+                <i className="text-gray-500 fas fa-play text-lg leading-lg" />
+                <span className="inline-block ml-2">Mes cours</span>
+              </a>
+            </Link>
             <div className="h-0 my-2 border border-solid border-gray-200" />
-
             <a
               href="#xarala"
               className={

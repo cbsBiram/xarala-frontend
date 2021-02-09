@@ -145,6 +145,14 @@ export default function CardProfile({ me }) {
                 <i className="fas fa-phone-alt mr-2 text-lg text-gray-500"></i>
                 {me.phone ? me.phone : 'None'}
               </div>
+              <div className="mb-2 text-gray-700 my-4">
+                <i className="fas fa-user mr-2 text-lg text-gray-500"></i>
+                {me.isStudent
+                  ? 'Apprenant'
+                  : me.isTeacher
+                  ? 'Instructeur'
+                  : 'Auteur'}
+              </div>
             </div>
             <div className="mt-8 py-10 border-t border-gray-300 text-center">
               <div className="flex flex-wrap justify-center">
