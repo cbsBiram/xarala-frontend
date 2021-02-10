@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-import CardStats from 'components/Cards/CardStats.js'
+import CardStats from '../Cards/CardStats'
 
 export default function StudentHeaderStats({ courses, userQuizzes }) {
   let sumOfPrice = courses

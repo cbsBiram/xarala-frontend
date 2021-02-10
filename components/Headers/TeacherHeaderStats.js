@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CardStats from 'components/Cards/CardStats.js'
+import CardStats from '../Cards/CardStats'
 import { motion } from 'framer-motion'
 
 const TeacherHeaderStats = ({ courses }) => {

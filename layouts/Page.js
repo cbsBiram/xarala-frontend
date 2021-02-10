@@ -1,9 +1,9 @@
 import React from 'react'
 
-import IndexNavbar from 'components/Navbars/IndexNavbar.js'
-import Loading from 'components/Shared/Loading'
-import Footer from 'components/Footers/Footer'
-import Newsletter from 'components/Footers/Newsletter'
+import IndexNavbar from '../components/Navbars/IndexNavbar'
+import Loading from '../components/Shared/Loading'
+import Footer from '../components/Footers/Footer'
+import Newsletter from '../components/Footers/Newsletter'
 import { useQuery } from '@apollo/client'
 import { ME_QUERY } from '../utils/constants'
 
