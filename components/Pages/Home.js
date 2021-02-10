@@ -1,8 +1,10 @@
-import React from 'react'
+import Link from 'next/link'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
+
 import { PostCard } from '../../components/Partials/PostCard'
-import Link from 'next/link'
 import { CourseCard } from '../../components/Partials/CourseCard'
 
 let easing = [0.175, 0.85, 0.42, 0.96]
@@ -19,6 +21,9 @@ const imageVariants = {
   },
 }
 const Home = ({ allPosts, allCourses }) => {
+  const [queryString, setQueryString] = useState('')
+  const router = useRouter()
+
   return (
     <>
       <motion.div
@@ -49,7 +54,7 @@ const Home = ({ allPosts, allCourses }) => {
             </motion.div>
             <div className="container relative mx-auto">
               <div className="items-center flex flex-wrap">
-                <div className="w-full lg:w-10/12 px-4 ml-auto mr-auto text-center">
+                <div className="w-full px-4 ml-auto mr-auto text-center">
                   <div className="pr-12">
                     <h1 className="text-white font-semibold text-4xl">
                       Prenez Votre carrière en main.
@@ -82,6 +87,32 @@ const Home = ({ allPosts, allCourses }) => {
                         />
                       </a>
                     </p>
+                  </div>
+                  <div className="w-full text-gray-600 mt-8">
+                    <input
+                      className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                      type="text"
+                      name="search"
+                      placeholder="Que souhaitez-vous apprendre ?"
+                      defaultValue={queryString}
+                      onChange={(e) => setQueryString(e.target.value)}
+                      style={{ width: '350px' }}
+                    />
+                    <button
+                      type="submit"
+                      className="inline-flex items-center ml-2 h-10 mr-4 text-white font-semibold rounded-lg px-2 bg-blue-400 hover:bg-blue-500"
+                      onClick={() =>
+                        router.push({
+                          pathname: '/search',
+                          query: { q: `${queryString}` },
+                        })
+                      }
+                    >
+                      Rechercher
+                      <div className="ml-2 mt-1">
+                        <i className="fas fa-angle-right text-xl"></i>
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>

@@ -11,6 +11,7 @@ import {
   tagFields,
   userAnswerFields,
   userFields,
+  userLogsFields,
 } from './fields'
 
 export const ALL_STUDENTS_QUERY = gql`
@@ -296,6 +297,43 @@ export const POSTS_BY_AUTHOR = gql`
           id
           name
         }
+      }
+    }
+  }
+`
+
+export const ALL_USERS_LOGS = gql`
+  query($page: Int!) {
+    usersLogs(page: $page) {
+      page
+      hasNext
+      hasPrev
+      pages
+      objects{${userLogsFields}}
+    }
+  }
+`
+
+export const SEARCH_RESULTS = gql`
+  query($query: String!) {
+    homepageSearch(query: $query) {
+      ... on CourseType {
+        id
+        title
+        price
+        description
+        thumbnail
+        dateCreated
+        teacher {
+          id
+          firstName
+          lastName
+          email
+          phone
+        }
+      }
+      ... on PostType {
+        ${postFields}
       }
     }
   }
