@@ -28,7 +28,7 @@ const Authors = () => {
                     className="w-10 h-10 object-cover rounded-full mx-4"
                   />
                   <p>
-                    <Link href={`/blog/authors/${author.id}${randomId}`}>
+                    <Link href={`/blog/authors/${randomId}-${author.id}`}>
                       <a
                         href="#"
                         className="text-gray-700 font-bold mx-1 hover:underline"
