@@ -313,3 +313,28 @@ export const ALL_USERS_LOGS = gql`
     }
   }
 `
+
+export const SEARCH_RESULTS = gql`
+  query($query: String!) {
+    homepageSearch(query: $query) {
+      ... on CourseType {
+        id
+        title
+        price
+        description
+        thumbnail
+        dateCreated
+        teacher {
+          id
+          firstName
+          lastName
+          email
+          phone
+        }
+      }
+      ... on PostType {
+        ${postFields}
+      }
+    }
+  }
+`

@@ -71,8 +71,8 @@ const AllCourses = ({
 
   return (
     <>
-      <div className="relative block   pt-10">
-        <div className="container mx-auto px-4 py-8 ">
+      <div className="relative block pt-8">
+        <div className="container mx-auto px-4 py-8">
           <div className="flex flex-wrap justify-center text-center">
             <div className="w-full px-4 flex-1">
               <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
@@ -157,15 +157,7 @@ const AllCourses = ({
                 </div>
               </div>
             </div>
-
-            <div
-              className="w-full lg:w-7/12 px-4 mb-10"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
+            <div className="w-full flex flex-col items-center lg:w-7/12 px-4 mb-10">
               <h2 className="text-2xl font-semibold uppercase">
                 Nos meilleurs cours
               </h2>
@@ -175,7 +167,7 @@ const AllCourses = ({
               ></div>
             </div>
 
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap justify-center">
               {courses &&
                 courses.map((course) => (
                   <CourseCard key={course.id} course={course} />

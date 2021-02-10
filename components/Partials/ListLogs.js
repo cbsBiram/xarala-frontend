@@ -34,7 +34,10 @@ const ListLogs = ({ currentPage, pages, logs }) => {
                 </div>
                 <div className="flex-1 items-center justify-center pl-1 ">
                   <div className="flex font-medium dark:text-white justify-center">
-                    <p className="text-sm break-all ml-4">
+                    <p
+                      className="text-sm break-all ml-4"
+                      style={{ marginRight: '25px' }}
+                    >
                       {log.user ? log.user.email : 'Undefined'}
                     </p>
                   </div>
@@ -43,7 +46,10 @@ const ListLogs = ({ currentPage, pages, logs }) => {
                   </div>
                 </div>
                 <div className="flex-1 items-center">
-                  <div className="flex justify-end font-bold dark:text-white">
+                  <div
+                    className="flex justify-end font-bold dark:text-white"
+                    style={{ marginLeft: '25px' }}
+                  >
                     {log.action}
                   </div>
                   <div className="flex text-gray-600 dark:text-gray-200 text-sm justify-end mr-8">

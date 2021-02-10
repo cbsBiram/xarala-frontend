@@ -58,72 +58,65 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
 
   return (
     <>
-      <div className="block">
-        <div
-          className="flex flex-wrap w-full justify-end items-center bg-gray-200 px-6 mb-5 pt-16 pb-5"
-          style={{ width: '105%' }}
-        >
-          <table>
-            <tbody>
-              <td style={{ width: '40%' }}>
-                <label className="flex inline-flex items-center bg-white py-1 rounded mr-2">
-                  <span
-                    htmlFor="authors"
-                    className="text-blue-400 font-semibold ml-2 mr-2"
-                  >
-                    Auteurs :
-                  </span>
-                  <select
-                    className="form-select bg-white border mr-2 rounded py-1"
-                    name="authors"
-                    id="authors"
-                    defaultValue={authorId}
-                    onChange={(e) => {
-                      setAuthorId(e.target.value)
-                      filterPostByAuthor(e)
-                    }}
-                  >
-                    <option value="0">Tous</option>
-                    {authors.map((author) => (
-                      <option
-                        key={author.id}
-                        className="px-2"
-                        value={author.id}
-                      >
-                        {author.firstName} {author.lastName}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </td>
-              <td style={{ width: '40%' }}>
-                <label className="flex inline-flex items-center bg-white py-1 rounded ml-2">
-                  <span
-                    htmlFor="tags"
-                    className="text-blue-400 font-semibold ml-2 mr-2"
-                  >
-                    Tags :
-                  </span>
-                  <select
-                    className="form-select bg-white border mr-2 rounded py-1"
-                    name="tags"
-                    id="tags"
-                    defaultValue={tag}
-                    onChange={(e) => {
-                      setTag(e.target.value)
-                      filterPostByTag(e)
-                    }}
-                  >
-                    <option value="">Tous</option>
-                    {tags.map((tag) => (
-                      <option key={tag.id} className="px-2" value={tag.name}>
-                        {tag.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </td>
-              <td style={{ width: '20%' }}>
+      <div className="relative block pt-8">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-wrap justify-center text-center">
+            <div className="w-full px-4 flex-1">
+              <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
+                <span
+                  htmlFor="authors"
+                  className="text-blue-400 font-semibold ml-2 mr-2"
+                >
+                  Auteurs :
+                </span>
+                <select
+                  className="form-select bg-white border mr-2 rounded py-1"
+                  name="authors"
+                  id="authors"
+                  defaultValue={authorId}
+                  onChange={(e) => {
+                    setAuthorId(e.target.value)
+                    filterPostByAuthor(e)
+                  }}
+                >
+                  <option value="0">Tous</option>
+                  {authors.map((author) => (
+                    <option key={author.id} className="px-2" value={author.id}>
+                      {author.firstName} {author.lastName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="w-full px-4 flex-1">
+              <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
+                <span
+                  htmlFor="tags"
+                  className="text-blue-400 font-semibold ml-2 mr-2"
+                >
+                  Tags :
+                </span>
+                <select
+                  className="form-select bg-white border mr-2 rounded py-1"
+                  name="tags"
+                  id="tags"
+                  defaultValue={tag}
+                  onChange={(e) => {
+                    setTag(e.target.value)
+                    filterPostByTag(e)
+                  }}
+                >
+                  <option value="">Tous</option>
+                  {tags.map((tag) => (
+                    <option key={tag.id} className="px-2" value={tag.name}>
+                      {tag.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="w-full px-4 flex-1">
+              <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
                 <div className="w-full inline-flex text-gray-600 ml-3">
                   <input
                     className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
@@ -142,23 +135,25 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
                     Rechercher
                   </button>
                 </div>
-              </td>
-            </tbody>
-          </table>
-        </div>
-        <div className="px-6 py-10 my-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-center text-xl font-bold text-gray-700 md:text-2xl">
-              Bienvenue dans l'univers de l'innovation technologique.
-            </h1>
-          </div>
-          <div className="flex justify-between container mx-auto">
-            <div className="flex flex-wrap">
+              </div>
+            </div>
+            <div className="w-full flex flex-col items-center lg:w-7/12 px-4 mt-5 mb-10">
+              <h1 className="text-2xl font-semibold">
+                Bienvenue dans l'univers de l'innovation technologique.
+              </h1>
+              <div
+                className="w-10 h-1 bg-blue-600 rounded mt-2"
+                style={{ marginBottom: '30px' }}
+              ></div>
+            </div>
+            <div className="flex flex-wrap justify-center">
               {posts &&
                 posts.map((post) => <PostCard key={post.id} post={post} />)}
             </div>
+            {pages > 1 && (
+              <Pagination pages={pages} currentPage={currentPage} />
+            )}
           </div>
-          {pages > 1 && <Pagination pages={pages} currentPage={currentPage} />}
         </div>
       </div>
     </>
