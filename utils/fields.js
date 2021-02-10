@@ -65,6 +65,19 @@ export const postFields = `
   }
 `
 
+export const userLogsFields = `
+  id
+  action
+  isActive
+  userType
+  user {
+    id
+    email
+    avatar
+  }
+  createdAt
+`
+
 export const userFields = `
   id
   email
