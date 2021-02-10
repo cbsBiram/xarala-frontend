@@ -23,7 +23,7 @@ export default function AdminKpis({ usersInfo }) {
       </div>
       <div className="relative shadow-lg rounded-2xl w-36 p-4 bg-white dark:bg-gray-800">
         <div className="flex items-center">
-          <span className="bg-red-500 p-2 h-4 w-4 rounded-full relative"></span>
+          <span className="bg-red-500 p-2 h-1 w-4 rounded-full relative"></span>
           <p className="text-md text-gray-700 dark:text-gray-50 ml-2">
             Nombre d'auteurs
           </p>
@@ -33,7 +33,7 @@ export default function AdminKpis({ usersInfo }) {
             {authorsCount}
           </p>
           <div className="relative w-28 h-2 bg-gray-200 rounded">
-            <div className="absolute top-0 h-2  left-0 rounded bg-black w-2/3"></div>
+            <div className="absolute top-0 h-1  left-0 rounded bg-black w-2/3"></div>
           </div>
         </div>
       </div>

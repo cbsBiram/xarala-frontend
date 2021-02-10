@@ -11,6 +11,7 @@ import {
   tagFields,
   userAnswerFields,
   userFields,
+  userLogsFields,
 } from './fields'
 
 export const ALL_STUDENTS_QUERY = gql`
@@ -297,6 +298,18 @@ export const POSTS_BY_AUTHOR = gql`
           name
         }
       }
+    }
+  }
+`
+
+export const ALL_USERS_LOGS = gql`
+  query($page: Int!) {
+    usersLogs(page: $page) {
+      page
+      hasNext
+      hasPrev
+      pages
+      objects{${userLogsFields}}
     }
   }
 `
