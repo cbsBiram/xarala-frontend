@@ -14,7 +14,7 @@ const PostByAuthor = () => {
 
   const { loading, error, data } = useQuery(POSTS_BY_AUTHOR, {
     variables: {
-      authorId: slug.charAt(0),
+      authorId: slug.split('-').pop(),
     },
   })
 
