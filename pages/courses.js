@@ -38,11 +38,11 @@ const Courses = () => {
   } = useQuery(ALL_CATEGORIES)
 
   const { objects: courses, pages } = coursesData ? coursesData.allCourses : {}
-  const { categories } = categoriesData ? categoriesData : {}
-  const { objects: users } = teachersData ? teachersData.teachers : {}
 
   if (loadingCourses || loadingCategories || loadingTeachers) return <Loading />
   if (coursesErrors || categoriesErrors || teachersErrors) return <h2>Error</h2>
+  const { categories } = categoriesData ? categoriesData : {}
+  const { objects: users } = teachersData.teachers ? teachersData.teachers : {}
 
   return (
     <>

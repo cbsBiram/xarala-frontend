@@ -3,7 +3,6 @@ import { MockedProvider } from '@apollo/client/testing'
 
 import Login from './Login'
 
-/** @test {Title Component} */
 describe('Login Component', () => {
   it('should render without crashing', () => {
     const wrapper = mount(

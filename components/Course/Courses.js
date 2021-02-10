@@ -124,15 +124,16 @@ const AllCourses = ({
                   }}
                 >
                   <option value="0">Tous</option>
-                  {teachers.map((teacher) => (
-                    <option
-                      key={teacher.id}
-                      className="px-2"
-                      value={teacher.id}
-                    >
-                      {teacher.firstName} {teacher.lastName}
-                    </option>
-                  ))}
+                  {teachers &&
+                    teachers.map((teacher) => (
+                      <option
+                        key={teacher.id}
+                        className="px-2"
+                        value={teacher.id}
+                      >
+                        {teacher.firstName} {teacher.lastName}
+                      </option>
+                    ))}
                 </select>
               </div>
             </div>
