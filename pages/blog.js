@@ -36,9 +36,9 @@ function Blog() {
 
   if (loadingPosts || loadingAuthors || loadingTags) return <Loading />
   if (postsErrors || authorsErrors || tagsErrors) return <h2>Error</h2>
-
+  console.log('au', authorsData)
   const { objects: posts, pages } = postsData.posts
-  const { objects: users } = authorsData ? authorsData.authors : {}
+  const { objects: users } = authorsData.authors ? authorsData.authors : {}
   const { tags } = tagsData ? tagsData : {}
 
   console.log(tags)

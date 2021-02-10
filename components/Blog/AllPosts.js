@@ -84,15 +84,16 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
                     }}
                   >
                     <option value="0">Tous</option>
-                    {authors.map((author) => (
-                      <option
-                        key={author.id}
-                        className="px-2"
-                        value={author.id}
-                      >
-                        {author.firstName} {author.lastName}
-                      </option>
-                    ))}
+                    {authors &&
+                      authors.map((author) => (
+                        <option
+                          key={author.id}
+                          className="px-2"
+                          value={author.id}
+                        >
+                          {author.firstName} {author.lastName}
+                        </option>
+                      ))}
                   </select>
                 </label>
               </td>
