@@ -1,11 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client'
 import React from 'react'
 import { useRouter } from 'next/router'
-import {
-  ADD_COURSE_TO_CART,
-  CREATE_ORDER,
-  SUBSCRIBE_USER_TO_COURSE,
-} from '../../utils/mutations'
+import { ADD_COURSE_TO_CART, CREATE_ORDER } from '../../utils/mutations'
 import { CHECK_ENROLLEMENT_QUERY } from '../../utils/queries'
 import Loading from '../Shared/Loading'
 import { getToken } from '../../utils/auth'
@@ -64,7 +60,7 @@ export const EnrolledButton = ({ course }) => {
             )
           }
           type="button"
-          className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+          className="block w-full max-w-xs mx-auto bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 text-white rounded-lg px-3 py-3 font-semibold"
         >
           <i className="fas fa-play mr-1"></i>
           Poursuivre
@@ -73,7 +69,7 @@ export const EnrolledButton = ({ course }) => {
         <button
           onClick={handleAddToCart}
           type="button"
-          className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+          className="block w-full max-w-xs mx-auto bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 text-white rounded-lg px-3 py-3 font-semibold"
         >
           <i className="fas fa-shopping-basket mr-1"></i>
           Enroller

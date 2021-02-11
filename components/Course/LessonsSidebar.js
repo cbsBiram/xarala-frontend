@@ -24,10 +24,10 @@ const LessonsSidebar = ({ course, lessonId, setOpen }) => {
           </Link>
           <div
             id="closeSideNav"
-            className="fixed right-0 bg-gray-100 h-8 w-8 flex justify-center items-center rounded-full text-2xl pt-0 pb-1 lg:hidden cursor-pointer mr-10"
+            className="fixed right-0  h-auto w-auto flex justify-center items-center rounded-full text-2xl pt-0 pb-1 lg:hidden cursor-pointer mr-10"
             onClick={() => setOpen('closed')}
           >
-            &times;
+            <i className="far fa-times-circle "></i>
           </div>
         </div>
 

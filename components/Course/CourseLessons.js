@@ -21,15 +21,15 @@ const CourseLessons = ({ course, lesson }) => {
           {/* Main Content  */}
           <div className="lg:ml-64 mb-12 content-container">
             <div className="flex flex-col justify-center h-24 py-2">
-              <div className="flex space-around">
-                <h1 className="flex-1 text-lg font-bold justify-center">
-                  <span
-                    id="menuBtn"
-                    onClick={() => setOpenMenu('opened')}
-                    className="lg:hidden mr-2 h-10 w-8 float-left rounded-full flex justify-center cursor-pointer"
-                  >
-                    <img src={require('assets/img/menu.png')} alt="menu icon" />
-                  </span>
+              <div className="flex space-around pt-4">
+                <span
+                  id="menuBtn"
+                  onClick={() => setOpenMenu('opened')}
+                  className="lg:hidden mr-2 h-auto w-auto float-left rounded-full flex justify-center cursor-pointer pt-8 "
+                >
+                  <i className="fas fa-bars"></i>
+                </span>
+                <h1 className="flex-1 text-normal font-bold justify-center pt-4 mt-1">
                   {lesson.title}
                 </h1>
 

@@ -9,9 +9,7 @@ const CourseOverview = ({ course }) => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-wrap justify-center text-center">
           <div className="mb-10 w-full h-auto mt-4">
-            <h2 className="text-3xl font-semibold uppercase ">
-              {course.title}
-            </h2>
+            <h2 className="text-xl font-semibold uppercase ">{course.title}</h2>
             <VideoLecture lesson={course.courseChapters[0].courseLessons[0]} />
           </div>
         </div>

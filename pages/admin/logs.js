@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 
@@ -19,19 +19,13 @@ const Logs = () => {
 
   const { usersLogs } = data ? data : {}
   const { objects: logs, pages } = usersLogs ? usersLogs : {}
-  console.log('logs', usersLogs)
 
   if (loading) return <Loading />
 
   return (
-    <motion.div
-      initial="initial"
-      animate="enter"
-      exit="exit"
-      variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
-    >
+    <>
       {logs && <ListLogs currentPage={currentPage} pages={pages} logs={logs} />}
-    </motion.div>
+    </>
   )
 }
 
