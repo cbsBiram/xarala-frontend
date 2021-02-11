@@ -12,10 +12,10 @@ describe('With Enzyme', () => {
   })
 })
 
-// describe('With Snapshot Testing', () => {
-//   it('App shows "Prenez Votre carrière en main."', () => {
-//     const component = renderer.create(<App />)
-//     const tree = component.toJSON()
-//     expect(tree).toMatchSnapshot()
-//   })
-// })
+describe('With Snapshot Testing', () => {
+  it('App shows "Prenez Votre carrière en main."', () => {
+    const component = renderer.create(<App />)
+    const tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+})

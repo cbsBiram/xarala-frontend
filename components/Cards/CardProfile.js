@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { createPopper } from '@popperjs/core'
 import { useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 
 import { UPDATE_AVATAR } from '../../utils/mutations'
 import { fileToBase64 } from '../../utils/common'
@@ -9,7 +8,6 @@ import { fileToBase64 } from '../../utils/common'
 // components
 export default function CardProfile({ me }) {
   const [avatar, setAvatar] = useState()
-  const router = useRouter()
   const [updateAvatar] = useMutation(UPDATE_AVATAR)
   const [imageUrl, setImageUrl] = useState('')
 
@@ -81,7 +79,7 @@ export default function CardProfile({ me }) {
                   <div className="relative">
                     <label htmlFor="file-input">
                       <img
-                        alt="..."
+                        alt="photo de profil"
                         src={
                           imageUrl
                             ? `${imageUrl}`

@@ -72,18 +72,18 @@ const AllCourses = ({
   return (
     <>
       <div className="relative block pt-8">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container  mx-auto px-4 py-8">
           <div className="flex flex-wrap justify-center text-center">
-            <div className="w-full px-4 flex-1">
+            <div className="w-1/3 px-2">
               <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
                 <span
                   htmlFor="category"
-                  className="text-blue-400 font-semibold ml-2 mr-2"
+                  className="text-blue-400 font-semibold "
                 >
                   Catégories :
                 </span>
                 <select
-                  className="form-select bg-white border mr-2 rounded py-1"
+                  className="form-select ml-2 bg-white border  rounded py-1"
                   name="category"
                   id="category"
                   defaultValue={categoryName}
@@ -105,7 +105,7 @@ const AllCourses = ({
                 </select>
               </div>
             </div>
-            <div className="w-full px-4 flex-1">
+            <div className="w-1/3 px-2">
               <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
                 <span
                   htmlFor="teachers"
@@ -124,23 +124,24 @@ const AllCourses = ({
                   }}
                 >
                   <option value="0">Tous</option>
-                  {teachers.map((teacher) => (
-                    <option
-                      key={teacher.id}
-                      className="px-2"
-                      value={teacher.id}
-                    >
-                      {teacher.firstName} {teacher.lastName}
-                    </option>
-                  ))}
+                  {teachers &&
+                    teachers.map((teacher) => (
+                      <option
+                        key={teacher.id}
+                        className="px-2"
+                        value={teacher.id}
+                      >
+                        {teacher.firstName} {teacher.lastName}
+                      </option>
+                    ))}
                 </select>
               </div>
             </div>
-            <div className="w-full px-4 flex-1">
+            <div className="w-1/3 px-2">
               <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
                 <div className="ml-4 inline-flex text-gray-600">
                   <input
-                    className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                    className="border-2 border-gray-300 bg-white h-10 px-5 mr-4 rounded-lg text-sm focus:outline-none"
                     type="text"
                     name="search"
                     defaultValue={query}
@@ -150,13 +151,18 @@ const AllCourses = ({
                   <button
                     type="submit"
                     onClick={(e) => submitSearch(e)}
-                    className="right-0 top-0 mr-4 text-white rounded px-2 bg-blue-400 hover:bg-blue-500"
+                    className="right-0 top-0  text-white rounded px-2 bg-blue-400 hover:bg-blue-500"
                   >
                     Rechercher
                   </button>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="container  mx-auto px-4 py-8">
+          <div className="flex flex-wrap justify-center text-center">
             <div className="w-full flex flex-col items-center lg:w-7/12 px-4 mb-10">
               <h2 className="text-2xl font-semibold uppercase">
                 Nos meilleurs cours
