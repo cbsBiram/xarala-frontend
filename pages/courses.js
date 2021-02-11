@@ -9,7 +9,7 @@ import Page from '../layouts/Page'
 import {
   ALL_CATEGORIES,
   ALL_COURSES_QUERY,
-  ALL_TEACHERS_QUERY,
+  LIST_TEACHERS,
 } from '../utils/queries'
 
 const Courses = () => {
@@ -28,9 +28,7 @@ const Courses = () => {
     data: teachersData,
     errors: teachersErrors,
     loading: loadingTeachers,
-  } = useQuery(ALL_TEACHERS_QUERY, {
-    variables: { page: currentPage },
-  })
+  } = useQuery(LIST_TEACHERS)
   const {
     data: categoriesData,
     errors: categoriesErrors,
@@ -41,8 +39,9 @@ const Courses = () => {
 
   if (loadingCourses || loadingCategories || loadingTeachers) return <Loading />
   if (coursesErrors || categoriesErrors || teachersErrors) return <h2>Error</h2>
+
   const { categories } = categoriesData ? categoriesData : {}
-  const { objects: users } = teachersData.teachers ? teachersData.teachers : {}
+  const { listTeachers: users } = teachersData ? teachersData : {}
 
   return (
     <>

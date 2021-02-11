@@ -11,7 +11,9 @@ export default function CardSettings({ me }) {
   const [address, setAddress] = useState(me.address)
   const [phone, setPhone] = useState(me.phone)
   const [bio, setBio] = useState(me.bio)
-  const [accountType, setAccountType] = useState('')
+  const [accountType, setAccountType] = useState(
+    me.isStudent ? 'student' : me.isTeacher ? 'teacher' : 'author'
+  )
   const [errorMessage, setErrorMessage] = useState('')
 
   const [updateUser] = useMutation(UPDATE_PROFILE)
@@ -157,6 +159,7 @@ export default function CardSettings({ me }) {
                     name="account_type"
                     id="account-type"
                     value="student"
+                    checked={accountType === 'student'}
                     onChange={(event) => setAccountType(event.target.value)}
                   />
                   <label
@@ -173,6 +176,7 @@ export default function CardSettings({ me }) {
                     name="account_type"
                     id="account-type"
                     value="teacher"
+                    checked={accountType === 'teacher'}
                     onChange={(event) => setAccountType(event.target.value)}
                   />
                   <label
@@ -189,6 +193,7 @@ export default function CardSettings({ me }) {
                     name="account_type"
                     id="account-type"
                     value="author"
+                    checked={accountType === 'author'}
                     onChange={(event) => setAccountType(event.target.value)}
                   />
                   <label
