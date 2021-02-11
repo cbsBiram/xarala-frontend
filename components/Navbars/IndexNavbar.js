@@ -107,11 +107,11 @@ const Navbar = () => {
                 </Link>
               </li>
 
-              <li className="flex items-center">
+              <li className="flex items-center ml-2">
                 <UserCart />
               </li>
 
-              <li className="flex items-center">
+              <li className="flex items-center ml-2">
                 <UserDropdown setOpen={setNavbarOpen} />
               </li>
             </ul>

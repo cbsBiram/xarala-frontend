@@ -90,7 +90,7 @@ const Home = ({ allPosts, allCourses }) => {
                   </div>
                   <div className="w-full text-gray-600 mt-8">
                     <input
-                      className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                      className="border-2 mt-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                       type="text"
                       name="search"
                       placeholder="Que souhaitez-vous apprendre ?"
@@ -100,7 +100,7 @@ const Home = ({ allPosts, allCourses }) => {
                     />
                     <button
                       type="submit"
-                      className="inline-flex items-center ml-2 h-10 mr-4 text-white font-semibold rounded-lg px-2 bg-blue-400 hover:bg-blue-500"
+                      className="inline-flex mt-2 items-center ml-2 h-10 mr-4 text-white font-semibold rounded-lg px-2 bg-blue-400 hover:bg-blue-500"
                       onClick={() =>
                         router.push({
                           pathname: '/search',

@@ -51,16 +51,12 @@ const LessonsSidebar = ({ course, lessonId, setOpen }) => {
                   }
                   className={`text-xs p-3 pr-0 pl-8 mt-2 mr-10 block  ${
                     courseLesson.id == lessonId
-                      ? 'bg-purple-500 text-white'
+                      ? 'bg-blue-500 text-white'
                       : 'text-gray-800 '
-                  }  rounded-r-full hover:bg-purple-500 cursor-pointer hover:text-white`}
+                  }  rounded-r-full hover:bg-blue-500 cursor-pointer hover:text-white`}
                 >
                   <button type="button">
-                    <img
-                      src={require('assets/img/dot.png')}
-                      alt="dot"
-                      className="float-left mt-1 mr-2"
-                    />
+                    <i className="fab fa-youtube float-left mt-1 mr-2 "></i>
                     {courseLesson.title}
                   </button>
                 </li>
@@ -70,14 +66,10 @@ const LessonsSidebar = ({ course, lessonId, setOpen }) => {
               <ul>
                 <li
                   onClick={() => router.push(`/courses/quiz/${chapter.slug}`)}
-                  className="text-xs p-3 pr-0 pl-8 mt-2 mr-10 block rounded-r-full cursor-pointer"
+                  className="text-xs p-3 pr-0 pl-8 mt-2 mr-10 block rounded-r-full hover:bg-blue-500 cursor-pointer hover:text-white"
                 >
                   <button type="button">
-                    <img
-                      src={require('assets/img/dot.png')}
-                      alt="dot"
-                      className="float-left mt-1 mr-2"
-                    />
+                    <i className="far fa-question-circle float-left mt-1 mr-2 "></i>
                     {chapter.quiz.title} {'(Exercice)'}
                   </button>
                 </li>
