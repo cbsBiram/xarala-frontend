@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
+import ContainerTitle from '../Partials/ContainerTitle'
+import Loading from '../Shared/Loading'
 import Pagination from '../Shared/Pagination'
 import { CourseCard } from '../Partials/CourseCard'
 import {
@@ -8,8 +10,6 @@ import {
   COURSES_BY_USER,
 } from '../../utils/queries'
 import { useLazyQuery } from '@apollo/client'
-import Loading from '../Shared/Loading'
-import ContainerTitle from '../Partials/ContainerTitle'
 
 const AllCourses = ({
   allCourses,

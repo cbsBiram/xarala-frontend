@@ -50,6 +50,28 @@ export const ALL_AUTHORS_QUERY = gql`
   }
 `
 
+export const LIST_TEACHERS = gql`
+  query {
+    listTeachers {
+      id
+      firstName
+      lastName
+      email
+    }
+  }
+`
+
+export const LIST_AUTHORS = gql`
+  query {
+    listAuthors {
+      id
+      firstName
+      lastName
+      email
+    }
+  }
+`
+
 export const ALL_USERS_QUERY = gql`
   query {
     users {
