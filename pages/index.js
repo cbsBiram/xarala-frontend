@@ -11,7 +11,11 @@ export default function Index() {
   const allData = data ? data : {}
   const { latestCourses: allCourses, latestPosts: allPosts } = allData
 
-  return <Home allCourses={allCourses} allPosts={allPosts} />
+  return (
+    <>
+      <Home allCourses={allCourses} allPosts={allPosts} />
+    </>
+  )
 }
 
 Index.layout = Page

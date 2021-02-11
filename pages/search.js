@@ -5,7 +5,7 @@ import Loading from '../components/Shared/Loading'
 import Page from '../layouts/Page'
 import { SEARCH_RESULTS } from '../utils/queries'
 import { useQuery } from '@apollo/client'
-import SearchResults from '../components/Partials/SearchResults'
+import SearchResults from '../components/Search/SearchResults'
 
 export default function Search() {
   const router = useRouter()
@@ -16,7 +16,11 @@ export default function Search() {
 
   if (loading) return <Loading />
 
-  return <SearchResults data={data.homepageSearch} query={q} />
+  return (
+    <>
+      <SearchResults data={data.homepageSearch} query={q} />
+    </>
+  )
 }
 
 Search.layout = Page
