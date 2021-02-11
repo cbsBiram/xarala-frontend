@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 const TeacherHeaderStats = ({ courses }) => {
   const salesFigures =
-    courses && courses[0].students
+    courses && courses[0] && courses[0].students
       ? courses.reduce(
           (sales, course) => sales + course.price * course.students.length,
           0

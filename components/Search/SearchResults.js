@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { CourseCard } from './CourseCard'
-import { PostCard } from './PostCard'
+import { CourseCard } from '../Partials/CourseCard'
+import { PostCard } from '../Partials/PostCard'
 
 const SearchResults = ({ data, query }) => {
   const courses = data.filter((item) => item.__typename === 'CourseType')

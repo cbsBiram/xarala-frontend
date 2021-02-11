@@ -9,7 +9,7 @@ const TeacherSection = ({ teacher }) => {
             <div className="w-full px-4 flex justify-center">
               <div className="relative">
                 <img
-                  alt="..."
+                  alt="Formateur"
                   src={
                     teacher.avatar
                       ? `${process.env.MEDIA_URL}${teacher.avatar}`
@@ -53,13 +53,13 @@ const TeacherSection = ({ teacher }) => {
                 <p className="mb-4 text-lg leading-relaxed text-gray-800">
                   {teacher.bio}
                 </p>
-                <a
+                {/* <a
                   href="#xarala"
                   className="font-normal text-blue-500"
                   onClick={(e) => e.preventDefault()}
                 >
                   En savoir plus
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

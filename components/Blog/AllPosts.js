@@ -9,6 +9,7 @@ import {
   POSTS_BY_TAG,
 } from '../../utils/queries'
 import { PostCard } from '../Partials/PostCard'
+import ContainerTitle from '../Partials/ContainerTitle'
 
 const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
   const [query, setQuery] = useState('')
@@ -61,7 +62,7 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
       <div className="relative block pt-8">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-wrap justify-center text-center">
-            <div className="w-full px-4 flex-1">
+            <div className="w-1/3 px-2">
               <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
                 <span
                   htmlFor="authors"
@@ -93,7 +94,7 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
                 </select>
               </div>
             </div>
-            <div className="w-full px-4 flex-1">
+            <div className="w-1/3 px-2">
               <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
                 <span
                   htmlFor="tags"
@@ -112,25 +113,25 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
                   }}
                 >
                   <option value="">Tous</option>
-                  {tags.map((tag) => (
-                    <option key={tag.id} className="px-2" value={tag.name}>
-                      {tag.name}
-                    </option>
-                  ))}
+                  {tags &&
+                    tags.map((tag) => (
+                      <option key={tag.id} className="px-2" value={tag.name}>
+                        {tag.name}
+                      </option>
+                    ))}
                 </select>
               </div>
             </div>
-            <div className="w-full px-4 flex-1">
+            <div className="w-1/3 px-2">
               <div className="text-sm block my-4 p-3 text-gray-800 rounded border border-solid border-gray-200">
                 <div className="w-full inline-flex text-gray-600 ml-3">
                   <input
-                    className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                    className="border-2 border-gray-300 bg-white h-10 px-5 mr-4 rounded-lg text-sm focus:outline-none"
                     type="text"
                     name="search"
                     placeholder="Que souhaitez-vous apprendre ?"
                     defaultValue={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    style={{ width: '350px' }}
                   />
                   <button
                     type="submit"
@@ -142,16 +143,14 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
                 </div>
               </div>
             </div>
-            <div className="w-full flex flex-col items-center lg:w-7/12 px-4 mt-5 mb-10">
-              <h1 className="text-2xl font-semibold">
-                Bienvenue dans l'univers de l'innovation technologique.
-              </h1>
-              <div
-                className="w-10 h-1 bg-blue-600 rounded mt-2"
-                style={{ marginBottom: '30px' }}
-              ></div>
-            </div>
-            <div className="flex flex-wrap justify-center">
+          </div>
+        </div>
+
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-wrap justify-center text-center">
+            <ContainerTitle title="Bienvenue dans l'univers de l'innovation technologique." />
+
+            <div className="flex flex-wrap ">
               {posts &&
                 posts.map((post) => <PostCard key={post.id} post={post} />)}
             </div>

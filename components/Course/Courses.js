@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
+import ContainerTitle from '../Partials/ContainerTitle'
+import Loading from '../Shared/Loading'
 import Pagination from '../Shared/Pagination'
 import { CourseCard } from '../Partials/CourseCard'
 import {
@@ -8,7 +10,6 @@ import {
   COURSES_BY_USER,
 } from '../../utils/queries'
 import { useLazyQuery } from '@apollo/client'
-import Loading from '../Shared/Loading'
 
 const AllCourses = ({
   allCourses,
@@ -163,17 +164,8 @@ const AllCourses = ({
 
         <div className="container  mx-auto px-4 py-8">
           <div className="flex flex-wrap justify-center text-center">
-            <div className="w-full flex flex-col items-center lg:w-7/12 px-4 mb-10">
-              <h2 className="text-2xl font-semibold uppercase">
-                Nos meilleurs cours
-              </h2>
-              <div
-                className="w-10 h-1 bg-blue-600 rounded mt-2"
-                style={{ marginBottom: '30px' }}
-              ></div>
-            </div>
-
-            <div className="flex flex-wrap justify-center">
+            <ContainerTitle title="Nos meilleurs cours" />
+            <div className="flex flex-wrap">
               {courses &&
                 courses.map((course) => (
                   <CourseCard key={course.id} course={course} />
