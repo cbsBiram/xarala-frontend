@@ -33,7 +33,7 @@ const ListLogs = ({ currentPage, pages, logs }) => {
                         src={
                           log.user && log.user.avatar
                             ? `${process.env.MEDIA_URL}${log.user.avatar}`
-                            : require('assets/img/team-2-800x800.jpg')
+                            : require('assets/img/placeholder.jpg')
                         }
                         className="mx-auto object-cover rounded-full h-10 w-10"
                       />
