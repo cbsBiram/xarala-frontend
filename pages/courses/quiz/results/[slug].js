@@ -31,6 +31,8 @@ function Result() {
     : 0
   const score = nbQuestions ? (nbCorrectAnswers / nbQuestions) * 100 : 0
 
+  console.log(userAnswerData)
+
   if (loadingUserAnswer || loadingQuiz) return <Loading />
 
   return (
@@ -99,7 +101,7 @@ function Result() {
                                       : 'bg-red-500 text-white font-bold'
                                   } border-gray-200`}
                                 >
-                                  <td className="px-4 py-4">{answer.label} </td>
+                                  <td className="px-4 py-4">{answer.label}</td>
                                   <td>
                                     <i
                                       className={`fas fa-${
@@ -113,7 +115,7 @@ function Result() {
                                   key={answer.id}
                                   className={`${
                                     answer.isCorrect
-                                      ? 'bg-green-400 hover:bg-green-100 text-white font-bold'
+                                      ? 'bg-green-400 text-white font-bold'
                                       : 'hover:bg-gray-100'
                                   }  border-b border-gray-200 py-10`}
                                 >
