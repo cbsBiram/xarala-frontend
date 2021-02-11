@@ -113,11 +113,12 @@ const AllPosts = ({ allPosts, pages, currentPage, authors, tags }) => {
                   }}
                 >
                   <option value="">Tous</option>
-                  {tags.map((tag) => (
-                    <option key={tag.id} className="px-2" value={tag.name}>
-                      {tag.name}
-                    </option>
-                  ))}
+                  {tags &&
+                    tags.map((tag) => (
+                      <option key={tag.id} className="px-2" value={tag.name}>
+                        {tag.name}
+                      </option>
+                    ))}
                 </select>
               </div>
             </div>
