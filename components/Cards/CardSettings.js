@@ -149,15 +149,16 @@ export default function CardSettings({ me }) {
               Type de compte
             </h6>
             <div className="flex flex-wrap">
-              <div className="w-full lg:w-12/12 px-4">
+              <div
+                className="w-full lg:w-12/12 px-4"
+                onChange={(event) => setAccountType(event.target.value)}
+              >
                 <div className="flex items-center w-full mb-3">
                   <input
                     type="radio"
                     className="text-green-500"
                     name="account_type"
-                    id="account-type"
                     value="student"
-                    onChange={(event) => setAccountType(event.target.value)}
                   />
                   <label
                     className="uppercase text-gray-700 text-xs font-bold ml-2"
@@ -171,15 +172,13 @@ export default function CardSettings({ me }) {
                     type="radio"
                     className="text-green-500"
                     name="account_type"
-                    id="account-type"
                     value="teacher"
-                    onChange={(event) => setAccountType(event.target.value)}
                   />
                   <label
                     className="uppercase text-gray-700 text-xs font-bold ml-2"
                     htmlFor="account-type"
                   >
-                    Instructeur
+                    Formateur
                   </label>
                 </div>
                 <div className="flex items-center w-full mb-3">
@@ -187,9 +186,7 @@ export default function CardSettings({ me }) {
                     type="radio"
                     className="text-green-500"
                     name="account_type"
-                    id="account-type"
                     value="author"
-                    onChange={(event) => setAccountType(event.target.value)}
                   />
                   <label
                     className="uppercase text-gray-700 text-xs font-bold ml-2"
