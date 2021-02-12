@@ -22,7 +22,7 @@ const Authors = () => {
                     src={
                       author.avatar
                         ? `${process.env.MEDIA_URL}${author.avatar}`
-                        : require('assets/img/team-2-800x800.jpg')
+                        : require('assets/img/placeholder.jpg')
                     }
                     alt="avatar"
                     className="w-10 h-10 object-cover rounded-full mx-4"

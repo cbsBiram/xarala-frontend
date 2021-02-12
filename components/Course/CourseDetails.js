@@ -45,7 +45,7 @@ export default function CourseDetailsComponent({ course }) {
           src={
             course.thumbnail
               ? `${process.env.MEDIA_URL}${course.thumbnail}`
-              : require('assets/img/team-2-800x800.jpg')
+              : require('assets/img/placeholder.jpg')
           }
           style={{ width: '459.5px', height: '540px' }}
           className="absolute h-full max-w-1/2 hidden lg:block right-0 top-0"

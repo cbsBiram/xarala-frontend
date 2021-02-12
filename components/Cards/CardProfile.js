@@ -85,7 +85,7 @@ export default function CardProfile({ me }) {
                             ? `${imageUrl}`
                             : me.avatar
                             ? `${process.env.MEDIA_URL}${me.avatar}`
-                            : require('assets/img/team-2-800x800.jpg')
+                            : require('assets/img/placeholder.jpg')
                         }
                         style={{ height: '150px' }}
                         className="shadow-xl cursor-pointer rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"

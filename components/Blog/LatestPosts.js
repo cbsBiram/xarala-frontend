@@ -47,7 +47,7 @@ const LatestPosts = () => {
                     src={
                       post.author && post.author.avatar
                         ? `${process.env.MEDIA_URL}${post.author.avatar}`
-                        : require('assets/img/team-1-800x800.jpg')
+                        : require('assets/img/placeholder.jpg')
                     }
                     alt={post.title}
                     className="w-8 h-8 object-cover rounded-full"

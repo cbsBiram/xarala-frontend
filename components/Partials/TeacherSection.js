@@ -13,7 +13,7 @@ const TeacherSection = ({ teacher }) => {
                   src={
                     teacher.avatar
                       ? `${process.env.MEDIA_URL}${teacher.avatar}`
-                      : require('assets/img/team-2-800x800.jpg')
+                      : require('assets/img/placeholder.jpg')
                   }
                   className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                 />

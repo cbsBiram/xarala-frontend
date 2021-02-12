@@ -58,8 +58,7 @@ const ContactUs = () => {
         <main>
           <section className="relative border-b">
             <div
-              className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-              bg-gray-300
+              className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 bg-gray-300"
               style={{ transform: 'translateZ(0)' }}
             >
               <svg
@@ -255,7 +254,7 @@ const ContactUs = () => {
                                   value={message}
                                   onChange={(e) => setMessage(e.target.value)}
                                   className="description  sec p-3 h-60 border border-gray-300 outline-none focus:border-indigo-500 focus:outline-none"
-                                  spellcheck="false"
+                                  spellCheck="false"
                                   placeholder="Votre message"
                                 />
                               </div>

@@ -145,6 +145,32 @@ export default function Sidebar({ user }) {
               </li>
 
               <li className="items-center">
+                {user && user.isWriter ? (
+                  <Link href="/admin/posts">
+                    <a
+                      href="#xarala"
+                      className={
+                        'text-xs uppercase py-3 font-bold block ' +
+                        (router.pathname.indexOf('/admin/posts') !== -1
+                          ? 'text-blue-500 hover:text-blue-600'
+                          : 'text-gray-800 hover:text-gray-600')
+                      }
+                    >
+                      <i
+                        className={
+                          'fas fa-shapes mr-2 text-sm ' +
+                          (router.pathname.indexOf('/admin/posts') !== -1
+                            ? 'opacity-75'
+                            : 'text-gray-400')
+                        }
+                      ></i>{' '}
+                      Mes articles
+                    </a>
+                  </Link>
+                ) : (
+                  <></>
+                )}
+
                 {user && user.isWriter && !user.isStaff ? (
                   <Link href="/admin/posts">
                     <a
